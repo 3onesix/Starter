@@ -144,6 +144,10 @@ form {
 	.field {
 		label {
 			display: block;
+			&.disabled {
+				display: inline;
+				color: #888;
+			}
 		}
 		
 		input {

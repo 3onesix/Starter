@@ -90,6 +90,9 @@ form fieldset {
     font-weight: bold; }
 form .field label {
   display: block; }
+  form .field label.disabled {
+  	display: inline;
+    color: #888; }
 form .field input[type=text] {
   width: 300px;
   padding: 4px;
