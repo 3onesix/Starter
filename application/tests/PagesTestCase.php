@@ -27,4 +27,20 @@ class PagesTestCase extends UnitTestCase
 		
 		$this->assertTrue($page->is_valid(), 'Validation Pass');
 	}
+	
+	public function test_belongs_to_user()
+	{
+		$page = new Page_Model;
+		$page->name = 'Home';
+		$page->user = $this->user_model->create(array(
+			'first_name' => 'John',
+			'last_name' => 'Doe',
+			'username' => 'johndoe',
+			'password' => 'test',
+			'confirm_password' => 'test'
+		));
+		$page->save();
+		
+		$this->assertEquals('John', $page->user->first_name, 'Page belongs to user');
+	}
 }
