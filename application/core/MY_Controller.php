@@ -29,9 +29,9 @@ class MY_Controller extends CI_Controller
 			redirect('admin/signin');
 		}
 		
-		$this->current_user = $this->user_model->first(array(
+		$this->current_user = $username ? $this->user_model->first(array(
 			'username' => $username
-		));
+		)) : NULL;
 		
 		$config['per_page'] = '10'; 
 		$config['full_tag_open'] = '<div id="pagination">';
