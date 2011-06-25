@@ -1,6 +1,6 @@
 <?php
 
-class PagesTestCase extends UnitTestCase
+class PageTestCase extends UnitTestCase
 {
 	public function __construct()
 	{		
