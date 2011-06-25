@@ -23,7 +23,7 @@ a img {
 /* Basic */
 body {
   font: 14px/20px Helvetica Neue, Helvetica, Arial, sans-serif;
-  background: #eee; }
+  background: #eeeeee url(../images/bg.png); }
 
 header {
   position: relative;
@@ -45,7 +45,7 @@ header {
   padding: 10px;
   overflow: auto;
   -webkit-border-radius: 4px;
-  -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
   background: #fff; }
 
 #navigation {
