@@ -12,10 +12,12 @@
 	<body>
 		<form id="signin" method="post" action="<?=site_url('admin/authenticate')?>">
 			<div class="field">
-				<input type="text" name="username" placeholder="username" />
+				<label for="username_field">Username<label>
+				<input type="text" name="username" id="username_field" />
 			</div>
 			<div class="field">
-				<input type="password" name="password" placeholder="password" />
+				<label for="password_field">Password<label>
+				<input type="password" name="password" id="password_field" />
 			</div>
 			<div class="actions">
 				<input type="submit" name="commit" value="Sign In">
