@@ -113,7 +113,8 @@ $autoload['language'] = array();
 
 $autoload['model'] = array(
 	'user_model',
-	'page_model'
+	'page_model',
+	'setting_model'
 );
 
 
