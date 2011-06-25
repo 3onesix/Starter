@@ -3,12 +3,12 @@
 	<fieldset>
 		<legend>Page Info</legend>
 		<div class="field">
-			<?php print $f->label('name', 'Name:'); ?>
-			<?php print $f->text_field('name'); ?>				
+			<?php echo $f->label('name', 'Name:'); ?>
+			<?php echo $f->text_field('name'); ?>				
 		</div>
 		<div class="field">
-			<?php print $f->label('slug', 'Slug:'); ?>
-			<?php print $f->text_field('slug'); ?>				
+			<?php echo $f->label('slug', 'Slug:'); ?>
+			<?php echo $f->text_field('slug'); ?>				
 		</div>
 	</fieldset>
 </div>
@@ -19,5 +19,5 @@
 	<div class="field checkbox"><input type="checkbox" name="page_[modules][googleanalytics]" value="1" /> <label for="">Google Analytics</label></div>
 </div>
 <div class="actions">
-	<?php print submit_tag(); ?> or <a href="<?php print site_url('admin/pages'); ?>">cancel</a>
+	<?php echo submit_tag(); ?> or <a href="<?php echo site_url('admin/pages'); ?>">cancel</a>
 </div>
