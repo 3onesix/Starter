@@ -1,0 +1,4 @@
+.DS_Store
+application/config/database.php
+application/config/testing/database.php
+.sass-cache

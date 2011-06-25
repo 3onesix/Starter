@@ -1,0 +1,6 @@
+[submodule "application/third_party/unit"]
+	path = application/third_party/unit
+	url = https://github.com/tomkrush/unit.git
+[submodule "application/third_party/jot"]
+	path = application/third_party/jot
+	url = https://github.com/tomkrush/Jot.git
