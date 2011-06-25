@@ -201,7 +201,8 @@ form {
 						
 				&:focus {
 					outline: none;
-					border: 1px solid #666;				
+					border: 1px solid #666;
+					-webkit-box-shadow: 0 0 3px 1px opacify(lighten($navigation, 10%), .25);
 				}
 			}
 		}
@@ -215,10 +216,11 @@ form {
 			border: 1px solid #aaa;
 			-webkit-border-radius: 1px;
 			font: 14px/20px Helvetica Neue, Helvetica, Arial, sans-serif;
-		
+					
 			&:focus {
 				outline: none;
-				border: 1px solid #666;			
+				border: 1px solid #666;
+				-webkit-box-shadow: 0 0 3px 1px opacify(lighten($navigation, 10%), .25);
 			}
 		
 			&.wysiwyg {

@@ -145,7 +145,8 @@ form .field input[type=text] {
   font: 14px/20px Helvetica Neue, Helvetica, Arial, sans-serif; }
   form .field input[type=text]:focus {
     outline: none;
-    border: 1px solid #666; }
+    border: 1px solid #666;
+    -webkit-box-shadow: 0 0 3px 1px #677c8c; }
 form .field textarea {
   width: 400px;
   max-width: 400px;
@@ -157,7 +158,8 @@ form .field textarea {
   font: 14px/20px Helvetica Neue, Helvetica, Arial, sans-serif; }
   form .field textarea:focus {
     outline: none;
-    border: 1px solid #666; }
+    border: 1px solid #666;
+    -webkit-box-shadow: 0 0 3px 1px #677c8c; }
   form .field textarea.wysiwyg {
     width: 670px;
     max-width: 670px; }
