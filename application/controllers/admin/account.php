@@ -4,6 +4,11 @@ class Account extends My_Controller
 {
 	public function action_signin()
 	{
+		if ( $this->current_user )
+		{
+			redirect('admin'); 
+		}
+		
 		$this->load->view('admin/account/signin');
 	}
 	
