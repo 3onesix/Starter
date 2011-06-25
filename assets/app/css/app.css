@@ -25,6 +25,13 @@ body {
   font: 14px/20px Helvetica Neue, Helvetica, Arial, sans-serif;
   background: #eeeeee url(../images/bg.png); }
 
+a {
+  color: #51626f;
+  text-decoration: none; }
+  a:hover {
+    color: #677c8c;
+    text-decoration: underline; }
+
 header {
   position: relative;
   width: 960px;

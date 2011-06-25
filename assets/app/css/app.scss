@@ -60,6 +60,15 @@ body {
 	background: #eee url(../images/bg.png);
 }
 
+a {
+	color: $navigation;
+	text-decoration: none;
+	&:hover {
+		color: lighten($navigation, 10%);
+		text-decoration: underline;
+	}
+}
+
 header {
 	position: relative;
 	width: 960px;
