@@ -82,7 +82,7 @@ $autoload['helper'] = array('array', 'url', 'common', 'jot_form', 'jot_array', '
 |
 */
 
-$autoload['config'] = array('');
+$autoload['config'] = array('starter');
 
 
 /*

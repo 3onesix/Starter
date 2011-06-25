@@ -1,5 +1,5 @@
 			<div id="footer">
-				&copy; 2011 Echo Design Group
+				&copy; <?=date('Y')?> <?=$this->config->item('starter_copyright')?>
 			</div>
 		</div>
 		<script src="/assets/shared/js/jquery-1.6.1.min.js"></script>
