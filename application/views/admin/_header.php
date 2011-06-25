@@ -19,5 +19,4 @@
 			<ul id="navigation">
 				<li><a href="<?=site_url('admin')?>">Dashboard</a></li>
 				<li><a href="<?=site_url('admin/pages')?>" class="selected">Pages</a></li>
-				<li><a href="<?=site_url('admin/articles')?>">Articles</a></li>
 			</ul>
