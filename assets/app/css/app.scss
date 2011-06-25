@@ -145,9 +145,11 @@ form {
 		label {
 			display: block;
 			&.disabled {
-				display: inline;
 				color: #888;
 			}
+		}
+		&.checkbox label {
+			display: inline;
 		}
 		
 		input {
