@@ -116,22 +116,4 @@ class UserTestCase extends UnitTestCase
 		
 		$this->assertTrue($authenticate, 'User authenticated');
 	}
-	
-	public function test_has_many_pages()
-	{
-		$user = $this->user_model->create(array(
-			'first_name' => 'John',
-			'last_name' => 'Doe',
-			'username' => 'john_doe',
-			'password' => 'test123',
-			'confirm_password' => 'test123'
-		));	
-		
-		$user->pages = array(
-			$this->page_model->create(array('name'=>'Home')),
-			$this->page_model->create(array('name'=>'About')),
-		);
-		
-		$this->assertEquals(2, $user->pages->count(), 'User has many pages');
-	}
 }

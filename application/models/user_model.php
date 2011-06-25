@@ -11,8 +11,6 @@ class User_Model extends My_Model
 		$this->validates('last_name', 'required');
 		$this->validates('username', array('required', 'uniqueness'=>array('exclude_self'=>TRUE)));
 		$this->validates('password', array('required', 'confirm'));
-		
-		$this->has_many('pages');
 	}
 	
 	protected function encrypt_password()
