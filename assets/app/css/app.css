@@ -155,6 +155,8 @@ form .field input[type=text] {
     outline: none;
     border: 1px solid #666;
     -webkit-box-shadow: 0 0 3px 1px #677c8c; }
+form .field select {
+  width: 310px; }
 form .field textarea {
   width: 400px;
   max-width: 400px;

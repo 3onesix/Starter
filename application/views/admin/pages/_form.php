@@ -10,6 +10,21 @@
 			<?php echo $f->label('slug', 'Slug:'); ?>
 			<?php echo $f->text_field('slug'); ?>				
 		</div>
+		<div class="field">
+			<label>Parent Page</label>
+			<select>
+				<option></option>
+				<option>Homepage</option>
+				<option>Profile</option>
+				<option>&nbsp;&nbsp;&nbsp;&nbsp;Management &amp; Staff</option>
+				<option>&nbsp;&nbsp;&nbsp;&nbsp;Safety Record</option>
+				<option>&nbsp;&nbsp;&nbsp;&nbsp;Financial Strength</option>
+				<option>&nbsp;&nbsp;&nbsp;&nbsp;Honor &amp; Awards</option>
+				<option>&nbsp;&nbsp;&nbsp;&nbsp;Contact</option>
+				<option>Services</option>
+				<option>&nbsp;&nbsp;&nbsp;&nbsp;Pre-construction Services</option>
+			</select>
+		</div>
 	</fieldset>
 </div>
 <div id="sidebar">
