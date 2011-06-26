@@ -194,6 +194,57 @@ form .actions {
     border-bottom: 1px solid #ddd;
     font-size: 16px; }
 
+#records {
+  width: 700px; }
+  #records.pages ul {
+    list-style: none; }
+    #records.pages ul li {
+      clear: left;
+      overflow: auto;
+      padding: 4px 3px; }
+  #records.pages li.odd {
+    background: #f2f2f2; }
+  #records.pages ul ul li {
+    padding-left: 10px; }
+  #records.pages ul ul ul li {
+    padding-left: 20px; }
+  #records.pages ul ul ul ul li {
+    padding-left: 30px; }
+  #records.pages ul ul ul ul ul li {
+    padding-left: 40px; }
+  #records.pages ul ul ul ul ul ul li {
+    padding-left: 50px; }
+  #records.pages .what .slug {
+    display: inline-block;
+    width: 300px;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #999; }
+  #records .what {
+    float: left; }
+  #records .actions {
+    float: right; }
+    #records .actions .edit, #records .actions .delete, #records .actions .view {
+      float: left;
+      display: block;
+      width: 20px;
+      height: 20px;
+      margin-left: 2px;
+      background: no-repeat center center;
+      text-indent: -9000px;
+      opacity: .5;
+      -webkit-transition: opacity .35s; }
+      #records .actions .edit:hover, #records .actions .delete:hover, #records .actions .view:hover {
+        opacity: 1; }
+    #records .actions .view {
+      background-image: url(../images/icon_view.png); }
+    #records .actions .edit {
+      background-image: url(../images/icon_edit.png); }
+    #records .actions .delete {
+      background-image: url(../images/icon_delete.png); }
+
 #footer {
   clear: left;
   width: 960px;

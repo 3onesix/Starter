@@ -269,6 +269,82 @@ form {
 	}
 }
 
+#records {
+	width: 700px;
+	
+	&.pages {
+		ul {
+			list-style: none;
+			li {
+				clear: left;
+				overflow: auto;
+				padding: 4px 3px;
+			}
+		}
+		li.odd {
+			background: darken(#fff, 5%);
+		}
+		
+		ul ul li {
+			padding-left: 10px;
+		}
+		
+		ul ul ul li {
+			padding-left: 20px;
+		}
+		
+		ul ul ul ul li {
+			padding-left: 30px;
+		}
+		
+		ul ul ul ul ul li {
+			padding-left: 40px;
+		}
+		
+		ul ul ul ul ul ul li {
+			padding-left: 50px;
+		}
+		
+		.what {
+			.slug {
+				display: inline-block;
+				width: 300px;
+				max-width: 300px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				color: #999;
+			}
+		}
+	}
+	
+	.what {
+		float: left;
+	}
+	
+	.actions {
+		float: right;
+		.edit, .delete, .view {
+			float: left;
+			display: block;
+			width: 20px;
+			height: 20px;
+			margin-left: 2px;
+			background: no-repeat center center;
+			text-indent: -9000px;
+			opacity: .5;
+			-webkit-transition: opacity .35s;
+			
+			&:hover {
+				opacity: 1;
+			}
+		}
+		.view { background-image: url(../images/icon_view.png); }
+		.edit { background-image: url(../images/icon_edit.png); }
+		.delete { background-image: url(../images/icon_delete.png); }
+	}
+}
+
 #footer {
 	clear: left;
 	width: 960px;
