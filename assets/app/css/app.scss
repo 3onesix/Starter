@@ -336,10 +336,12 @@ form {
 				clear: left;
 				overflow: auto;
 				padding: 4px 3px;
+				@include rounded(3px);
+				
+				&.odd {
+					background: darken(#fff, 5%);
+				}
 			}
-		}
-		li.odd {
-			background: darken(#fff, 5%);
 		}
 		
 		ul ul li {
@@ -389,7 +391,7 @@ form {
 			margin-left: 2px;
 			background: no-repeat center center;
 			text-indent: -9000px;
-			opacity: .5;
+			opacity: .40;
 			-webkit-transition: opacity .35s;
 			
 			&:hover {

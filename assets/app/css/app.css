@@ -284,9 +284,10 @@ form .actions {
     #records.pages ul li {
       clear: left;
       overflow: auto;
-      padding: 4px 3px; }
-  #records.pages li.odd {
-    background: #f2f2f2; }
+      padding: 4px 3px;
+      border-radius: 3px; }
+      #records.pages ul li.odd {
+        background: #f2f2f2; }
   #records.pages ul ul li {
     padding-left: 10px; }
   #records.pages ul ul ul li {
@@ -317,7 +318,7 @@ form .actions {
       margin-left: 2px;
       background: no-repeat center center;
       text-indent: -9000px;
-      opacity: .5;
+      opacity: .40;
       -webkit-transition: opacity .35s; }
       #records .actions .edit:hover, #records .actions .delete:hover, #records .actions .view:hover {
         opacity: 1; }
