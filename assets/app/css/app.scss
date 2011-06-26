@@ -328,6 +328,7 @@ form {
 
 #records {
 	width: 700px;
+	margin-bottom: 10px;
 	
 	&.pages {
 		ul {
@@ -344,24 +345,16 @@ form {
 			}
 		}
 		
-		ul ul li {
-			padding-left: 10px;
-		}
-		
-		ul ul ul li {
-			padding-left: 20px;
-		}
-		
-		ul ul ul ul li {
-			padding-left: 30px;
-		}
-		
-		ul ul ul ul ul li {
-			padding-left: 40px;
-		}
-		
-		ul ul ul ul ul ul li {
-			padding-left: 50px;
+		$i: 10;
+		$u: 'ul';
+		$offset: 10px;
+		@while $i > 0 {
+			$u: $u + ' ul';
+			#{$u} li {
+				padding-left: $offset;
+			}
+			$offset: $offset + 10px;
+			$i: $i - 1;
 		}
 		
 		.what {

@@ -278,7 +278,8 @@ form .actions {
     bottom: 0; }
 
 #records {
-  width: 700px; }
+  width: 700px;
+  margin-bottom: 10px; }
   #records.pages ul {
     list-style: none; }
     #records.pages ul li {
@@ -298,6 +299,16 @@ form .actions {
     padding-left: 40px; }
   #records.pages ul ul ul ul ul ul li {
     padding-left: 50px; }
+  #records.pages ul ul ul ul ul ul ul li {
+    padding-left: 60px; }
+  #records.pages ul ul ul ul ul ul ul ul li {
+    padding-left: 70px; }
+  #records.pages ul ul ul ul ul ul ul ul ul li {
+    padding-left: 80px; }
+  #records.pages ul ul ul ul ul ul ul ul ul ul li {
+    padding-left: 90px; }
+  #records.pages ul ul ul ul ul ul ul ul ul ul ul li {
+    padding-left: 100px; }
   #records.pages .what .slug {
     display: inline-block;
     width: 300px;
