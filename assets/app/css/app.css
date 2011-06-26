@@ -333,12 +333,12 @@ form .actions {
       -webkit-transition: opacity .35s; }
       #records .actions .edit:hover, #records .actions .delete:hover, #records .actions .view:hover {
         opacity: 1; }
-    #records .actions .view {
-      background-image: url(../images/icon_view.png); }
     #records .actions .edit {
       background-image: url(../images/icon_edit.png); }
     #records .actions .delete {
       background-image: url(../images/icon_delete.png); }
+    #records .actions .view {
+      background-image: url(../images/icon_view.png); }
 
 #footer {
   clear: left;

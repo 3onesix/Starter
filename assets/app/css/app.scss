@@ -376,6 +376,7 @@ form {
 	
 	.actions {
 		float: right;
+		
 		.edit, .delete, .view {
 			float: left;
 			display: block;
@@ -391,9 +392,10 @@ form {
 				opacity: 1;
 			}
 		}
-		.view { background-image: url(../images/icon_view.png); }
+		
 		.edit { background-image: url(../images/icon_edit.png); }
 		.delete { background-image: url(../images/icon_delete.png); }
+		.view { background-image: url(../images/icon_view.png); }
 	}
 }
 
