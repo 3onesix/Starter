@@ -77,6 +77,13 @@ header {
 	padding: 0 10px;
 	h1 {
 		float: left;
+		width: 200px;
+		height: 40px;
+	}
+	h1.image {
+		background-position: center center;
+		background-repeat: no-repeat;
+		text-indent: -9000px;
 	}
 	.global {
 		position: absolute;
