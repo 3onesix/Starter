@@ -1,5 +1,5 @@
 $(function () {
-	$('.destroy').click('click', function() {
+	$('.destroy, .delete').click('click', function() {
 		var answer = confirm('Are you sure?');
 		
 		if ( answer == true )
