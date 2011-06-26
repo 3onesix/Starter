@@ -1,10 +1,14 @@
 <?php
 
-class SettingTestCase extends UnitTestCase
-{
-	public function setup()
+require_once APPPATH.'third_party/jot/test/JotUnitTestCase.php';
+
+class SettingTestCase extends JotUnitTestCase
+{	
+	public $migration_path = 'db/migrate/';
+	
+	public function __construct()
 	{
-		$this->db->truncate('settings');
+		parent::__construct();
 	}
 	
 	public function test_validate_key_fail()

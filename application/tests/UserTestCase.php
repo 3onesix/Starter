@@ -1,12 +1,14 @@
 <?php
 
-class UserTestCase extends UnitTestCase
-{
+require_once APPPATH.'third_party/jot/test/JotUnitTestCase.php';
+
+class UserTestCase extends JotUnitTestCase
+{	
+	public $migration_path = 'db/migrate/';
+
 	public function __construct()
-	{		
-		
-		$this->load->database();
-		$this->load->dbutil();
+	{
+		parent::__construct();
 	}
 	
 	public function setup()
