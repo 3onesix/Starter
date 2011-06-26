@@ -51,6 +51,8 @@ header {
     bottom: 0;
     right: 10px;
     font-size: 12px; }
+  header .selected {
+    font-weight: bold; }
 
 .container {
   width: 960px;
