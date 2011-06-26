@@ -3,8 +3,8 @@
 <?php if(flash('notice')): ?><div class="notice"><?php echo flash('notice'); ?></div><?php endif; ?>
 
 <div id="actions">
-	<h3>All Pages</h3>
-	<a href="<?php echo site_url('admin/pages/new'); ?>" class="button new page">new page</a>
+	<h2>All Pages</h2>
+	<a href="<?php echo site_url('admin/pages/new'); ?>" class="button new page">Create a New Page</a>
 </div>
 <div id="records" class="pages">
 	<ul>

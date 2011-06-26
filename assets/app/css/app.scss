@@ -269,6 +269,63 @@ form {
 	}
 }
 
+.button {
+	padding: 2px 6px;
+	border: 1px solid darken(#fff, 30%);
+	@include rounded(12px);
+	background: #ddd;
+	@include gradient(lighten(#000, 95%), lighten(#000, 80%));
+	color: #222;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+	font-weight: bold;
+	-webkit-transition: .35s;
+	
+	&:hover {
+		@include gradient(lighten(#000, 100%), lighten(#000, 85%));
+		color: #222;
+		text-decoration: none;
+	}
+	&:active {
+		@include gradient(lighten(#000, 75%), lighten(#000, 90%));
+		color: #222;
+		text-decoration: none;
+	}
+	
+	&.new {
+		position: relative;
+		padding-left: 24px;
+		
+		&:after {
+			content: ' ';
+			position: absolute;
+			left: 4px;
+			top: 4px;
+			width: 16px;
+			height: 16px;
+			background: url(../images/icon_add.png) no-repeat;
+		}
+	}
+}
+
+#actions {
+	position: relative;
+	width: 700px;
+	height: 26px;
+	margin-bottom: 10px;
+	
+	h2 {
+		position: absolute;
+		left: 0;
+		bottom: 3px;
+	}
+	
+	.button {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+	}
+}
+
 #records {
 	width: 700px;
 	

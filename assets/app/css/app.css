@@ -194,6 +194,89 @@ form .actions {
     border-bottom: 1px solid #ddd;
     font-size: 16px; }
 
+.button {
+  padding: 2px 6px;
+  border: 1px solid #b3b3b3;
+  border-radius: 12px;
+  background: #ddd;
+  background: #f2f2f2;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #f2f2f2 0%, #cccccc 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f2f2f2), color-stop(100%, #cccccc));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #f2f2f2 0%, #cccccc 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #f2f2f2 0%, #cccccc 100%);
+  /* Opera11.10+ */
+  background: -ms-linear-gradient(top, #f2f2f2 0%, #cccccc 100%);
+  /* IE10+ */
+  background: linear-gradient(top, #f2f2f2 0%, #cccccc 100%);
+  /* W3C */
+  color: #222;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  font-weight: bold;
+  -webkit-transition: .35s; }
+  .button:hover {
+    background: white;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, white 0%, #d9d9d9 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #d9d9d9));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, white 0%, #d9d9d9 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, white 0%, #d9d9d9 100%);
+    /* Opera11.10+ */
+    background: -ms-linear-gradient(top, white 0%, #d9d9d9 100%);
+    /* IE10+ */
+    background: linear-gradient(top, white 0%, #d9d9d9 100%);
+    /* W3C */
+    color: #222;
+    text-decoration: none; }
+  .button:active {
+    background: #bfbfbf;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #bfbfbf 0%, #e6e6e6 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #bfbfbf), color-stop(100%, #e6e6e6));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #bfbfbf 0%, #e6e6e6 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #bfbfbf 0%, #e6e6e6 100%);
+    /* Opera11.10+ */
+    background: -ms-linear-gradient(top, #bfbfbf 0%, #e6e6e6 100%);
+    /* IE10+ */
+    background: linear-gradient(top, #bfbfbf 0%, #e6e6e6 100%);
+    /* W3C */
+    color: #222;
+    text-decoration: none; }
+  .button.new {
+    position: relative;
+    padding-left: 24px; }
+    .button.new:after {
+      content: ' ';
+      position: absolute;
+      left: 4px;
+      top: 4px;
+      width: 16px;
+      height: 16px;
+      background: url(../images/icon_add.png) no-repeat; }
+
+#actions {
+  position: relative;
+  width: 700px;
+  height: 26px;
+  margin-bottom: 10px; }
+  #actions h2 {
+    position: absolute;
+    left: 0;
+    bottom: 3px; }
+  #actions .button {
+    position: absolute;
+    right: 0;
+    bottom: 0; }
+
 #records {
   width: 700px; }
   #records.pages ul {
