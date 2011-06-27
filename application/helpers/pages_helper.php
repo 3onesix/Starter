@@ -6,7 +6,7 @@ function page_hierarchial_list($pages, $even)
 	$CI =& get_instance();
 
 	echo '<ul>';		
-		
+				
 	foreach($pages as $page)
 	{
 		$even = !$even;
@@ -21,10 +21,10 @@ function page_hierarchial_list($pages, $even)
 			</div>
 		</li>';
 		
-		if ( $page->pages->count()  )
+		if ( $pages = $page->pages->all()  )
 		{			
 			$CI->db->order_by('name');
-			$even = page_hierarchial_list($page->pages->all(), $even);
+			$even = page_hierarchial_list($pages, $even);
 		}
 	}
 	
@@ -50,7 +50,7 @@ function page_hierarchal_spaces($pages)
 		
 		$options[$page->id] = $page->name;
 		
-		if ( $page->pages->count()  )
+		if ( $pages = $page->pages->all()  )
 		{
 			$sub_options = page_hierarchal_spaces($page->pages->all());
 			
