@@ -264,11 +264,41 @@ form {
 	-webkit-border-radius: 3px;
 	background: #f6f6f6;
 	
+	&.left {
+		margin: 0 10px 0 0;
+	}
+	
 	h2 {
 		margin-bottom: 5px;
 		padding-bottom: 5px;
 		border-bottom: 1px solid #ddd;
 		font-size: 16px;		
+	}
+}
+ul#sidebar {
+	list-style: none;
+	padding: 0;
+	border: {
+		left: 1px solid darken(#fff, 25%);
+		right: 1px solid darken(#fff, 25%);
+		bottom: 1px solid darken(#fff, 25%);
+	}
+	
+	li {
+		&.header, a {
+			display: block;
+			padding: 4px 0;
+		}
+		a {
+			margin: 0 10px;
+		}
+		&.header {
+			padding: 3px 5px;
+			border-top: 1px solid darken(#fff, 25%);
+			border-bottom: 1px solid darken(#fff, 25%);
+			@include gradient(darken(#fff, 10%), darken(#fff, 20%));
+			font-weight: bold;
+		}
 	}
 }
 

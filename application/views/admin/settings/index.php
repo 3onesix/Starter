@@ -7,6 +7,12 @@
 </div>
 
 <form method="post" action="<?=site_url('admin/settings')?>">
+	<ul id="sidebar" class="left">
+		<li class="header">General</li>
+		<li><a href="<?=site_url('admin/settings')?>">SEO</a></li>
+		<li class="header">Modules</li>
+		<li><a href="<?=site_url('admin/settings/starter_articles')?>">Articles</a></li>
+	</ul>
 	<div id="page_variables">
 		<fieldset>
 			<legend>Site Info</legend>
@@ -17,6 +23,14 @@
 			<div class="field">
 				<label for="settings_site_author_field">Author</label>
 				<input type="text" name="settings[site_author]" id="settings_site_author_field" value="<?=setting('site_author')?>" />
+			</div>
+			<div class="field">
+				<label for="settings_site_keywords_field">Keywords</label>
+				<input type="text" name="settings[site_keywords]" id="settings_site_keywords_field" value="<?=setting('site_keywords')?>" />
+			</div>
+			<div class="field">
+				<label for="settings_site_description_field">Description</label>
+				<textarea name="settings[site_description]" id="settings_site_description_field"><?=setting('site_description')?></textarea>
 			</div>
 		</fieldset>
 	</div>
