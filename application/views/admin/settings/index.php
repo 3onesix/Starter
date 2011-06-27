@@ -7,14 +7,7 @@
 </div>
 
 <form method="post" action="<?=site_url('admin/settings')?>">
-	<ul id="sidebar" class="left">
-		<li class="header">General</li>
-		<li><a href="<?=site_url('admin/settings')?>">Meta Info</a></li>
-		<li><a href="<?=site_url('admin/settings/users')?>">Users</a></li>
-		<li><a href="<?=site_url('admin/settings/modules')?>">Manage Modules</a></li>
-		<li class="header">Modules</li>
-		<li><a href="<?=site_url('admin/settings/modules/starter_articles')?>">Articles</a></li>
-	</ul>
+	<?php $this->load->view('admin/settings/_sidebar.php'); ?>
 	<div id="page_variables">
 		<fieldset>
 			<legend>Site Info</legend>

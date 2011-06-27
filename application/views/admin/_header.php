@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		<header>
-			<h1 class="image" style="background-image: url(<?=site_url($this->config->item('starter_product_image'))?>)"><?=$this->config->item('starter_product_name')?></h1>
+			<h1 class="image" style="background-image: url(<?=site_url($this->config->item('starter_product_image'))?>)"><a href="<?=site_url('admin/pages')?>"><?=$this->config->item('starter_product_name')?></a></h1>
 			<div class="global"><a href="<?=site_url('admin/settings')?>"<?=($this->uri->segment(2) == 'settings' ? ' class="selected"' : '')?>>Settings</a> &bull; <a href="<?=site_url('admin/signout')?>">Signout</a></div>
 		</header>
 		<div class="container">

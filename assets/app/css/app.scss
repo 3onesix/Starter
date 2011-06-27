@@ -83,7 +83,12 @@ header {
 	h1.image {
 		background-position: center center;
 		background-repeat: no-repeat;
-		text-indent: -9000px;
+		a {
+			display: block;
+			width: 200px;
+			height: 40px;
+			text-indent: -9000px;
+		}
 	}
 	.global {
 		position: absolute;
@@ -294,6 +299,10 @@ ul#sidebar {
 			text-decoration: none;
 			
 			&:hover {
+				background: mix(#e5e5e5, #f6f6f6);
+			}
+			
+			&.selected {
 				background: #e5e5e5;
 			}
 		}

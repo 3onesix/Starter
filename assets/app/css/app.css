@@ -44,8 +44,12 @@ header {
     height: 40px; }
   header h1.image {
     background-position: center center;
-    background-repeat: no-repeat;
-    text-indent: -9000px; }
+    background-repeat: no-repeat; }
+    header h1.image a {
+      display: block;
+      width: 200px;
+      height: 40px;
+      text-indent: -9000px; }
   header .global {
     position: absolute;
     bottom: 0;
@@ -211,6 +215,8 @@ ul#sidebar {
     padding: 4px 10px;
     text-decoration: none; }
     ul#sidebar li a:hover {
+      background: #ededed; }
+    ul#sidebar li a.selected {
       background: #e5e5e5; }
   ul#sidebar li.header {
     padding: 3px 5px;
