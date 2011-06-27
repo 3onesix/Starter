@@ -8,23 +8,19 @@
 		</div>
 		<div class="field">
 			<?php echo $f->label('slug', 'Slug:'); ?>
-			<?php echo $f->text_field('slug'); ?>				
+			<?php echo $f->text_field('slug'); ?>
 		</div>
-		<div class="field">
-			<label>Parent Page</label>
-			<select>
-				<option></option>
-				<option>Homepage</option>
-				<option>Profile</option>
-				<option>&nbsp;&nbsp;&nbsp;&nbsp;Management &amp; Staff</option>
-				<option>&nbsp;&nbsp;&nbsp;&nbsp;Safety Record</option>
-				<option>&nbsp;&nbsp;&nbsp;&nbsp;Financial Strength</option>
-				<option>&nbsp;&nbsp;&nbsp;&nbsp;Honor &amp; Awards</option>
-				<option>&nbsp;&nbsp;&nbsp;&nbsp;Contact</option>
-				<option>Services</option>
-				<option>&nbsp;&nbsp;&nbsp;&nbsp;Pre-construction Services</option>
-			</select>
-		</div>
+		<?php if ($page->page_id > 0): ?>
+			<div class="field">
+				<label>Parent Page:</label>
+				<input type="text" disabled="true" value="<?=$page->page->name?>" />
+			</div>
+		<?php elseif($page->persisted() == FALSE): ?>
+			<div class="field">
+				<?php echo $f->label('page_id', 'Parent Page:'); ?>
+				<?php echo $f->select('page_id', $parents); ?>
+			</div>
+		<?php endif; ?>
 	</fieldset>
 </div>
 <div id="sidebar">

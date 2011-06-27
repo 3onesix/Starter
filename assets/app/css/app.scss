@@ -192,7 +192,7 @@ form {
 	}
 	
 	
-	.field {
+	.field {		
 		label {
 			display: block;
 			&.disabled {
@@ -215,6 +215,10 @@ form {
 					outline: none;
 					border: 1px solid #666;
 					-webkit-box-shadow: 0 0 3px 1px opacify(lighten($navigation, 10%), .25);
+				}
+				
+				&[disabled=true] {
+					color: #aaa;
 				}
 			}
 		}

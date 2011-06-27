@@ -4,13 +4,17 @@ class Pages extends MY_Controller
 {
 	protected $require_login = TRUE;
 	
+	public function __construct()
+	{
+		parent::__construct();
+		
+		$this->load->helper('pages');
+	}
+	
 	public function action_index($page = 0)
 	{
-		$this->pagination->base_url = site_url('admin/pages');
-		$this->pagination->total_rows = $this->page_model->count();
-								
-		$this->db->order_by('updated_at', 'desc');
-		$pages = $this->page_model->find(NULL, $page);
+		$this->db->order_by('name');
+		$pages = $this->page_model->find(array('page_id'=>-1), 0, 0);
 		
 		$this->load->vars('notice', flash('notice'));
 		$this->load->vars('pages', $pages);
@@ -18,7 +22,10 @@ class Pages extends MY_Controller
 	}
 	
 	public function action_new()
-	{				
+	{					
+		$parents = page_hierarchal_spaces($this->page_model->find(array('page_id'=>-1), 0, 0));
+				
+		$this->load->vars('parents', $parents);
 		$this->load->view('admin/pages/new', array('page' => flash_jot('page')));
 	}
 	
@@ -41,7 +48,7 @@ class Pages extends MY_Controller
 	}
 
 	public function action_edit($id)
-	{
+	{					
 		$this->load->vars('page', flash_jot('page', $id));	
 		$this->load->view('admin/pages/edit');
 	}
