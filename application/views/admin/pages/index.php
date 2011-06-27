@@ -10,8 +10,8 @@
 	<ul>
 		<?php foreach($pages as $page): ?>
 			<li>
-				<div class="what"><a href="<?php echo site_url('admin/pages/edit/'.$page->id); ?>"><?php echo $page->name; ?></a></div>
-				<div class="actions"><a href="<?php echo site_url('admin/pages/destroy/'.$page->id); ?>" class="destroy">destroy</a></div>
+				<div class="what"><?= $page->name; ?> <span class="slug">(<?=$page->slug?>)</span></div>
+				<div class="actions"><a href="<?php echo site_url($page->slug); ?>" class="view">view</a> <a href="<?php echo site_url('admin/pages/edit/'.$page->id); ?>" class="edit">edit</a> <a href="<?php echo site_url('admin/pages/destroy/'.$page->id); ?>" class="delete">delete</a></div>
 			</li>
 		<?php endforeach; ?>
 	</ul>
