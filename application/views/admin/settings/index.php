@@ -7,12 +7,7 @@
 </div>
 
 <form method="post" action="<?=site_url('admin/settings')?>">
-	<ul id="sidebar" class="left">
-		<li class="header">General</li>
-		<li><a href="<?=site_url('admin/settings')?>">SEO</a></li>
-		<li class="header">Modules</li>
-		<li><a href="<?=site_url('admin/settings/starter_articles')?>">Articles</a></li>
-	</ul>
+	<?php $this->load->view('admin/settings/_sidebar.php'); ?>
 	<div id="page_variables">
 		<fieldset>
 			<legend>Site Info</legend>
