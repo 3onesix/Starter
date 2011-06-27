@@ -236,7 +236,9 @@ ul#sidebar {
     /* IE10+ */
     background: linear-gradient(top, #e6e6e6 0%, #cccccc 100%);
     /* W3C */
-    font-weight: bold; }
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase; }
 
 .button {
   padding: 2px 6px;

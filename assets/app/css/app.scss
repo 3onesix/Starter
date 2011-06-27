@@ -311,7 +311,11 @@ ul#sidebar {
 			border-top: 1px solid darken(#fff, 25%);
 			border-bottom: 1px solid darken(#fff, 25%);
 			@include gradient(darken(#fff, 10%), darken(#fff, 20%));
-			font-weight: bold;
+			font: {
+				size: 12px;
+				weight: bold;
+			}
+			text-transform: uppercase;
 		}
 	}
 }
