@@ -33,9 +33,9 @@
 				<textarea name="settings[site_description]" id="settings_site_description_field"><?=setting('site_description')?></textarea>
 			</div>
 		</fieldset>
-	</div>
-	<div class="actions">
-		<?php echo submit_tag(); ?>
+		<div class="actions">
+			<?php echo submit_tag(); ?>
+		</div>
 	</div>
 </form>
 
