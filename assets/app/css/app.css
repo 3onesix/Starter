@@ -208,7 +208,10 @@ ul#sidebar {
     display: block;
     padding: 4px 0; }
   ul#sidebar li a {
-    margin: 0 10px; }
+    padding: 4px 10px;
+    text-decoration: none; }
+    ul#sidebar li a:hover {
+      background: #e5e5e5; }
   ul#sidebar li.header {
     padding: 3px 5px;
     border-top: 1px solid #bfbfbf;

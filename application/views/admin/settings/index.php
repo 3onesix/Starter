@@ -9,9 +9,11 @@
 <form method="post" action="<?=site_url('admin/settings')?>">
 	<ul id="sidebar" class="left">
 		<li class="header">General</li>
-		<li><a href="<?=site_url('admin/settings')?>">SEO</a></li>
+		<li><a href="<?=site_url('admin/settings')?>">Meta Info</a></li>
+		<li><a href="<?=site_url('admin/settings/users')?>">Users</a></li>
+		<li><a href="<?=site_url('admin/settings/modules')?>">Manage Modules</a></li>
 		<li class="header">Modules</li>
-		<li><a href="<?=site_url('admin/settings/starter_articles')?>">Articles</a></li>
+		<li><a href="<?=site_url('admin/settings/modules/starter_articles')?>">Articles</a></li>
 	</ul>
 	<div id="page_variables">
 		<fieldset>
