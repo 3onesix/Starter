@@ -86,7 +86,7 @@ class UserTestCase extends JotUnitTestCase
 			'confirm_password' => 'test123'
 		));
 		
-		$this->assertTrue($user->errors(), 'I want validation to pass.');
+		$this->assertFalse($user->errors(), 'I want validation to pass.');
 	}
 	
 	public function test_encrypt_password()
