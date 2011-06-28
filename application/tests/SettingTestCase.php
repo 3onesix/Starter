@@ -15,7 +15,7 @@ class SettingTestCase extends JotUnitTestCase
 	{
 		$setting = new Setting_Model;
 			
-		$this->assertFalse($setting->is_valid(), 'Key is required');		
+		$this->assertFalse($setting->is_valid(), 'I want validation to fail because the key is missing.');		
 	}
 	
 	public function test_validation_pass()
@@ -24,15 +24,15 @@ class SettingTestCase extends JotUnitTestCase
 		$setting->key = "test";
 		$setting->value = "Test";
 		
-		$this->assertTrue($setting->is_valid(), 'Validation Pass');		
+		$this->assertTrue($setting->is_valid(), 'I want validation to pass.');		
 	}
 	
 	public function test_helper()
 	{
-		$this->assertEquals(NULL, setting('test'), 'Helper did not find setting');
+		$this->assertEquals(NULL, setting('test'), 'I want to return NULL because setting was not found.');
 		
 		setting('test', 'Test');
 				
-		$this->assertEquals('Test', setting('test'), 'Helper works');
+		$this->assertEquals('Test', setting('test'), 'I want to return a value because a value should exist.');
 	}
 }

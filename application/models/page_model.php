@@ -6,7 +6,6 @@ class Page_Model extends My_Model
 	{
 		$this->validates('name', 'required');
 		// $this->validates('slug', 'required');
-
 		
 		$this->belongs_to('page');
 		$this->has_many('pages');
@@ -14,10 +13,10 @@ class Page_Model extends My_Model
 		$this->belongs_to('user');
 		$this->has_many('page_variables');
 		
-		$this->before_validation('transform_slug');
+		$this->before_validation('generate_slug');
 	}
 	
-	public function transform_slug()
+	public function generate_slug()
 	{
 		if ( ! $this->has_attribute('slug') )
 		{

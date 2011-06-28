@@ -26,7 +26,7 @@ class UserTestCase extends JotUnitTestCase
 			'confirm_password' => 'test123'		
 		));
 		
-		$this->assertTrue($user->errors(), 'User missing name.');
+		$this->assertTrue($user->errors(), 'I want validation to fail because first name is missing.');
 	}
 
 	public function test_failed_missing_last_name_validation()
@@ -38,7 +38,7 @@ class UserTestCase extends JotUnitTestCase
 			'confirm_password' => 'test123'		
 		));
 		
-		$this->assertTrue($user->errors(), 'User missing name.');
+		$this->assertTrue($user->errors(), 'I want validation to fail because last name is missing.');
 	}
 	
 	public function test_failed_missing_username_validation()
@@ -50,7 +50,7 @@ class UserTestCase extends JotUnitTestCase
 			'confirm_password' => 'test123'		
 		));
 		
-		$this->assertTrue($user->errors(), 'User missing username.');
+		$this->assertTrue($user->errors(), 'I want validation to fail because username is missing.');
 	}
 
 	public function test_failed_missing_password_validation()
@@ -61,7 +61,7 @@ class UserTestCase extends JotUnitTestCase
 			'username' => 'john_doe',
 		));
 		
-		$this->assertTrue($user->errors(), 'User missing password.');
+		$this->assertTrue($user->errors(), 'I want validation to fail because password is missing.');
 	}
 
 	public function test_failed_missing_password_confirm_validation()
@@ -73,7 +73,7 @@ class UserTestCase extends JotUnitTestCase
 			'password' => 'test123',
 		));
 		
-		$this->assertTrue($user->errors(), 'User missing password confirm.');
+		$this->assertTrue($user->errors(), 'I want validation to fail because password does not confirm.');
 	}
 	
 	public function test_pass_validation()
@@ -86,7 +86,7 @@ class UserTestCase extends JotUnitTestCase
 			'confirm_password' => 'test123'
 		));
 		
-		$this->assertFalse($user->errors(), 'User did validate.');		
+		$this->assertTrue($user->errors(), 'I want validation to pass.');
 	}
 	
 	public function test_encrypt_password()
@@ -101,7 +101,7 @@ class UserTestCase extends JotUnitTestCase
 
 		$encrypted_password = md5('test123');
 		
-		$this->assertEquals($encrypted_password, $user->password, 'Password should be encrypted');
+		$this->assertEquals($encrypted_password, $user->password, 'I want the password to be a md5 hash.');
 	}
 	
 	public function test_authenticate()
@@ -116,6 +116,6 @@ class UserTestCase extends JotUnitTestCase
 				
 		$authenticate = $this->user_model->authenticate('john_doe', md5('test123'));	
 		
-		$this->assertTrue($authenticate, 'User authenticated');
+		$this->assertTrue($authenticate, 'I want the user to authenticate. User should exist.');
 	}
 }
