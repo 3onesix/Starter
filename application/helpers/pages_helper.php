@@ -13,7 +13,7 @@ function page_hierarchial_list($pages, $even)
 		
 		echo '
 		<li class="'.($even == FALSE ? 'odd' : NULL).'">
-			<div class="what">'.$page->name.' <span class="slug">('.$page->full_slug.')</span></div>
+			<div class="what">'.$page->name.' <span class="sub">('.$page->full_slug.')</span></div>
 			<div class="actions">
 				<a href="'.site_url($page->full_slug).'" class="view" title="View Page">view</a> 
 				<a href="'.site_url('admin/pages/edit/'.$page->id).'" class="edit" title="Edit Page">edit</a> 

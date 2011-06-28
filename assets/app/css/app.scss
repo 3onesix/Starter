@@ -397,6 +397,18 @@ ul#sidebar {
 				&.odd {
 					background: darken(#fff, 5%);
 				}
+				
+				.what {
+					.sub {
+						display: inline-block;
+						width: 300px;
+						max-width: 300px;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						white-space: nowrap;
+						color: #999;
+					}
+				}
 			}
 		}
 		
@@ -410,18 +422,6 @@ ul#sidebar {
 			}
 			$offset: $offset + 10px;
 			$i: $i - 1;
-		}
-		
-		.what {
-			.slug {
-				display: inline-block;
-				width: 300px;
-				max-width: 300px;
-				overflow: hidden;
-				text-overflow: ellipsis;
-				white-space: nowrap;
-				color: #999;
-			}
 		}
 	}
 	

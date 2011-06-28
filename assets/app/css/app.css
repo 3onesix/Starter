@@ -337,6 +337,14 @@ ul#sidebar {
       border-radius: 3px; }
       #records.pages ul li.odd {
         background: #f2f2f2; }
+      #records.pages ul li .what .sub {
+        display: inline-block;
+        width: 300px;
+        max-width: 300px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #999; }
   #records.pages ul ul li {
     padding-left: 10px; }
   #records.pages ul ul ul li {
@@ -357,14 +365,6 @@ ul#sidebar {
     padding-left: 90px; }
   #records.pages ul ul ul ul ul ul ul ul ul ul ul li {
     padding-left: 100px; }
-  #records.pages .what .slug {
-    display: inline-block;
-    width: 300px;
-    max-width: 300px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    color: #999; }
   #records .what {
     float: left; }
   #records .actions {
