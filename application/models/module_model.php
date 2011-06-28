@@ -1,6 +1,6 @@
 <?php
 
-class Modules_Model extends My_Model {
+class Module_Model extends My_Model {
 	
 	function init()
 	{

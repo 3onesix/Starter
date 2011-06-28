@@ -1,6 +1,6 @@
 <?php
 
-class Module_Screens_Model extends My_Model {
+class Module_Screen_Model extends My_Model {
 	
 	function init()
 	{
