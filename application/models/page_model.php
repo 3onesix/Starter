@@ -5,7 +5,7 @@ class Page_Model extends My_Model
 	public function init()
 	{
 		$this->validates('name', 'required');
-		// $this->validates('slug', 'required');
+		$this->validates('slug', 'required');
 		
 		$this->belongs_to('page');
 		$this->has_many('pages');
@@ -18,7 +18,7 @@ class Page_Model extends My_Model
 	
 	public function generate_slug()
 	{
-		if ( ! $this->has_attribute('slug') )
+		if ( ! $this->read_attribute('slug') )
 		{
 			$this->set_slug('slug', $this->read_attribute('name'));
 		}
