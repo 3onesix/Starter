@@ -14,13 +14,7 @@ class Migrations extends CI_Controller
 		$migrations = new JotMigrations();
 		$migrations->up();
 					
-		echo 'Migrations run';
-	}
-	
-	function seed()
-	{
-		$migrations = new JotMigrations();
-		$migrations->seed();
+		// echo 'Migrations run';
 	}
 	
 	function reset()
@@ -28,12 +22,12 @@ class Migrations extends CI_Controller
 		$migrations = new JotMigrations();
 		$migrations->reset(TRUE);
 
-		echo 'Reset Run';
+		// echo 'Reset Run';
 	}
 	
 	function created()
 	{
-		echo 'Migration Created';
+		// echo 'Migration Created';
 	}
 	
 	function create($path)
