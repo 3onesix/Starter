@@ -10,6 +10,7 @@
 	<?php $this->load->view('admin/settings/_sidebar.php'); ?>
 	<div id="page_variables">
 		<fieldset>
+			<legend><?=$module->name?> Settings</legend>
 			<?php foreach ($module->settings->all() as $setting): ?>
 				<div class="field<?=($setting->type == 'checkbox' ? ' checkbox' : '')?>">
 					<?php if ($setting->type == 'checkbox'): ?>
