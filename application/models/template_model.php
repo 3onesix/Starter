@@ -7,6 +7,6 @@ class Template_Model extends My_Model
 		$this->validates('name', 'required');
 		
 		$this->has_many('pages');
-		$this->has_many('page_variables');
+		$this->has_many('template_variables');
 	}
 }
