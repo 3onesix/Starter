@@ -26,7 +26,9 @@ class Pages extends MY_Controller
 	}
 	
 	public function action_new()
-	{		
+	{
+		$this->template_model->check_for_new();
+		
 		$templates = array('');
 		foreach($this->template_model->all() as $template) $templates[$template->id] = $template->name;
 		$this->load->vars('templates', $templates);	

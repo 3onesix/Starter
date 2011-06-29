@@ -12,7 +12,22 @@ class Template_Model extends My_Model
 	
 	function check_for_new()
 	{
-		
+		$templates = opendir('templates');
+		while (($file = readdir($templates)) !== false) {
+			if (!is_dir($file) && strrpos($file, '.config.php') == false)
+			{	
+				$name = str_replace('.php', '', $file);
+				
+				if (!$this->exists(array('name' => $name)))
+				{
+					$template = $this->create(array(
+						'name' => str_replace('.php', '', $file),
+						'file' => str_replace('.php', '', $file)
+					));
+					$template->check_for_updates();
+				}
+			}
+		}
 	}
 	
 	function check_for_updates()
