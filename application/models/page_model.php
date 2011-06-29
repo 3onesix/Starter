@@ -12,6 +12,7 @@ class Page_Model extends My_Model
 		
 		$this->belongs_to('user');
 		$this->has_many('page_variables');
+		$this->has_many('page_modules');
 		
 		$this->before_validation('generate_slug');
 	}
