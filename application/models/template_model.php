@@ -27,7 +27,7 @@ class Template_Model extends My_Model
 	{
 		$templates = opendir('templates');
 		while (($file = readdir($templates)) !== false) {
-			if (!is_dir($file) && strrpos($file, '.config.php') == false)
+			if (!is_dir($file) && strrpos($file, '.config.php') == false && (strrpos($file, '_') === false || strrpos($file, '_') != 0))
 			{	
 				$name = str_replace('.php', '', $file);
 				
