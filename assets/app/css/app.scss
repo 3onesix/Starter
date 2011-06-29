@@ -386,32 +386,33 @@ ul#sidebar {
 	width: 700px;
 	margin-bottom: 10px;
 	
-	&.pages {
-		ul {
-			list-style: none;
-			li {
-				clear: left;
-				overflow: auto;
-				padding: 4px 3px;
-				@include rounded(3px);
-				
-				&.odd {
-					background: darken(#fff, 5%);
-				}
-				
-				.what {
-					.sub {
-						display: inline-block;
-						width: 300px;
-						max-width: 300px;
-						overflow: hidden;
-						text-overflow: ellipsis;
-						white-space: nowrap;
-						color: #999;
-					}
+	ul {
+		list-style: none;
+		li {
+			clear: left;
+			overflow: auto;
+			padding: 4px 3px;
+			@include rounded(3px);
+			
+			&.odd {
+				background: darken(#fff, 5%);
+			}
+			
+			.what {
+				.sub {
+					display: inline-block;
+					width: 300px;
+					max-width: 300px;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					color: #999;
 				}
 			}
 		}
+	}
+	
+	&.pages {
 		
 		$i: 10;
 		$u: 'ul';
