@@ -18,4 +18,15 @@ class Settings extends MY_Controller
 		
 		$this->load->view('admin/settings/index');
 	}
+	
+	public function action_modules($id)
+	{
+		$module = $this->module_model->first($id);
+		if ($module->settings->count() == 0) redirect('admin/settings');
+		
+		$this->load->vars(array(
+			'module' => $module
+		));
+		$this->load->view('admin/settings/module');
+	}
 }

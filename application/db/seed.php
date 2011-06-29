@@ -47,3 +47,10 @@ $blog->module_screens = array(
 		'url' => 'blog')
 	)
 );
+$this->setting_model->create(array(
+	'module_id' => $blog->id,
+	'type' => 'checkbox',
+	'label' => 'Include Short Body Field',
+	'key' => 'include_short',
+	'value' => '0',
+));
