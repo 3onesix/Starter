@@ -26,7 +26,11 @@ class Pages extends MY_Controller
 	}
 	
 	public function action_new()
-	{					
+	{		
+		$templates = array('');
+		foreach($this->template_model->all() as $template) $templates[$template->id] = $template->name;
+		$this->load->vars('templates', $templates);	
+				
 		$parents = page_hierarchal_spaces($this->page_model->find(array('page_id'=>-1), 0, 0));
 				
 		$this->load->vars('parents', $parents);

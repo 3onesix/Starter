@@ -17,10 +17,12 @@
 				<?php echo $f->select('page_id', $parents); ?>
 			</div>
 		<?php endif; ?>
-		<div class="field">
-			<?php print $f->label('template_id', 'Template:'); ?>
-			<?php print $f->select('template_id', $templates); ?>
-		</div>
+		<?php if($page->persisted() == FALSE): ?>
+			<div class="field">
+				<?php print $f->label('template_id', 'Template:'); ?>
+				<?php print $f->select('template_id', $templates); ?>
+			</div>
+		<?php endif; ?>
 	</fieldset>
 	<?php if ($page->template_id && $page->template->template_variables->count()): ?>
 		<fieldset>
