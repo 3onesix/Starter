@@ -16,6 +16,10 @@ class Pages extends MY_Controller
 		$this->db->order_by('name');
 		$pages = $this->page_model->find(array('page_id'=>-1), 0, 0);
 		
+		$templates = array('');
+		foreach($this->template_model->all() as $template) $templates[$template->id] = $template->name;		
+		$this->load->vars('templates', $templates);
+		
 		$this->load->vars('notice', flash('notice'));
 		$this->load->vars('pages', $pages);
 		$this->load->view('admin/pages/index');
@@ -49,6 +53,14 @@ class Pages extends MY_Controller
 
 	public function action_edit($id)
 	{	
+		if ($this->page_model->first($id)->template_id)
+		{
+			$this->page_model->first($id)->template->check_for_updates();
+		}
+		
+		$templates = array('');
+		foreach($this->template_model->all() as $template) $templates[$template->id] = $template->name;
+		$this->load->vars('templates', $templates);
 		$this->load->vars('page', flash_jot('page', $id));	
 		$this->load->view('admin/pages/edit');
 	}

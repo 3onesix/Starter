@@ -13,7 +13,7 @@ class Page_Model extends My_Model
 		$this->belongs_to('user');
 		$this->has_many('page_variables');
 		$this->has_many('page_modules');
-		$this->has_one('template');
+		$this->belongs_to('template');
 		
 		$this->before_validation('generate_slug');
 	}

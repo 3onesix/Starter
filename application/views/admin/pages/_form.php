@@ -17,6 +17,10 @@
 				<?php echo $f->select('page_id', $parents); ?>
 			</div>
 		<?php endif; ?>
+		<div class="field">
+			<?php print $f->label('template_id', 'Template:'); ?>
+			<?php print $f->select('template_id', $templates); ?>
+		</div>
 	</fieldset>
 </div>
 <div id="sidebar">

@@ -117,6 +117,7 @@ $autoload['model'] = array(
 	'page_module_model',
 	'page_variable_model',
 	'template_model',
+	'template_variable_model',
 	'setting_model',
 	'module_model',
 	'module_screen_model',
