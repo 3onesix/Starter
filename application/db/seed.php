@@ -38,3 +38,12 @@ $about->pages = array($faq, $services, $account, $contact);
 $account->pages = array($login);
 $login->pages = array($tickets);
 $tickets->pages = array($credit, $history);
+
+// modules
+$blog = $this->module_model->create(array('name' => 'Blog'));
+$blog->module_screens = array(
+	$this->module_screen_model->create(array(
+		'name' => 'Blog',
+		'url' => 'blog')
+	)
+);
