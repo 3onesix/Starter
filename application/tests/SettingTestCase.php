@@ -1,6 +1,6 @@
 <?php
 
-require_once APPPATH.'third_party/jot/test/JotUnitTestCase.php';
+require_once APPPATH.'third_party/jot/classes/jot_unit_test_case.php';
 
 class SettingTestCase extends JotUnitTestCase
 {	
