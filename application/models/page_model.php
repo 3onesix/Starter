@@ -95,4 +95,15 @@ class Page_Model extends My_Model
 		
 		return $includes;
 	}
+	
+	public function variables()
+	{
+		$variables = $this->page_variables->all();
+		$array = array();
+		foreach ($variables as $variable)
+		{
+			$array[$variable->name] = $variable->value;
+		}
+		return $array;
+	}
 }
