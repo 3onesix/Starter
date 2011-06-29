@@ -36,7 +36,6 @@ class Page_Model extends My_Model
 		$slug = $this->read_attribute('slug');
 
 		return $this->page && $this->page->page_id > 0 ? $this->page->full_slug.'/'.$slug : $slug;
-
 	}
 	
 	public function includes()
