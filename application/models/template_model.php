@@ -10,6 +10,11 @@ class Template_Model extends My_Model
 		$this->has_many('template_variables');
 	}
 	
+	function check_for_new()
+	{
+		
+	}
+	
 	function check_for_updates()
 	{
 		//get config
