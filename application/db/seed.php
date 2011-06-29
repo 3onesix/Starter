@@ -54,3 +54,11 @@ $this->setting_model->create(array(
 	'key' => 'include_short',
 	'value' => '0',
 ));
+$googleanalytics = $this->module_model->create(array('name' => 'Google Analytics'));
+$this->setting_model->create(array(
+	'module_id' => $googleanalytics->id,
+	'type' => 'text',
+	'label' => 'Key',
+	'key' => 'key',
+	'value' => '',
+));
