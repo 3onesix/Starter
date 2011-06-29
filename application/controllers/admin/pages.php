@@ -84,6 +84,16 @@ class Pages extends MY_Controller
 				));
 			}
 		}
+		
+		//update variables
+		$variables = $this->input->post('variables');
+		if ($variables)
+		{
+			foreach ($variables as $key=>$variable)
+			{
+				$page->variable($key, $variable);
+			}
+		}
 				
 		if ( $page->errors() )
 		{

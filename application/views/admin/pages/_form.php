@@ -22,6 +22,21 @@
 			<?php print $f->select('template_id', $templates); ?>
 		</div>
 	</fieldset>
+	<?php if ($page->template_id && $page->template->template_variables->count()): ?>
+		<fieldset>
+			<legend>Page Variables</legend>
+			<?php foreach ($page->template->template_variables->all() as $variable): ?>
+				<div class="field">
+					<label><?=$variable->label?>:</label>
+					<?php if ($variable->type == 'string'): ?>
+						<input type="text" name="variables[<?=$variable->name?>]" value="<?=$page->variable($variable->name)?>" />
+					<?php elseif ($variable->type == 'binary'): ?>
+						<textarea type="text" name="variables[<?=$variable->name?>]"><?=$page->variable($variable->name)?></textarea>
+					<?php endif; ?>
+				</div>
+			<?php endforeach; ?>
+		</fieldset>
+	<?php endif; ?>
 </div>
 <div id="sidebar">
 	<h2>Modules</h2>
