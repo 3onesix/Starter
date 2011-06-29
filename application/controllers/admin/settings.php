@@ -24,6 +24,18 @@ class Settings extends MY_Controller
 		$module = $this->module_model->first($id);
 		if ($module->settings->count() == 0) redirect('admin/settings');
 		
+		$data = $this->input->post('setting');
+		
+		if ($data) {
+			foreach ($data as $key => $value) {
+				$setting = $this->setting_model->first($key);
+				$setting->value = $value;
+				$setting->save();
+			}
+			flash('notice', 'Settings have been saved.');
+			redirect('admin/settings/modules/'.$id);
+		}
+		
 		$this->load->vars(array(
 			'module' => $module
 		));

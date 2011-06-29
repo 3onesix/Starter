@@ -48,7 +48,7 @@ class Pages extends MY_Controller
 	}
 
 	public function action_edit($id)
-	{					
+	{	
 		$this->load->vars('page', flash_jot('page', $id));	
 		$this->load->view('admin/pages/edit');
 	}
@@ -58,6 +58,20 @@ class Pages extends MY_Controller
 		$data = $this->input->post('page');
 		$data['user_id'] = $this->current_user->id;
 		$page = $this->page_model->update($id, $data);
+		
+		//update modules
+		$modules = $this->input->post('modules');
+		$this->db->where('page_id', $page->id)->delete('page_modules');
+		if ($modules)
+		{
+			foreach ($modules as $key=>$value)
+			{
+				$this->page_module_model->create(array(
+					'page_id' => $page->id,
+					'module_id' => $key
+				));
+			}
+		}
 				
 		if ( $page->errors() )
 		{
