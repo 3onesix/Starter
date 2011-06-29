@@ -40,7 +40,7 @@ $login->pages = array($tickets);
 $tickets->pages = array($credit, $history);
 
 // modules
-$blog = $this->module_model->create(array('name' => 'Blog'));
+$blog = $this->module_model->create(array('name' => 'Blog', 'simple_name' => 'blog'));
 $blog->module_screens = array(
 	$this->module_screen_model->create(array(
 		'name' => 'Blog',
@@ -54,7 +54,7 @@ $this->setting_model->create(array(
 	'key' => 'include_short',
 	'value' => '0',
 ));
-$googleanalytics = $this->module_model->create(array('name' => 'Google Analytics'));
+$googleanalytics = $this->module_model->create(array('name' => 'Google Analytics', 'simple_name' => 'googleanalytics'));
 $this->setting_model->create(array(
 	'module_id' => $googleanalytics->id,
 	'type' => 'text',
