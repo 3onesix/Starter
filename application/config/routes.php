@@ -23,7 +23,9 @@ if ( ENVIRONMENT == 'development' )
 	$route['migrations'] 					= 'migrations/index';
 }
 
-$route['default_controller'] = "home";
+$route['(:any)'] = "front";
+
+$route['default_controller'] = "front";
 $route['404_override'] = '';
 
 
