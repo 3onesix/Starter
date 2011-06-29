@@ -19,4 +19,15 @@
 			<ul id="navigation">
 				<li><a href="<?=site_url('admin')?>"<?=($this->uri->segment(2) == '' ? ' class="selected"' : '')?>>Dashboard</a></li>
 				<li><a href="<?=site_url('admin/pages')?>"<?=($this->uri->segment(2) == 'pages' ? ' class="selected"' : '')?>>Pages</a></li>
+				
+				<?php
+					$modules = $this->module_model->all();
+					foreach ($modules as $module) {
+						if ($module->module_screens->count()) {
+							foreach ($module->module_screens->all() as $screen) {
+								echo '<li><a href="'.site_url('admin/'.$screen->url).'"'.($this->uri->segment(2) == $screen->url ? ' class="selected"' : '').'>'.$screen->name.'</a></li>';
+							}
+						}
+					}
+				?>
 			</ul>
