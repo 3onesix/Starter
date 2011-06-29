@@ -32,7 +32,7 @@ if ( ! function_exists('setting') )
 		{
 			list($key) = $args;
 			
-			$setting = $CI->setting_model->first(array('key'=>$key));
+			$setting = $CI->setting_model->first(array('module_id'=>0,'key'=>$key));
 			
 			if ( $setting )
 			{
