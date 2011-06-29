@@ -7,6 +7,7 @@ class Create_Template_Variables
 			array('name' => 'template_id', 'type' => 'integer'),
 			array('name' => 'type', 'type' => 'string'),
 			array('name' => 'name', 'type' => 'string'),
+			array('name' => 'label', 'type' => 'string'),
 			array('name' => 'value', 'type' => 'binary'),
 			MIGRATION_TIMESTAMPS
 		));

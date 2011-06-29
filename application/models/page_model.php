@@ -13,7 +13,7 @@ class Page_Model extends My_Model
 		$this->belongs_to('user');
 		$this->has_many('page_variables');
 		$this->has_many('page_modules');
-		$this->has_one('template');
+		$this->belongs_to('template');
 		
 		$this->before_validation('generate_slug');
 	}
@@ -23,6 +23,38 @@ class Page_Model extends My_Model
 		if ( ! $this->read_attribute('slug') )
 		{
 			$this->set_slug('slug', $this->read_attribute('name'));
+		}
+	}
+	
+	function variable($name, $value = null)
+	{
+		if ($value === null)
+		{
+			if ($this->template_id && $this->page_variables->exists(array('name' => $name)))
+			{
+				return $this->page_variables->first(array('name' => $name))->value;
+			}
+			return null;
+		}
+		else
+		{
+			if ($this->template_id)
+			{
+				if ($this->page_variables->exists(array('name' => $name)))
+				{
+					$variable = $this->page_variables->first(array('name' => $name));
+					$variable->value = $value;
+					$variable->save();
+				}
+				else
+				{
+					$this->page_variable_model->create(array(
+						'page_id' => $this->id,
+						'name' => $name,
+						'value' => $value
+					));
+				}
+			}
 		}
 	}
 	

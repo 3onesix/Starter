@@ -4,6 +4,7 @@ class CreateTablePages
 	function up()
 	{
 		create_table('pages', array(
+			array('name' => 'template_id', 'type' => 'integer'),
 			array('name' => 'user_id', 'type' => 'integer'),
 			array('name' => 'page_id', 'type' => 'string', 'default'=> -1),
 			array('name' => 'name', 'type' => 'string'),
