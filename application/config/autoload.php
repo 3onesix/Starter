@@ -118,7 +118,8 @@ $autoload['model'] = array(
 	'template_model',
 	'setting_model',
 	'module_model',
-	'module_screen_model'
+	'module_screen_model',
+	'module_file_model'
 );
 
 
