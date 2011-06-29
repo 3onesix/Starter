@@ -76,6 +76,7 @@ class Page_Model extends My_Model
 		
 		foreach ($this->page_modules->all() as $module)
 		{
+			$module = $module->module;
 			foreach ($module->module_files->all(array('include_on_page' => 1)) as $file)
 			{
 				switch ($file->type)

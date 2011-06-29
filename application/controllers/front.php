@@ -5,6 +5,12 @@ class Front extends My_Controller {
 	function index()
 	{
 		$uri = $this->uri->segment_array();
+		
+		if (!count($uri))
+		{
+			$uri[] = 'index';
+		}
+		
 		$page = null;
 		foreach ($uri as $segment)
 		{
@@ -21,26 +27,32 @@ class Front extends My_Controller {
 			
 		}
 		
-		$includes = $page->includes();
-		print_r($includes);
-		if (count($includes['helper']))
+		if ($page && $page->template_id)
 		{
-			foreach ($includes['helper'] as $helper)
+			$includes = $page->includes();
+			if (count($includes['helper']))
 			{
-				$this->load->helper($helper);
+				foreach ($includes['helper'] as $helper)
+				{
+					$this->load->helper(str_replace('.php', '', $helper));
+				}
 			}
+			if (count($includes['model']))
+			{
+				foreach ($includes['model'] as $model)
+				{
+					$this->load->model(str_replace('.php', '', $model));
+				}
+			}
+			
+			extract($page->variables());
+			
+			include('templates/'.$page->template->file.'.php');
 		}
-		if (count($includes['model']))
+		else
 		{
-			foreach ($includes['model'] as $model)
-			{
-				$this->load->model($model);
-			}
+			show_404();
 		}
-		
-		extract($page->variables());
-		
-		include('templates/'.$page->template->file.'.php');
 	}
 	
 }
