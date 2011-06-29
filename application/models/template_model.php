@@ -10,6 +10,19 @@ class Template_Model extends My_Model
 		$this->has_many('template_variables');
 	}
 	
+	public function find($conditions, $offset = 0, $limit = 10)
+	{
+		if ( ! $this->scan_complete )
+		{
+			// Load all new template information
+			$this->check_for_new();
+		
+			$this->scan_complete = TRUE;
+		}
+		
+		return parent::find($conditions, $offset, $limit);
+	}
+	
 	function check_for_new()
 	{
 		$templates = opendir('templates');
@@ -36,7 +49,7 @@ class Template_Model extends My_Model
 		$config = 'templates/'.$this->file.'.config.php';
 		include($config);
 		
-		if ($template)
+		if (isset($template))
 		{
 			$this->name = $template['name'];
 			
