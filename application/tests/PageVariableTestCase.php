@@ -34,14 +34,6 @@ class PageVariableTestCase extends JotUnitTestCase
 		$this->assertFalse($page_variable->is_valid(), 'I want validation to fail because page_id is missing.');
 	}
 
-	public function test_validate_template_id_fail()
-	{
-		$page_variable = new Page_Variable_Model;
-		$page_variable->name = 'title';
-		$page_variable->page_id = 1;
-		$this->assertFalse($page_variable->is_valid(), 'I want validation to fail because template_id is missing.');
-	}
-	
 	public function test_validate_pass()
 	{
 		$page_variable = new Page_Variable_Model;
