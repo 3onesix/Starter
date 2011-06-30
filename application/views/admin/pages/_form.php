@@ -31,9 +31,9 @@
 				<div class="field">
 					<label><?=$variable->label?>:</label>
 					<?php if ($variable->type == 'string'): ?>
-						<input type="text" name="variables[<?=$variable->name?>]" value="<?=$page->variable($variable->name)?>" />
+						<input type="text" name="variables[<?=$variable->name?>]" value="<?=($page->variable($variable->name) !== null ? $page->variable($variable->name) : $variable->value)?>" />
 					<?php elseif ($variable->type == 'binary'): ?>
-						<textarea type="text" name="variables[<?=$variable->name?>]"><?=$page->variable($variable->name)?></textarea>
+						<textarea type="text" name="variables[<?=$variable->name?>]"><?=($page->variable($variable->name) !== null ? $page->variable($variable->name) : $variable->value)?></textarea>
 					<?php endif; ?>
 				</div>
 			<?php endforeach; ?>

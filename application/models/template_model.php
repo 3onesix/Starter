@@ -70,7 +70,8 @@ class Template_Model extends My_Model
 							'template_id' => $this->id,
 							'type'  => isset($variable['type']) ? $variable['type'] : 'string',
 							'name'  => $variable['name'],
-							'label' => isset($variable['label']) ? $variable['label'] : $variable['name']
+							'label' => isset($variable['label']) ? $variable['label'] : $variable['name'],
+							'value' => isset($variable['default']) ? $variable['default'] : ''
 						));
 					}
 					else
@@ -78,7 +79,8 @@ class Template_Model extends My_Model
 						//update variable
 						$var = $this->template_variables->first(array('name' => $variable['name']));
 						$var->type  = $variable['type'];
-						$var->label = $variable['label'];
+						$var->label = isset($variable['label']) ? $variable['label'] : $variable['name'];
+						$var->value = isset($variable['default']) ? $variable['default'] : '';
 					}
 					$variables[] = $variable['name'];
 				}
