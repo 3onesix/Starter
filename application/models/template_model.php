@@ -94,4 +94,10 @@ class Template_Model extends My_Model
 			}
 		}
 	}
+	
+	function variable($name)
+	{
+		$variable = $this->template_variables->first(array('name' => $name));
+		return $variable;
+	}
 }

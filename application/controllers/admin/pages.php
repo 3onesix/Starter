@@ -97,6 +97,13 @@ class Pages extends MY_Controller
 			{
 				$page->variable($key, $variable);
 			}
+			foreach ($page->template->template_variables->all() as $tv)
+			{
+				$v = $page->page_variables->first(array('name' => $tv->name));
+				$v->label = $tv->label;
+				$v->type  = $tv->type;
+				$v->save();
+			}
 		}
 				
 		if ( $page->errors() )

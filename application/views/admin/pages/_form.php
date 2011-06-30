@@ -50,21 +50,19 @@
 		}
 	?>
 	<?php if (count($not_used)): ?>
-		<!--
 		<fieldset>
 			<legend>Unavailable Page Variables</legend>
 			<?php foreach ($not_used as $variable): ?>
 				<div class="field">
 					<label><?=$variable->label?>:</label>
 					<?php if ($variable->type == 'string'): ?>
-						<input type="text" name="variables[<?=$variable->name?>]" value="<?=$variable->value?>" />
+						<input type="text" value="<?=$variable->value?>" />
 					<?php elseif ($variable->type == 'binary'): ?>
-						<textarea type="text" name="variables[<?=$variable->name?>]"><?=$variable->value?></textarea>
+						<textarea type="text"><?=$variable->value?></textarea>
 					<?php endif; ?>
 				</div>
 			<?php endforeach; ?>
 		</fieldset>
-		//-->
 	<?php endif; ?>
 </div>
 <div id="sidebar">
