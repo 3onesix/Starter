@@ -24,10 +24,12 @@
 			</div>
 		<?php endif; ?>
 	</fieldset>
+	<?php $variables = array(); ?>
 	<?php if ($page->template_id && $page->template->template_variables->count()): ?>
 		<fieldset>
 			<legend>Page Variables</legend>
 			<?php foreach ($page->template->template_variables->all() as $variable): ?>
+				<?php $variables[] = $variable->name; ?>
 				<div class="field">
 					<label><?=$variable->label?>:</label>
 					<?php if ($variable->type == 'string'): ?>
@@ -38,6 +40,31 @@
 				</div>
 			<?php endforeach; ?>
 		</fieldset>
+	<?php endif; ?>
+	<?php 
+		$not_used = array();
+		foreach ($page->page_variables->all() as $variable) {
+			if (!in_array($variable->name, $variables)) {
+				$not_used[] = $variable;
+			}
+		}
+	?>
+	<?php if (count($not_used)): ?>
+		<!--
+		<fieldset>
+			<legend>Unavailable Page Variables</legend>
+			<?php foreach ($not_used as $variable): ?>
+				<div class="field">
+					<label><?=$variable->label?>:</label>
+					<?php if ($variable->type == 'string'): ?>
+						<input type="text" name="variables[<?=$variable->name?>]" value="<?=$variable->value?>" />
+					<?php elseif ($variable->type == 'binary'): ?>
+						<textarea type="text" name="variables[<?=$variable->name?>]"><?=$variable->value?></textarea>
+					<?php endif; ?>
+				</div>
+			<?php endforeach; ?>
+		</fieldset>
+		//-->
 	<?php endif; ?>
 </div>
 <div id="sidebar">
