@@ -16,6 +16,7 @@ class Settings extends MY_Controller
 			redirect('admin/settings');
 		}
 		
+		$this->load->vars('title', 'Settings');
 		$this->load->view('admin/settings/index');
 	}
 	
@@ -37,7 +38,8 @@ class Settings extends MY_Controller
 		}
 		
 		$this->load->vars(array(
-			'module' => $module
+			'module' => $module,
+			'title'  => 'Module Settings : '.$module->name
 		));
 		$this->load->view('admin/settings/module');
 	}
