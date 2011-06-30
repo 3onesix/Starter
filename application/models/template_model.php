@@ -52,13 +52,14 @@ class Template_Model extends My_Model
 		if (isset($template))
 		{
 			$this->name = $template['name'];
+			$this->save();
 			
 			//check for modules
 			
 			//check for variables
+			$variables = array();
 			if (isset($template['variables']) && count($template['variables']))
 			{
-				$variables = array();
 				//check each variable to see if it exists already
 				foreach ($template['variables'] as $variable)
 				{
@@ -81,15 +82,14 @@ class Template_Model extends My_Model
 					}
 					$variables[] = $variable['name'];
 				}
-				
-				//delete any variables that have been removed
-				foreach ($this->template_variables->all() as $tv) {
-					if (!in_array($tv->name, $variables)) {
-						$tv->delete();
-					}
+			}
+			
+			//delete any variables that have been removed
+			foreach ($this->template_variables->all() as $tv) {
+				if (!in_array($tv->name, $variables)) {
+					$tv->destroy();
 				}
 			}
-			$this->save();
 		}
 	}
 }
