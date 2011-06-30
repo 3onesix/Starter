@@ -9,4 +9,10 @@ $template['modules'] = array(
 );
 
 $template['variables'] = array(
+	array(
+		'type' => 'binary',
+		'name' => 'copy',
+		'label' => 'Sidebar Copy',
+		'default' => 'Lorem ipsum'
+	)
 );
