@@ -58,17 +58,34 @@ class Template_Model extends My_Model
 			//check for variables
 			if (isset($template['variables']) && count($template['variables']))
 			{
+				$variables = array();
 				//check each variable to see if it exists already
 				foreach ($template['variables'] as $variable)
 				{
 					if (!$this->template_variables->exists(array('name' => $variable['name'])))
 					{
+						//create variable
 						$this->template_variable_model->create(array(
 							'template_id' => $this->id,
 							'type'  => isset($variable['type']) ? $variable['type'] : 'string',
 							'name'  => $variable['name'],
 							'label' => isset($variable['label']) ? $variable['label'] : $variable['name']
 						));
+					}
+					else
+					{
+						//update variable
+						$var = $this->template_variables->first(array('name' => $variable['name']));
+						$var->type  = $variable['type'];
+						$var->label = $variable['label'];
+					}
+					$variables[] = $variable['name'];
+				}
+				
+				//delete any variables that have been removed
+				foreach ($this->template_variables->all() as $tv) {
+					if (!in_array($tv->name, $variables)) {
+						$tv->delete();
 					}
 				}
 			}
