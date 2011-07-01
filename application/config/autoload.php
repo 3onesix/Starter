@@ -37,10 +37,8 @@
 |
 */
 
-$autoload['packages'] = array(
-	APPPATH.'third_party/jot',
-);
-
+$CI =& get_instance();
+$autoload['packages'] = $CI->config->item('packages');
 
 /*
 | -------------------------------------------------------------------
