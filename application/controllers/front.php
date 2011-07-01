@@ -47,7 +47,7 @@ class Front extends My_Controller {
 			
 			extract($page->variables());
 			
-			include('templates/'.$page->template->file.'.php');
+			include('assets/site/templates/'.$page->template->file.'.php');
 		}
 		else
 		{
