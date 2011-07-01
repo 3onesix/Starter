@@ -75,7 +75,7 @@ class My_Router extends CI_Router
 			if ( APPPATH != $path)
 			{
 				$name = array_pop(explode('/', rtrim($path, '/')));				
-				$relative_path = "../../modules/{$name}/controllers/";
+				$relative_path = "../../assets/site/modules/{$name}/controllers/";
 			}
 			
 			$options = array(

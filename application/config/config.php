@@ -11,7 +11,7 @@
 */
 $config['packages'] = array(
 	APPPATH.'third_party/jot',
-	FCPATH.'modules/articles',	
+	MODPATH.'articles',	
 );
 
 /*
