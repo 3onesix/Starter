@@ -12,6 +12,7 @@
 $config['packages'] = array(
 	APPPATH.'third_party/jot',
 	MODPATH.'articles',	
+	MODPATH.'starter_blog',	
 );
 
 /*
