@@ -22,6 +22,7 @@ class Pages extends MY_Controller
 		
 		$this->load->vars('notice', flash('notice'));
 		$this->load->vars('pages', $pages);
+		$this->load->vars('title', 'Pages');
 		$this->load->view('admin/pages/index');
 	}
 	
@@ -34,6 +35,7 @@ class Pages extends MY_Controller
 		$parents = page_hierarchal_spaces($this->page_model->find(array('page_id'=>-1), 0, 0));
 				
 		$this->load->vars('parents', $parents);
+		$this->load->vars('title', 'New Page');
 		$this->load->view('admin/pages/new', array('page' => flash_jot('page')));
 	}
 	
@@ -65,7 +67,8 @@ class Pages extends MY_Controller
 		$templates = array('');
 		foreach($this->template_model->all() as $template) $templates[$template->id] = $template->name;
 		$this->load->vars('templates', $templates);
-		$this->load->vars('page', flash_jot('page', $id));	
+		$this->load->vars('page', flash_jot('page', $id));
+		$this->load->vars('title', 'Edit Page : '.flash_jot('page', $id)->name.'');	
 		$this->load->view('admin/pages/edit');
 	}
 	
@@ -96,6 +99,13 @@ class Pages extends MY_Controller
 			foreach ($variables as $key=>$variable)
 			{
 				$page->variable($key, $variable);
+			}
+			foreach ($page->template->template_variables->all() as $tv)
+			{
+				$v = $page->page_variables->first(array('name' => $tv->name));
+				$v->label = $tv->label;
+				$v->type  = $tv->type;
+				$v->save();
 			}
 		}
 				

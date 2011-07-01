@@ -6,6 +6,8 @@ class Create_Page_Variables
 		create_table('page_variables', array(
 			array('name' => 'page_id', 'type' => 'integer'),
 			array('name' => 'template_id', 'type' => 'integer'),
+			array('name' => 'label', 'type' => 'string'),
+			array('name' => 'type', 'type' => 'string'),
 			array('name' => 'name', 'type' => 'string'),
 			array('name' => 'value', 'type' => 'binary'),
 			MIGRATION_TIMESTAMPS
