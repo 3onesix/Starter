@@ -1,5 +1,5 @@
 <?php
-class CreateTableTemplates
+class Create_Table_Templates
 {
 	function up()
 	{

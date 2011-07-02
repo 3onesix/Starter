@@ -1,5 +1,5 @@
 <?php
-class CreateTablePages
+class Create_Table_Pages
 {
 	function up()
 	{

@@ -1,5 +1,5 @@
 <?php
-class CreateTableSettings
+class Create_Table_Settings
 {
 	function up()
 	{
