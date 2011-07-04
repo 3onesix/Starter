@@ -1,6 +1,6 @@
 <?php
 
-$this->module 						= array(
+$module		 						= array(
 	'name'							=> 'Blog',
 	'simple_name'					=> 'starter_blog',
 	'version'						=> '1.2',

@@ -1,14 +1,16 @@
 <?php
 
-$this->module 						= array(
+$module		 						= array(
 	'name'							=> 'Google Analytics',
 	'simple_name'					=> 'starter_googleanalytics',
-	'description'					=> 'The Google Analytics module provides a quick and easy way to install analytics on all your pages, but also to track your numbers for any page and for your site within Starter.',
+	'author'						=> 'Starter',
+	'description'					=> 'The Google Analytics module provides a quick and easy way to install analytics on all your pages, but also to track your numbers for any page and for your site within {product_name}.',
 	'version'						=> '1.0',
 	'settings'						=> array(
 		array(
 			'label' 				=> 'Google Analytics Key',
-			'key'					=> 'key'
+			'key'					=> 'key',
+			'type'					=> 'string'
 		)
 	),
 	'files'							=> array(

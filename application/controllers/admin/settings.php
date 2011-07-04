@@ -28,9 +28,105 @@ class Settings extends MY_Controller
 		$this->load->view('admin/settings/modules/install');
 	}
 	
+	public function action_modules_install($folder = null)
+	{
+		$folder = 'assets/site/modules/'.$folder;
+		if (file_exists($folder.'/config.php'))
+		{
+			include($folder.'/config.php');
+			if (isset($module) && is_array($module))
+			{
+				if ($this->input->get('install') == 'true')
+				{
+					//make sure module isn't installed
+					if ($this->module_model->exists(array('simple_name' => $module['simple_name']))) {
+						echo 'Already installed';
+						return true;
+					}
+			
+					//add module
+					$m = $this->module_model->create(array(
+						'name' => $module['name'],
+						'simple_name' => $module['simple_name']
+					));
+			
+					//add settings
+					if (isset($module['settings']) && count($module['settings']))
+					{
+						foreach ($module['settings'] as $setting)
+						{
+							if (isset($setting['key']) && isset($setting['type']))
+							{
+								$this->setting_model->create(array(
+									'module_id' => $m->id,
+									'label' => isset($setting['label']) ? $setting['label'] : $setting['key'],
+									'key' => $setting['key'],
+									'type' => $setting['type']
+								));
+							}
+						}
+					}
+			
+					//add files
+					if (isset($module['files']) && count($module['files']))
+					{
+						foreach ($module['files'] as $file)
+						{
+							if (isset($file['type']) && isset($file['name']))
+							{
+								$this->module_file_model->create(array(
+									'module_id' => $m->id,
+									'type' => $file['type'],
+									'name' => $file['name'],
+									'include_on_page' => isset($file['include_on_page']) && $file['include_on_page'] ? 1 : 0
+								));
+							}
+						}
+					}
+			
+					//add screens
+					if (isset($module['screens']) && count($module['screens']))
+					{
+						foreach ($module['screens'] as $screen)
+						{
+							if (isset($screen['name']) && isset($screen['url']))
+							{
+								$this->module_screen_model->create(array(
+									'module_id' => $m->id,
+									'name' => $screen['name'],
+									'url' => $screen['url']
+								));
+							}
+						}
+					}
+					
+					flash('notice', $module['name'].' has been installed.');
+					
+					if (isset($module['settings']) && count($module['settings']))
+					{
+						redirect('admin/settings/modules/'.$m->id);
+					}
+					else
+					{
+						redirect('admin/settings/modules');
+					}
+				}
+				else
+				{
+					$this->load->vars(array(
+						'title'  => 'Install Module : '.$module['name'],
+						'module' => $module
+					));
+					$this->load->view('admin/settings/modules/install');
+				}
+			}
+		}
+	}
+	
 	public function action_modules($id = null)
 	{
 		if ($id === null) $this->action_modules_index();
+		elseif ($id == 'install' && $this->uri->segment(5)) $this->action_modules_install($this->uri->segment(5));
 		else {
 			$module = $this->module_model->first($id);
 			if ($module->settings->count() == 0) redirect('admin/settings');
