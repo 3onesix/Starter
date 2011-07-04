@@ -11,6 +11,7 @@ $route['admin/(:any)/edit/(:num)']		= "admin/$1/action_edit/$2";
 $route['admin/(:any)/create']	 		= "admin/$1/action_create";
 $route['admin/(:any)/new']	 			= "admin/$1/action_new";
 $route['admin/(:any)/(:any)/(:any)']	= "admin/$1/action_$2/$3";
+$route['admin/(:any)/(:any)']			= "admin/$1/action_$2";
 $route['admin/(:any)']					= "admin/$1/action_index";
 $route['admin']							= "admin/dashboard/action_index";
 

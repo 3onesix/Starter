@@ -258,11 +258,28 @@ form {
 		clear: left;
 		margin-bottom: 10px;
 	}
+	
+	.installables {
+		list-style: none;
+		margin: {
+			left: 20px;
+			bottom: 20px;
+		}
+		
+		.note {
+			color: #999;
+		}
+	}
+	
+	p {
+		margin-bottom: 20px;
+	}
 }
 
 #page_variables {
 	float: left;
-	width: 700px;	
+	width: 700px;
+	margin-bottom: 20px;	
 }
 
 #sidebar {
@@ -359,6 +376,20 @@ ul#sidebar {
 			width: 16px;
 			height: 16px;
 			background: url(../images/icon_add.png) no-repeat;
+		}
+	}
+	
+	&.green {
+		@include gradient(lighten(#030, 30%), lighten(#030, 20%));
+		border-color: #030;
+		color: #fff;
+		text-shadow: 0 -1px 0 rgba(0, 0, 0, .7);
+		
+		&:hover {
+			@include gradient(lighten(#030, 35%), lighten(#030, 25%));
+		}
+		&:active {
+			@include gradient(lighten(#030, 15%), lighten(#030, 25%));
 		}
 	}
 }

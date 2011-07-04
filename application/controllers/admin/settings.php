@@ -20,27 +20,38 @@ class Settings extends MY_Controller
 		$this->load->view('admin/settings/index');
 	}
 	
-	public function action_modules($id)
+	public function action_modules_index()
 	{
-		$module = $this->module_model->first($id);
-		if ($module->settings->count() == 0) redirect('admin/settings');
-		
-		$data = $this->input->post('setting');
-		
-		if ($data) {
-			foreach ($data as $key => $value) {
-				$setting = $this->setting_model->first($key);
-				$setting->value = $value;
-				$setting->save();
-			}
-			flash('notice', 'Settings have been saved.');
-			redirect('admin/settings/modules/'.$id);
-		}
-		
 		$this->load->vars(array(
-			'module' => $module,
-			'title'  => 'Module Settings : '.$module->name
+			'title'  => 'Install Module'
 		));
-		$this->load->view('admin/settings/module');
+		$this->load->view('admin/settings/modules/install');
+	}
+	
+	public function action_modules($id = null)
+	{
+		if ($id === null) $this->action_modules_index();
+		else {
+			$module = $this->module_model->first($id);
+			if ($module->settings->count() == 0) redirect('admin/settings');
+			
+			$data = $this->input->post('setting');
+			
+			if ($data) {
+				foreach ($data as $key => $value) {
+					$setting = $this->setting_model->first($key);
+					$setting->value = $value;
+					$setting->save();
+				}
+				flash('notice', 'Settings have been saved.');
+				redirect('admin/settings/modules/'.$id);
+			}
+			
+			$this->load->vars(array(
+				'module' => $module,
+				'title'  => 'Module Settings : '.$module->name
+			));
+			$this->load->view('admin/settings/module');
+		}
 	}
 }
