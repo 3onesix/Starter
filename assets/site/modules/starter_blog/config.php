@@ -36,6 +36,26 @@ $module		 						= array(
 			'type'					=> 'library',
 			'name'					=> 'mkdn.php',
 			'include_on_page'		=> 1
+		),
+		array(
+			'type'					=> 'view',
+			'name'					=> 'admin/_form.php',
+			'include_on_page'		=> 0
+		),
+		array(
+			'type'					=> 'view',
+			'name'					=> 'admin/edit.php',
+			'include_on_page'		=> 0
+		),
+		array(
+			'type'					=> 'view',
+			'name'					=> 'admin/index.php',
+			'include_on_page'		=> 0
+		),
+		array(
+			'type'					=> 'view',
+			'name'					=> 'admin/new.php',
+			'include_on_page'		=> 0
 		)
 	),
 	'screens'						=> array(
