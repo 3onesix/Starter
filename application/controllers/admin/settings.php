@@ -25,7 +25,7 @@ class Settings extends MY_Controller
 		$this->load->vars(array(
 			'title'  => 'Install Module : Google Analytics'
 		));
-		$this->load->view('admin/settings/modules/install');
+		$this->load->view('admin/settings/modules/manage');
 	}
 	
 	public function action_modules_install($folder = null)
@@ -36,18 +36,18 @@ class Settings extends MY_Controller
 			include($folder.'/config.php');
 			if (isset($module) && is_array($module))
 			{
+				//make sure module isn't installed
+				if ($this->module_model->exists(array('simple_name' => $module['simple_name']))) {
+					flash('notice', $module['name'].' has already been installed.');
+					redirect('admin/settings/modules');
+				}
 				if ($this->input->get('install') == 'true')
 				{
-					//make sure module isn't installed
-					if ($this->module_model->exists(array('simple_name' => $module['simple_name']))) {
-						echo 'Already installed';
-						return true;
-					}
-			
 					//add module
 					$m = $this->module_model->create(array(
 						'name' => $module['name'],
-						'simple_name' => $module['simple_name']
+						'simple_name' => $module['simple_name'],
+						'description' => isset($module['description']) ? $module['description'] : ''
 					));
 			
 					//add settings
