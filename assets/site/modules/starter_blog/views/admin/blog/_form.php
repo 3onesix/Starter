@@ -7,7 +7,7 @@
 				<?php print $f->select('blog_id', $blogs); ?>
 			</div>
 		<?php else: ?>
-			<input type="hidden" name="blog_id" value="<?=current(array_keys($blogs))?>" />
+			<input type="hidden" name="starter_article[blog_id]" value="<?=current(array_keys($blogs))?>" />
 		<?php endif; ?>
 		<div class="field">
 			<?php echo $f->label('subject', 'Subject:'); ?>

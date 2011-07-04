@@ -33,7 +33,7 @@ class Blog extends MY_Controller
 	
 	public function action_create()
 	{
-		$data = $this->input->post('article');
+		$data = $this->input->post('starter_article');
 		$data['user_id'] = $this->current_user->id;
 		$article = $this->article_model->create($data);	
 				
@@ -59,7 +59,7 @@ class Blog extends MY_Controller
 	
 	public function action_update($id)
 	{
-		$data = $this->input->post('article');
+		$data = $this->input->post('starter_article');
 		$data['user_id'] = $this->current_user->id;
 		$article = $this->article_model->update($id, $data);
 				
