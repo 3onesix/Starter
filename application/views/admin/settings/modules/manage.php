@@ -9,8 +9,10 @@
 	<div id="records">
 		<h3>Installed Modules</h3>
 		<ul>
+			<?php $is_odd = true; ?>
 			<?php foreach ($modules as $module): ?>
-				<li><div class="what"><?=$module->name?></div> <div class="actions"><?php if($module->settings->count()): ?><a href="<?=site_url('admin/settings/modules/'.$module->simple_name)?>" class="settings">settings</a> <?php endif; ?><a href="#" class="delete">delete</a></div></li>
+				<li<?=($is_odd ? ' class="odd"' : '')?>><div class="what"><?=$module->name?></div> <div class="actions"><?php if($module->settings->count()): ?><a href="<?=site_url('admin/settings/modules/'.$module->simple_name)?>" class="settings">settings</a> <?php endif; ?><a href="#" class="delete">delete</a></div></li>
+				<?php $is_odd = !$is_odd; ?>
 			<?php endforeach; ?>
 		</ul>
 	</div>

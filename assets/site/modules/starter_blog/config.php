@@ -43,5 +43,6 @@ $module		 						= array(
 			'name'					=> 'Blog',
 			'url'					=> 'blog'
 		)
-	)
+	),
+	'install'						=> 'install.php'
 );

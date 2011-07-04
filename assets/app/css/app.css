@@ -389,7 +389,8 @@ ul#sidebar {
   width: 700px;
   margin-bottom: 10px; }
   #records ul {
-    list-style: none; }
+    list-style: none;
+    margin: 0; }
     #records ul li {
       clear: left;
       overflow: auto;
@@ -429,7 +430,8 @@ ul#sidebar {
     float: left; }
   #records .actions {
     float: right;
-    clear: none; }
+    clear: none;
+    margin: 0; }
     #records .actions .edit, #records .actions .delete, #records .actions .view, #records .actions .settings {
       float: left;
       display: block;

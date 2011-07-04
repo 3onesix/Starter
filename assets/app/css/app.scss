@@ -423,6 +423,8 @@ ul#sidebar {
 	
 	ul {
 		list-style: none;
+		margin: 0;
+		
 		li {
 			clear: left;
 			overflow: auto;
@@ -469,6 +471,7 @@ ul#sidebar {
 	.actions {
 		float: right;
 		clear: none;
+		margin: 0;
 		
 		.edit, .delete, .view, .settings {
 			float: left;

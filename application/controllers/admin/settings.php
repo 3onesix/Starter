@@ -48,6 +48,7 @@ class Settings extends MY_Controller
 					$m = $this->module_model->create(array(
 						'name' => $module['name'],
 						'simple_name' => $module['simple_name'],
+						'version' => $module['version'],
 						'description' => isset($module['description']) ? $module['description'] : ''
 					));
 			
@@ -101,11 +102,19 @@ class Settings extends MY_Controller
 						}
 					}
 					
+					if (isset($module['install']))
+					{
+						$this->load->helper('jot_migrations');
+						ob_start();
+						include($folder.'/'.$module['install']);
+						ob_clean();
+					}
+					
 					flash('notice', $module['name'].' has been installed.');
 					
 					if (isset($module['settings']) && count($module['settings']))
 					{
-						redirect('admin/settings/modules/'.$m->id);
+						redirect('admin/settings/modules/'.$m->simple_name);
 					}
 					else
 					{

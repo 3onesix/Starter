@@ -25,7 +25,7 @@
 			<?php if(isset($module['widgets']) && count($module['widgets'])): ?><li><?=count($module['widgets'])?> widget <span class="note">(Widgets show up on the dashboard or in the page editor)</span></li><?php endif; ?>
 		</ul>
 		<?php endif; ?>
-		<a href="<?=site_url('admin/settings/modules/install/'.$this->uri->segment(5))?>?install=true" class="button green">Install Google Analytics</a>
+		<a href="<?=site_url('admin/settings/modules/install/'.$this->uri->segment(5))?>?install=true" class="button green">Install <?=$module['name']?></a>
 	</div>
 </form>
 
