@@ -58,6 +58,7 @@ a img {border: 0;}
 body {
 	font: 14px/20px Helvetica Neue, Helvetica, Arial, sans-serif;
 	background: #eee url(../images/bg.png);
+	-webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -259,15 +260,17 @@ form {
 		margin-bottom: 10px;
 	}
 	
-	.installables {
+	ul {
 		list-style: none;
 		margin: {
 			left: 20px;
 			bottom: 20px;
 		}
 		
-		.note {
-			color: #999;
+		&.installables {
+			.note {
+				color: #999;
+			}
 		}
 	}
 	
@@ -381,9 +384,9 @@ ul#sidebar {
 	
 	&.green {
 		@include gradient(lighten(#030, 30%), lighten(#030, 20%));
-		border-color: #030;
+		border-color: lighten(#030, 10%);
 		color: #fff;
-		text-shadow: 0 -1px 0 rgba(0, 0, 0, .7);
+		text-shadow: 0 -1px 0 #030;
 		
 		&:hover {
 			@include gradient(lighten(#030, 35%), lighten(#030, 25%));

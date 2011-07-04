@@ -23,7 +23,8 @@ a img {
 /* Basic */
 body {
   font: 14px/20px Helvetica Neue, Helvetica, Arial, sans-serif;
-  background: #eeeeee url(../images/bg.png); }
+  background: #eeeeee url(../images/bg.png);
+  -webkit-font-smoothing: antialiased; }
 
 a {
   color: #51626f;
@@ -184,11 +185,11 @@ form .field textarea {
 form .actions {
   clear: left;
   margin-bottom: 10px; }
-form .installables {
+form ul {
   list-style: none;
   margin-left: 20px;
   margin-bottom: 20px; }
-  form .installables .note {
+  form ul.installables .note {
     color: #999; }
 form p {
   margin-bottom: 20px; }
@@ -335,9 +336,9 @@ ul#sidebar {
     /* IE10+ */
     background: linear-gradient(top, #00cc00 0%, #009900 100%);
     /* W3C */
-    border-color: #030;
+    border-color: #006600;
     color: #fff;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.7); }
+    text-shadow: 0 -1px 0 #003300; }
     .button.green:hover {
       background: #00e600;
       /* Old browsers */

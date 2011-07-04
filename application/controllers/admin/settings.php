@@ -23,7 +23,7 @@ class Settings extends MY_Controller
 	public function action_modules_index()
 	{
 		$this->load->vars(array(
-			'title'  => 'Install Module'
+			'title'  => 'Install Module : Google Analytics'
 		));
 		$this->load->view('admin/settings/modules/install');
 	}
