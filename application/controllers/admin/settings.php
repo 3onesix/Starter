@@ -128,7 +128,7 @@ class Settings extends MY_Controller
 		if ($id === null) $this->action_modules_index();
 		elseif ($id == 'install' && $this->uri->segment(5)) $this->action_modules_install($this->uri->segment(5));
 		else {
-			$module = $this->module_model->first($id);
+			$module = $this->module_model->first(array('simple_name' => $id));
 			if ($module->settings->count() == 0) redirect('admin/settings');
 			
 			$data = $this->input->post('setting');
@@ -140,7 +140,7 @@ class Settings extends MY_Controller
 					$setting->save();
 				}
 				flash('notice', 'Settings have been saved.');
-				redirect('admin/settings/modules/'.$id);
+				redirect('admin/settings/modules/'.$module->simple_name);
 			}
 			
 			$this->load->vars(array(

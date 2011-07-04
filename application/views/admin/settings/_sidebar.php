@@ -13,7 +13,7 @@
 	<?php if (count($modules)): ?>
 		<li class="header">Modules</li>
 		<?php foreach ($modules as $module): ?>
-			<li><a href="<?=site_url('admin/settings/modules/'.$module->id)?>"<?=($this->uri->segment(3) == 'modules' && $this->uri->segment(4) == $module->id ? ' class="selected"' : '')?>><?=$module->name?></a></li>
+			<li><a href="<?=site_url('admin/settings/modules/'.$module->simple_name)?>"<?=($this->uri->segment(3) == 'modules' && $this->uri->segment(4) == $module->simple_name ? ' class="selected"' : '')?>><?=$module->name?></a></li>
 		<?php endforeach; ?>
 	<?php endif; ?>
 	

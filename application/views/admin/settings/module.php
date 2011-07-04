@@ -6,7 +6,7 @@
 	<h2>Settings</h2>
 </div>
 
-<form method="post" action="<?=site_url('admin/settings/modules/'.$module->id)?>">
+<form method="post" action="<?=site_url('admin/settings/modules/'.$module->simple_name)?>">
 	<?php $this->load->view('admin/settings/_sidebar.php'); ?>
 	<div id="page_variables">
 		<fieldset>
