@@ -464,6 +464,12 @@ ul#sidebar {
 		}
 	}
 	
+	&.install_modules {
+		ul {
+			margin-bottom: 10px;
+		}
+	}
+	
 	.what {
 		float: left;
 	}
@@ -473,7 +479,7 @@ ul#sidebar {
 		clear: none;
 		margin: 0;
 		
-		.edit, .delete, .view, .settings {
+		.edit, .delete, .view, .settings, .install {
 			float: left;
 			display: block;
 			width: 20px;
@@ -493,6 +499,7 @@ ul#sidebar {
 		.delete { background-image: url(../images/icon_delete.png); }
 		.view { background-image: url(../images/icon_view.png); }
 		.settings { background-image: url(../images/icon_settings.png); }
+		.install { background-image: url(../images/icon_install_module.png); }
 	}
 }
 

@@ -426,13 +426,15 @@ ul#sidebar {
     padding-left: 90px; }
   #records.pages ul ul ul ul ul ul ul ul ul ul ul li {
     padding-left: 100px; }
+  #records.install_modules ul {
+    margin-bottom: 10px; }
   #records .what {
     float: left; }
   #records .actions {
     float: right;
     clear: none;
     margin: 0; }
-    #records .actions .edit, #records .actions .delete, #records .actions .view, #records .actions .settings {
+    #records .actions .edit, #records .actions .delete, #records .actions .view, #records .actions .settings, #records .actions .install {
       float: left;
       display: block;
       width: 20px;
@@ -442,7 +444,7 @@ ul#sidebar {
       text-indent: -9000px;
       opacity: .40;
       -webkit-transition: opacity .35s; }
-      #records .actions .edit:hover, #records .actions .delete:hover, #records .actions .view:hover, #records .actions .settings:hover {
+      #records .actions .edit:hover, #records .actions .delete:hover, #records .actions .view:hover, #records .actions .settings:hover, #records .actions .install:hover {
         opacity: 1; }
     #records .actions .edit {
       background-image: url(../images/icon_edit.png); }
@@ -452,6 +454,8 @@ ul#sidebar {
       background-image: url(../images/icon_view.png); }
     #records .actions .settings {
       background-image: url(../images/icon_settings.png); }
+    #records .actions .install {
+      background-image: url(../images/icon_install_module.png); }
 
 #footer {
   clear: left;
