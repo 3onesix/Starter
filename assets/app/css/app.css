@@ -385,6 +385,7 @@ ul#sidebar {
     bottom: 0; }
 
 #records {
+  float: left;
   width: 700px;
   margin-bottom: 10px; }
   #records ul {
@@ -427,8 +428,9 @@ ul#sidebar {
   #records .what {
     float: left; }
   #records .actions {
-    float: right; }
-    #records .actions .edit, #records .actions .delete, #records .actions .view {
+    float: right;
+    clear: none; }
+    #records .actions .edit, #records .actions .delete, #records .actions .view, #records .actions .settings {
       float: left;
       display: block;
       width: 20px;
@@ -438,7 +440,7 @@ ul#sidebar {
       text-indent: -9000px;
       opacity: .40;
       -webkit-transition: opacity .35s; }
-      #records .actions .edit:hover, #records .actions .delete:hover, #records .actions .view:hover {
+      #records .actions .edit:hover, #records .actions .delete:hover, #records .actions .view:hover, #records .actions .settings:hover {
         opacity: 1; }
     #records .actions .edit {
       background-image: url(../images/icon_edit.png); }
@@ -446,6 +448,8 @@ ul#sidebar {
       background-image: url(../images/icon_delete.png); }
     #records .actions .view {
       background-image: url(../images/icon_view.png); }
+    #records .actions .settings {
+      background-image: url(../images/icon_settings.png); }
 
 #footer {
   clear: left;
