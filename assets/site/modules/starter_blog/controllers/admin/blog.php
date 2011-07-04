@@ -78,13 +78,13 @@ class Blog extends MY_Controller
 	
 	public function action_destroy($id)
 	{
-		/*$page = $this->page_model->first($id);
+		$article = $this->article_model->first($id);
 		
-		if ( $page )
+		if ( $article )
 		{
-			$page->destroy();
-			flash('notice', 'Page was successfully destroy');
-			redirect('admin/pages');
-		}*/
+			$article->destroy();
+			flash('notice', 'Article was successfully deleted.');
+			redirect('admin/blog');
+		}
 	}
 }
