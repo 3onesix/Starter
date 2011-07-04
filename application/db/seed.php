@@ -38,13 +38,3 @@ $about->pages = array($faq, $services, $account, $contact);
 $account->pages = array($login);
 $login->pages = array($tickets);
 $tickets->pages = array($credit, $history);
-
-// modules
-$googleanalytics = $this->module_model->create(array('name' => 'Google Analytics', 'simple_name' => 'googleanalytics'));
-$this->setting_model->create(array(
-	'module_id' => $googleanalytics->id,
-	'type' => 'text',
-	'label' => 'Key',
-	'key' => 'key',
-	'value' => '',
-));
