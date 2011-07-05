@@ -6,6 +6,10 @@
 			<?php echo $f->label('name', 'Name:'); ?>
 			<?php echo $f->text_field('name'); ?>				
 		</div>
+		<div class="field">
+			<?php echo $f->label('slug', 'Slug:'); ?>
+			<?php echo $f->text_field('slug'); ?>				
+		</div>
 		<?php if ($page->page_id > 0): ?>
 			<div class="field">
 				<label>Parent Page:</label>
