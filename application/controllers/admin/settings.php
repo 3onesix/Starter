@@ -31,7 +31,7 @@ class Settings extends MY_Controller
 	
 	public function action_modules_install($folder = null)
 	{
-		$folder = 'assets/site/modules/'.$folder;
+		$folder = FCPATH.'assets/site/modules/'.$folder;
 		if (file_exists($folder.'/config.php'))
 		{
 			include($folder.'/config.php');
