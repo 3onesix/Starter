@@ -7,6 +7,26 @@ class Backup_Model extends MY_Model {
 		$this->tablename('starter_backup');
 	}
 	
+	function all()
+	{
+		if (!is_dir(FCPATH.'assets/site/backups')) return array();
+		
+		$folder = FCPATH.'assets/site/backups/';
+		$files = array();
+		
+		$r = opendir($folder);
+		
+		while (($file = readdir($r)) !== false) {
+			if (!is_dir($folder.$file))
+			{	
+				array_push($files, str_replace('.backup', '', $file));
+			}
+		}
+		
+		rsort($files);
+		return $files;
+	}
+	
 	function run()
 	{
 		$data = array(
@@ -131,6 +151,11 @@ class Backup_Model extends MY_Model {
 		$fp = fopen('assets/site/backups/'.time().'.backup', 'w');
 		fwrite($fp, serialize($data));
 		fclose($fp);
+	}
+	
+	function destroy($id)
+	{
+		unlink(FCPATH.'assets/site/backups/'.$id.'.backup');
 	}
 	
 }
