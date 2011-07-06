@@ -25,9 +25,9 @@ class Template_Model extends My_Model
 	
 	function check_for_new()
 	{
-		$templates = opendir('assets/site/templates');
+		$templates = opendir(FCPATH.'assets/site/templates');
 		while (($file = readdir($templates)) !== false) {
-			if (!is_dir($file) && strrpos($file, '.config.php') == false && (strrpos($file, '_') === false || strrpos($file, '_') != 0))
+			if (!is_dir(FCPATH.'assets/site/templates/'.$file) && strrpos($file, '.config.php') == false && (strrpos($file, '_') === false || strrpos($file, '_') != 0))
 			{	
 				$name = str_replace('.php', '', $file);
 				
@@ -46,7 +46,7 @@ class Template_Model extends My_Model
 	function check_for_updates()
 	{
 		//get config
-		$config = 'assets/site/templates/'.$this->file.'.config.php';
+		$config = FCPATH.'assets/site/templates/'.$this->file.'.config.php';
 		include($config);
 		
 		if (isset($template))
