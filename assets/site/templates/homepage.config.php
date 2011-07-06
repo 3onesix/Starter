@@ -14,5 +14,11 @@ $template['variables'] = array(
 		'name' => 'copy',
 		'label' => 'Sidebar Copy',
 		'default' => 'Lorem ipsum'
+	),
+	array(
+		'type' => 'html',
+		'name' => 'html',
+		'label' => 'Sidebar Copy',
+		'default' => 'Lorem ipsum'
 	)
 );
