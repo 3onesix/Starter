@@ -98,14 +98,39 @@ class Pages extends MY_Controller
 		{
 			foreach ($variables as $key=>$variable)
 			{
-				$page->variable($key, $variable);
-			}
-			foreach ($page->template->template_variables->all() as $tv)
-			{
-				$v = $page->page_variables->first(array('name' => $tv->name));
-				$v->label = $tv->label;
-				$v->type  = $tv->type;
-				$v->save();
+				$hasChanged = false;
+				$v  = $page->page_variables->first(array('name' => $key));
+				$tv = $page->template->template_variables->first(array('name' => $key));
+				if ($v)
+				{
+					if ($v->value != $variable)
+					{
+						$hasChanged = true;
+						
+						$v->value = $variable;
+					}
+					if ($tv->label != $v->label || $tv->type != $v->type)
+					{
+						$hasChanged = true;
+						
+						$v->label = $tv->label;
+						$v->type  = $tv->type;
+					}
+					if ($hasChanged)
+					{
+						$v->save();
+					}
+				}
+				else
+				{
+					$this->page_variable_model->create(array(
+						'page_id' => $page->id,
+						'name'    => $key,
+						'value'   => $variable,
+						'label'   => $tv->label,
+						'type'    => $tv->type
+					));
+				}
 			}
 		}
 				
