@@ -65,4 +65,6 @@ $(function () {
 		
 		return false;
 	});
+	
+	activateHTMLFields();
 });
