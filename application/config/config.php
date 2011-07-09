@@ -9,7 +9,9 @@
 |  $autoload['packages'] = array(APPPATH.'third_party', '/usr/local/shared');
 |
 */
-require_once(MODPATH.'modules.php');
+
+$modules = array();
+if (file_exists(MODPATH.'modules.php')) require_once(MODPATH.'modules.php');
 
 $config['packages'] = array_merge($modules, array(
 	APPPATH.'third_party/jot',
