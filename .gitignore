@@ -1,8 +1,17 @@
 .DS_Store
-application/config/database.php
-application/config/testing/database.php
-application/db/*.db
-.sass-cache
+
+*/config/database.php
+*/system/logs/log-*.php
+*/system/cache/*
+*/system/cache/!index.html
+
+*/config/database.php
+*/config/testing/database.php
+*db/*.db
 
 Starter.esproj/user.jamesfinley.espressostorage
 Starter.esproj/Project.espressostorage
+
+.sass-cache
+
+assets/site/modules/modules.php

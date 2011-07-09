@@ -9,13 +9,12 @@
 |  $autoload['packages'] = array(APPPATH.'third_party', '/usr/local/shared');
 |
 */
-$config['packages'] = array(
+require_once(MODPATH.'modules.php');
+
+$config['packages'] = array_merge($modules, array(
 	APPPATH.'third_party/jot',
-	APPPATH.'third_party/unit',
-	MODPATH.'articles',	
-	MODPATH.'starter_blog',
-	MODPATH.'starter_backup',
-);
+	APPPATH.'third_party/unit'
+));
 
 /*
 |--------------------------------------------------------------------------
