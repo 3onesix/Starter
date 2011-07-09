@@ -12,7 +12,7 @@ class Pages extends MY_Controller
 	}
 	
 	public function action_index($page = 0)
-	{
+	{		
 		$this->db->order_by('name');
 		$pages = $this->page_model->find(array('page_id'=>-1), 0, 0);
 		
@@ -67,13 +67,9 @@ class Pages extends MY_Controller
 		$templates = array('');
 		foreach($this->template_model->all() as $template) $templates[$template->id] = $template->name;
 		$this->load->vars('templates', $templates);
-		
-		echo 'Page';
-		
+				
 		$this->load->vars('page', flash_jot('page', $id));
-		
-		echo 'Page';
-		
+				
 		$this->load->vars('title', 'Edit Page : '.flash_jot('page', $id)->name.'');	
 		$this->load->view('admin/pages/edit');
 	}
