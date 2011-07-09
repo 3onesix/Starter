@@ -11,6 +11,8 @@ class User_Model extends My_Model
 		$this->validates('last_name', 'required');
 		$this->validates('username', array('required', 'uniqueness'=>array('exclude_self'=>TRUE)));
 		$this->validates('password', array('required', 'confirm'));
+		
+		$this->has_one('role');
 	}
 	
 	protected function encrypt_password()
@@ -25,5 +27,27 @@ class User_Model extends My_Model
 			'username' => $username,
 			'password' => $password
 		));
+	}
+	
+	public function permission($module, $key)
+	{
+		$module = $this->module_model->first(array('simple_name' => $module));
+		if ($module)
+		{
+			$permission = $this->role->permissions->first(array(
+				'module_id' => $module->id,
+				'key'       => $key
+			));
+			return $permission ? $permission->value : false;
+		}
+		else
+		{
+			$permission = $this->role->permissions->first(array(
+				'module_id' => 0,
+				'key'       => $module.'_'.$key
+			));
+			return $permission ? $permission->value : false;
+		}
+		return false;
 	}
 }
