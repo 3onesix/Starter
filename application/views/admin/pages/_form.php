@@ -41,66 +41,7 @@
 					<?php elseif ($variable->type == 'binary'): ?>
 						<textarea type="text" name="variables[<?=$variable->name?>]"><?=($page->variable($variable->name) !== null ? $page->variable($variable->name) : $variable->value)?></textarea>
 					<?php elseif ($variable->type == 'html'): ?>
-						<textarea type="text" name="variables[<?=$variable->name?>]" id="variables_<?=$variable->name?>_field"><?=($page->variable($variable->name) !== null ? $page->variable($variable->name) : $variable->value)?></textarea>
-						<script type="text/javascript">
-						//<![CDATA[
-			
-							CKEDITOR.replace( 'variables_<?=$variable->name?>_field',
-								{
-									toolbar :
-									[
-										[ 'Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink', 'Source' ],
-										[ 'UIColor' ]
-									],
-									/*
-									 * Style sheet for the contents
-									 */
-									contentsCss : '/assets/app/js/ckeditor/xhtml.css',
-			
-									/*
-									 * Core styles.
-									 */
-									coreStyles_bold	: { element : 'span', attributes : {'class': 'Bold'} },
-									coreStyles_italic	: { element : 'span', attributes : {'class': 'Italic'}},
-									coreStyles_underline	: { element : 'span', attributes : {'class': 'Underline'}},
-									coreStyles_strike	: { element : 'span', attributes : {'class': 'StrikeThrough'}, overrides : 'strike' },
-			
-									coreStyles_subscript : { element : 'span', attributes : {'class': 'Subscript'}, overrides : 'sub' },
-									coreStyles_superscript : { element : 'span', attributes : {'class': 'Superscript'}, overrides : 'sup' },
-			
-									/*
-									 * Indentation.
-									 */
-									indentClasses : ['Indent1', 'Indent2', 'Indent3'],
-			
-									/*
-									 * Paragraph justification.
-									 */
-									justifyClasses : [ 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyFull' ],
-			
-									/*
-									 * Styles combo.
-									 */
-									stylesSet :
-											[
-												{ name : 'Strong Emphasis', element : 'strong' },
-												{ name : 'Emphasis', element : 'em' },
-			
-												{ name : 'Computer Code', element : 'code' },
-												{ name : 'Keyboard Phrase', element : 'kbd' },
-												{ name : 'Sample Text', element : 'samp' },
-												{ name : 'Variable', element : 'var' },
-			
-												{ name : 'Deleted Text', element : 'del' },
-												{ name : 'Inserted Text', element : 'ins' },
-			
-												{ name : 'Cited Work', element : 'cite' },
-												{ name : 'Inline Quotation', element : 'q' }
-											]
-			
-								});
-						//]]>
-						</script>
+						<textarea type="text" name="variables[<?=$variable->name?>]" id="variables_<?=$variable->name?>_field" class="wysiwyg"><?=($page->variable($variable->name) !== null ? $page->variable($variable->name) : $variable->value)?></textarea>
 					<?php endif; ?>
 				</div>
 			<?php endforeach; ?>
