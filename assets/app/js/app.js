@@ -14,8 +14,8 @@ var activateHTMLFields = function () {
 			/*
 			 * Core styles.
 			 */
-			coreStyles_bold	: { element : 'span', attributes : {'class': 'Bold'} },
-			coreStyles_italic	: { element : 'span', attributes : {'class': 'Italic'}},
+			coreStyles_bold	: { element : 'strong' },
+			coreStyles_italic	: { element : 'em'},
 			coreStyles_underline	: { element : 'span', attributes : {'class': 'Underline'}},
 			coreStyles_strike	: { element : 'span', attributes : {'class': 'StrikeThrough'}, overrides : 'strike' },
 			
