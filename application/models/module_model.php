@@ -16,7 +16,7 @@ class Module_Model extends My_Model {
 		$names = array();
 		foreach($this->all() as $module) 
 		{
-			$names[] = $module->name;
+			$names[] = $module->simple_name;
 		}
 		
 		$string =  "<?php\n"; 
