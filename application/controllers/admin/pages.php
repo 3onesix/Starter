@@ -53,7 +53,7 @@ class Pages extends MY_Controller
 		else
 		{
 			flash('notice', 'Page was created successfully.');
-			redirect('admin/pages');
+			redirect('admin/pages/edit/'.$page->id);
 		}
 	}
 
