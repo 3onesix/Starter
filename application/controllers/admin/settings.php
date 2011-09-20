@@ -160,4 +160,37 @@ class Settings extends MY_Controller
 			$this->load->view('admin/settings/module');
 		}
 	}
+	
+	public function action_users($id = null) {
+		if ($id == null)
+		{
+			$users = $this->user_model->all(array('order' => 'last_name'));
+			$this->load->view('admin/settings/users', array(
+				'users' => $users
+			));
+		}
+		else
+		{
+			$user = $this->user_model->first_by_id($id);
+			if (!$user) {
+				redirect('admin/settings/users');
+			}
+			
+			if ($userinfo = $this->input->post('user'))
+			{
+				$this->db->update('users', array(
+					'first_name' => $userinfo['first_name'],
+					'last_name'  => $userinfo['last_name'],
+					'username'   => $userinfo['username']
+				), array(
+					'id' => $user->id
+				));
+				redirect('admin/settings/users');
+			}
+			
+			$this->load->view('admin/settings/edit_user', array(
+				'user' => $user
+			));
+		}
+	}
 }
