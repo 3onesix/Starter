@@ -434,7 +434,7 @@ ul#sidebar {
     float: right;
     clear: none;
     margin: 0; }
-    #records .actions .edit, #records .actions .delete, #records .actions .view, #records .actions .settings, #records .actions .install {
+    #records .actions .edit, #records .actions .delete, #records .actions .view, #records .actions .settings, #records .actions .install, #records .actions .images {
       float: left;
       display: block;
       width: 20px;
@@ -444,10 +444,12 @@ ul#sidebar {
       text-indent: -9000px;
       opacity: .40;
       -webkit-transition: opacity .35s; }
-      #records .actions .edit:hover, #records .actions .delete:hover, #records .actions .view:hover, #records .actions .settings:hover, #records .actions .install:hover {
+      #records .actions .edit:hover, #records .actions .delete:hover, #records .actions .view:hover, #records .actions .settings:hover, #records .actions .install:hover, #records .actions .images:hover {
         opacity: 1; }
     #records .actions .edit {
       background-image: url(../images/icon_edit.png); }
+    #records .actions .images {
+      background-image: url(../images/icon_images.png); }
     #records .actions .delete {
       background-image: url(../images/icon_delete.png); }
     #records .actions .view {
