@@ -81,8 +81,8 @@ a {
     font: 14px/20px Helvetica Neue, Helvetica, Arial, sans-serif; }
   #signin input[type=submit] {
     display: block;
-    width: 60px;
-    margin: 0 auto;
+    min-width: 60px;
+    margin: 0 auto 5px;
     padding: 4px 10px;
     border: none;
     border-radius: 2px;
@@ -120,3 +120,7 @@ a {
       /* IE10+ */
       background: linear-gradient(top, #465560 0%, #51626f 100%);
       /* W3C */ }
+  #signin #forgot_password {
+    display: block;
+    font-size: 12px;
+    text-align: center; }

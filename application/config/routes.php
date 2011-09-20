@@ -4,6 +4,10 @@
 $route['admin/authenticate']			= "admin/account/action_authenticate";
 $route['admin/signout']					= "admin/account/action_signout";
 $route['admin/signin']					= "admin/account/action_signin";
+$route['admin/forgot_password']			= "admin/account/action_forgot";
+$route['admin/forgot_password/(:any)']	= "admin/account/action_forgot/$1";
+$route['admin/forgot_password_process'] = "admin/account/action_forgot_process";
+$route['admin/reset_password_process/(:any)'] = "admin/account/action_reset_process/$1";
 
 $route['admin/(:any)/destroy/(:any)']	= "admin/$1/action_destroy/$2";
 $route['admin/(:any)/update/(:num)']	= "admin/$1/action_update/$2";

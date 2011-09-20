@@ -132,8 +132,8 @@ a {
 	}
 	input[type=submit] {
 		display: block;
-		width: 60px;
-		margin: 0 auto;
+		min-width: 60px;
+		margin: 0 auto 5px;
 		padding: 4px 10px;
 		border: none;
 		@include rounded(2px);
@@ -147,5 +147,11 @@ a {
 		&:focus, &:active {
 			@include gradient(darken($navigation, 5%), $navigation);
 		}
+	}
+	
+	#forgot_password {
+		display: block;
+		font-size: 12px;
+		text-align: center;
 	}
 }
