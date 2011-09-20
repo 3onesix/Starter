@@ -14,6 +14,7 @@
 	<body>
 		<form id="signin" method="post" action="<?=site_url('admin/authenticate')?>">
 			<h1 class="image" style="background-image: url(<?=site_url($this->config->item('starter_product_image'))?>)"><a href="<?=site_url('admin')?>"><?=$this->config->item('starter_product_name')?></a></h1>
+			<?php if ($notice): ?><div class="error"><?=$notice?></div><?php endif; ?>
 			<div class="field">
 				<label for="username_field">Username<label>
 				<input type="text" name="username" id="username_field" />

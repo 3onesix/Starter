@@ -52,6 +52,22 @@ a {
       width: 200px;
       height: 40px;
       text-indent: -9000px; }
+  #signin .notice, #signin .error {
+    margin: 0 0 10px;
+    padding: 10px;
+    -webkit-border-radius: 2px;
+    color: #200;
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px; }
+  #signin .error {
+    border: 1px solid #977;
+    background: #fdd;
+    color: #200; }
+  #signin .notice {
+    border: 1px solid #997;
+    background: #ffd;
+    color: #220; }
   #signin label {
     display: block;
     text-transform: lowercase;
