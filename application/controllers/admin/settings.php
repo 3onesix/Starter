@@ -178,15 +178,30 @@ class Settings extends MY_Controller
 			
 			if ($userinfo = $this->input->post('user'))
 			{
-				$this->db->update('users', array(
+				$password_reset = false;
+				
+				$data = array(
 					'first_name' => $userinfo['first_name'],
 					'last_name'  => $userinfo['last_name'],
 					'username'   => $userinfo['username'],
 					'email'      => $userinfo['email']
-				), array(
+				);
+				
+				if (isset($userinfo['password']) && isset($userinfo['confirm_password']) && $userinfo['password'] == $userinfo['confirm_password'])
+				{
+					$data['password'] = md5($userinfo['password']);
+					$password_reset = true;
+				}
+				
+				$this->db->update('users', $data, array(
 					'id' => $user->id
 				));
-				redirect('admin/settings/users');
+				
+				if ($password_reset) {
+					$this->session->set_flashdata('notice', 'Password changed.');
+					$this->session->unset_userdata('user');
+				}
+				redirect($password_reset ? 'admin/signin' : 'admin/settings/users');
 			}
 			
 			$this->load->view('admin/settings/edit_user', array(

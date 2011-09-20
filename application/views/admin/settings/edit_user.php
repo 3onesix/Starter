@@ -24,6 +24,19 @@
 				<input type="text" name="user[email]" id="user_email_field" value="<?=$user->email?>" />
 			</div>
 		</fieldset>
+		<?php if ($this->current_user->id == $user->id): ?>
+		<fieldset>
+			<legend>Reset Password</legend>
+			<div class="field">
+				<label for="user_password_field">New Password</label>
+				<input type="password" name="user[password]" id="user_password_field" value="" />
+			</div>
+			<div class="field">
+				<label for="user_confirm_field">Confirm Password</label>
+				<input type="password" name="user[confirm_password]" id="user_confirm_field" value="" />
+			</div>
+		</fieldset>
+		<?php endif; ?>
 		<div class="actions">
 			<?php echo submit_tag(); ?>
 		</div>
