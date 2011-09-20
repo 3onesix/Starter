@@ -26,7 +26,7 @@ class Blog extends MY_Controller
 	
 	public function action_new()
 	{
-		foreach($this->blog_model->all() as $blog) $blogs[$blog->id] = $blog->name;		
+		foreach($this->blog_model->all(array('order' => 'name')) as $blog) $blogs[$blog->id] = $blog->name;		
 		$this->load->vars('blogs', $blogs);
 		$this->load->view('admin/blog/new', array('article' => flash_jot('article')));
 	}

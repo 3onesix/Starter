@@ -4,7 +4,7 @@ class Article_Model extends My_Model {
 	
 	function init()
 	{
-		$this->tablename('starter_articles');
+		$this->table_name('starter_articles');
 		
 		$this->belongs_to('blog');
 		$this->belongs_to('user');
@@ -49,7 +49,7 @@ class Article_Model extends My_Model {
 	function get_snippet($length = 140)
 	{
 		$this->load->helper('text');
-		return character_limiter(strip_tags($this->body), $length);
+		return character_limiter(strip_tags($this->formatted_body), $length);
 	}
 	
 	function find_with_url($blog, $year, $month, $slug)
@@ -84,6 +84,34 @@ class Article_Model extends My_Model {
 		$this->db->order_by($by, $dir);
 		
 		return $this;
+	}
+	
+	function get_relative_date()
+	{
+		$stamp = $this->created_at;
+		$now   = time();
+		$diff  = abs($now - $stamp);
+		
+		switch ($diff) {
+			case ($diff < 60):
+				return $diff.' seconds ago';
+			break;
+			case ($diff < 3600):
+				return floor($diff / 60).' minute'.(floor($diff / 60) != 1 ? 's' : '').' ago';
+			break;
+			case ($diff < 86400):
+				return floor($diff / 3600).' hour'.(floor($diff / 3600) != 1 ? 's' : '').' ago';
+			break;
+			case ($diff < 604800):
+				return floor($diff / 86400).' day'.(floor($diff / 86400) != 1 ? 's' : '').' ago';
+			break;
+			case ($diff < 2592000):
+				return floor($diff / 604800).' week'.(floor($diff / 604800) != 1 ? 's' : '').' ago';
+			break;
+			default:
+				return date('F d, Y', $stamp);
+			break;
+		}
 	}
 	
 }

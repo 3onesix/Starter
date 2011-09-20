@@ -22,11 +22,16 @@ class User_Model extends My_Model
 	}
 	
 	public function authenticate($username, $password)
-	{	
-		return $this->exists(array(
-			'username' => $username,
-			'password' => $password
-		));
+	{
+		if ($username && $password) {
+			return $this->exists(array(
+				'username' => $username,
+				'password' => $password
+			));
+		}
+		else {
+			return false;
+		}
 	}
 	
 	public function permission($module, $key)
