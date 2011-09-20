@@ -156,7 +156,7 @@ class Pages extends MY_Controller
 		if ( $page )
 		{
 			$page->destroy();
-			flash('notice', 'Page was successfully destroy');
+			flash('notice', 'Page was successfully deleted.');
 			redirect('admin/pages');
 		}
 	}
