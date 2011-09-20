@@ -8,14 +8,16 @@
 </div>
 <div id="records" class="articles">
 	<ul>
+		<?php $odd = false; ?>
 		<?php foreach($articles as $article): ?>
-		<li>
+		<li<?=($odd ? ' class="odd"' : '')?>>
 			<div class="what"><?=$article->subject?> <span class="sub">(created on <?=date('m/d/Y', $article->created_at)?>)</span></div>
 			<div class="actions">
 				<a class="edit" href="<?=site_url('admin/blog/edit/'.$article->id)?>">edit</a>
 				<a class="delete" href="<?=site_url('admin/blog/destroy/'.$article->id)?>">delete</a>
 			</div>
 		</li>
+		<?php $odd = !$odd; ?>
 		<?php endforeach; ?>
 	</ul>
 </div>
