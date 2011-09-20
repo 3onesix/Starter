@@ -19,6 +19,10 @@
 				<label for="user_username_field">Username</label>
 				<input type="text" name="user[username]" id="user_username_field" value="<?=$user->username?>" />
 			</div>
+			<div class="field">
+				<label for="user_email_field">Email</label>
+				<input type="text" name="user[email]" id="user_email_field" value="<?=$user->email?>" />
+			</div>
 		</fieldset>
 		<div class="actions">
 			<?php echo submit_tag(); ?>

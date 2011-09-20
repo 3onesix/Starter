@@ -181,7 +181,8 @@ class Settings extends MY_Controller
 				$this->db->update('users', array(
 					'first_name' => $userinfo['first_name'],
 					'last_name'  => $userinfo['last_name'],
-					'username'   => $userinfo['username']
+					'username'   => $userinfo['username'],
+					'email'      => $userinfo['email']
 				), array(
 					'id' => $user->id
 				));
