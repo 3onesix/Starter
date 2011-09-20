@@ -1,4 +1,5 @@
-<?php $this->load->view('admin/_header'); ?>
+<?php $title = 'New Article | Blog'; ?>
+<?php $this->load->view('admin/_header', array('title' => $title)); ?>
 
 <?php echo form_for($f, $article, site_url('admin/blog/create')); ?>
 	<h2 id="title">New Article</h2>

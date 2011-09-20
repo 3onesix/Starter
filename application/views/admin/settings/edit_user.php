@@ -1,4 +1,5 @@
-<?php $this->load->view('admin/_header'); ?>
+<?php $title = 'Edit User : '.$user->first_name.' '.$user->last_name.' | Settings'; ?>
+<?php $this->load->view('admin/_header', array('title' => $title)); ?>
 
 <?php if(flash('notice')): ?><div class="notice"><?php echo flash('notice'); ?></div><?php endif; ?>
 
