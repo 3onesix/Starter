@@ -152,17 +152,17 @@ form .field label {
     color: #888; }
 form .field.checkbox label {
   display: inline; }
-form .field input[type=text] {
+form .field input[type=text], form .field input[type=password] {
   width: 300px;
   padding: 4px;
   border: 1px solid #aaa;
   -webkit-border-radius: 1px;
   font: 14px/20px Helvetica Neue, Helvetica, Arial, sans-serif; }
-  form .field input[type=text]:focus {
+  form .field input[type=text]:focus, form .field input[type=password]:focus {
     outline: none;
     border: 1px solid #666;
     -webkit-box-shadow: 0 0 3px 1px #677c8c; }
-  form .field input[type=text][disabled=true] {
+  form .field input[type=text][disabled=true], form .field input[type=password][disabled=true] {
     color: #aaa; }
 form .field select {
   width: 310px; }
