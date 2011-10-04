@@ -20,5 +20,30 @@ $template['variables'] = array(
 		'name' => 'html',
 		'label' => 'Sidebar Copy',
 		'default' => 'Lorem ipsum'
-	)
+	),
+	array(
+		'type'  => 'string',
+		'name'  => 'title',
+		'label' => 'Title',
+		'options' => array('Mr.', 'Mrs.', 'Ms.')
+	),
+	/*array(
+		'type' => 'array',
+		'name' => 'contacts',
+		'label' => 'Contacts',
+		'limit' => 20,
+		'variables' => array(
+			array(
+				'type'  => 'string',
+				'name'  => 'title',
+				'label' => 'Title',
+				'options' => array('Mr.', 'Mrs.', 'Ms.')
+			),
+			array(
+				'type'  => 'string',
+				'name'  => 'name',
+				'label' => 'Name'
+			)
+		)
+	)*/
 );

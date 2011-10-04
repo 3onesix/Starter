@@ -36,8 +36,15 @@
 				<?php $variables[] = $variable->name; ?>
 				<div class="field">
 					<label><?=$variable->label?>:</label>
-					<?php if ($variable->type == 'string'): ?>
+					<?php if ($variable->type == 'string' && !$variable->options): ?>
 						<input type="text" name="variables[<?=$variable->name?>]" value="<?=($page->variable($variable->name) !== null ? $page->variable($variable->name) : $variable->value)?>" />
+					<?php elseif ($variable->type == 'string' && $variable->options): ?>
+						<?php $variable->options = unserialize($variable->options); ?>
+						<select name="variables[<?=$variable->name?>]">
+							<?php foreach($variable->options as $option): ?>
+								<option value="<?=$option?>"<?=($page->variable($variable->name) !== null && $page->variable($variable->name) == $option ? ' selected="selected"' : '')?>><?=$option?></option>
+							<?php endforeach; ?>
+						</select>
 					<?php elseif ($variable->type == 'binary'): ?>
 						<textarea type="text" name="variables[<?=$variable->name?>]"><?=($page->variable($variable->name) !== null ? $page->variable($variable->name) : $variable->value)?></textarea>
 					<?php elseif ($variable->type == 'html'): ?>

@@ -31,7 +31,7 @@ class Template_Model extends My_Model
 			{	
 				$name = str_replace('.php', '', $file);
 				
-				if (!$this->exists(array('name' => $name)))
+				if (!$this->exists(array('file' => $name)))
 				{
 					$template = $this->create(array(
 						'name' => str_replace('.php', '', $file),
@@ -71,16 +71,24 @@ class Template_Model extends My_Model
 							'type'  => isset($variable['type']) ? $variable['type'] : 'string',
 							'name'  => $variable['name'],
 							'label' => isset($variable['label']) ? $variable['label'] : $variable['name'],
-							'value' => isset($variable['default']) ? $variable['default'] : ''
+							'value' => isset($variable['default']) ? $variable['default'] : '',
+							'options' => isset($variable['options']) ? serialize($variable['options']) : ''
 						));
+						
+						if ($variable['type'] == 'array')
+						{
+							
+						}
 					}
 					else
 					{
 						//update variable
 						$var = $this->template_variables->first(array('name' => $variable['name']));
-						$var->type  = $variable['type'];
-						$var->label = isset($variable['label']) ? $variable['label'] : $variable['name'];
-						$var->value = isset($variable['default']) ? $variable['default'] : '';
+						$var->type    = $variable['type'];
+						$var->label   = isset($variable['label']) ? $variable['label'] : $variable['name'];
+						$var->value   = isset($variable['default']) ? $variable['default'] : '';
+						$var->options = isset($variable['options']) ? serialize($variable['options']) : '';
+						$var->save();
 					}
 					$variables[] = $variable['name'];
 				}
@@ -98,6 +106,7 @@ class Template_Model extends My_Model
 	function variable($name)
 	{
 		$variable = $this->template_variables->first(array('name' => $name));
+		if ($variable->options) $variable->options = unserialize($variable->options);
 		return $variable;
 	}
 }
