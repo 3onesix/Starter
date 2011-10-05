@@ -133,7 +133,7 @@ For arrays, it's only a bit more complicated. See this example:
 </div>
 ```
 
-A `foreach` is used to cycle through each contact, and then the variables are displayed using the same code from above, `<?=$variable_name?>`. Not to difficult, eh?
+A `foreach` is used to cycle through each contact, and then the variables are displayed using the same code from above, `<?=$variable_name?>`. Not too difficult, eh?
 
 **Example Code**
 
@@ -150,7 +150,7 @@ A `foreach` is used to cycle through each contact, and then the variables are di
         <!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
     </head>
-    <body lang="en" style="background-color: <?=$background_color?>;">
+    <body lang="en">
         
         <!-- the magic //-->
         <h1><?=$headline?></h1>
@@ -170,3 +170,51 @@ A `foreach` is used to cycle through each contact, and then the variables are di
 
 # Template Partials
 Template partials are great for repeated content across a site, such as a header or footer. To create one, prefix the name with an underscore (eg. `_header.php`). This will prevent it from being stored in the database, and will waive the requirement for a template config file.
+
+Take the example above, let's split this up a bit.
+
+**Partial `_header.php`**
+
+```php
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>My Wonderful Website</title>
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+        <!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+    </head>
+    <body lang="en">
+```
+
+**And the `_footer.php` partial**
+
+```php
+    </body>
+</html>
+```
+
+**And now all that is needed in the `homepage.php` template is**
+
+```php
+<?php require_once('assets/site/templates/_header.php'); ?>
+
+<h1><?=$headline?></h1>
+<p><?=$copy?></p>
+        
+<div id="contacts">
+    <?php foreach ($contacts as $contact): ?>
+        <div class="contact">
+            <?=$title?> <?=$name?>
+        </div>
+    <?php endforeach; ?>
+</div>
+
+<?php require_once('assets/site/templates/_footer.php'); ?>
+```
+
+See, we just include the header and footer, and that template became very clean.
