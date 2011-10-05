@@ -8,7 +8,9 @@ Found in assets/site/templates, each template consists of two (2) files: the tem
 ##### String
 Simple, one line editor field (text input)
 
+**Example Code**
 ```php
+<?php
 $template['variables'] = array(
     array(
         'type' => 'string',
@@ -17,9 +19,14 @@ $template['variables'] = array(
         'default' => 'Lorem Ipsum'
     )
 );
+?>
 ```
 
+String variables also allow options, giving the user a dropdown to select from.
+
+**Example Code**
 ```php
+<?php
 $template['variables'] = array(
     array(
         'type' => 'string',
@@ -28,12 +35,15 @@ $template['variables'] = array(
         'options' => array('blue', 'red', 'green')
     )
 );
+?>
 ```
 
 ##### Binary
 Multi-line editor field (textarea)
 
+**Example Code**
 ```php
+<?php
 $template['variables'] = array(
     array(
         'type' => 'binary',
@@ -42,12 +52,15 @@ $template['variables'] = array(
         'default' => 'Donec id elit non mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.'
     )
 );
+?>
 ```
 
 ##### HTML
 Multi-line rich text field (WYSIWYG)
 
+**Example Code**
 ```php
+<?php
 $template['variables'] = array(
     array(
         'type' => 'html',
@@ -56,11 +69,13 @@ $template['variables'] = array(
         'default' => '<strong>Donec id elit non</strong> mi porta gravida at eget metus. Duis mollis, est non commodo luctus, <em>nisi erat</em> porttitor ligula, eget lacinia odio sem nec elit.'
     )
 );
+?>
 ```
 
 ##### Array
 Can contain any of the above, produces a repeatable set of field.
 
+**Example Code**
 ```php
 <?php
 $template['variables'] = array(
