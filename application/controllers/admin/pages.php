@@ -65,7 +65,7 @@ class Pages extends MY_Controller
 		}
 		
 		$templates = array('');
-		foreach($this->template_model->all(array('include' => 'template_variables')) as $template) $templates[$template->id] = $template->name;
+		foreach($this->template_model->all() as $template) $templates[$template->id] = $template->name;
 		$this->load->vars('templates', $templates);
 				
 		$this->load->vars('page', flash_jot('page', $id));
