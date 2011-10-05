@@ -117,6 +117,26 @@ $template['variables'] = array(
 ```
 
 # The Template
+Once your template config is ready, build your template. Straight flyin' HTML here, with a sprinkling of PHP for whatever it is you need. If all your template is doing is displaying the content from template variables in a purdy li'l layout, you will only need PHP to display those variables.
+
+For string, binary, and HTML field types, this can be done with `<?=$variable_name?>`. Yes, it is that easy.
+
+For arrays, it's only a bit more complicated. See this example:
+
+``php
+<div id="contacts">
+    <?php foreach ($contacts as $contact): ?>
+        <div class="contact">
+            <?=$title?> <?=$name?>
+        </div>
+    <?php endforeach; ?>
+</div>
+```
+
+A `foreach` is used to cycle through each contact, and then the variables are displayed using the same code from above, `<?=$variable_name?>`. Not to difficult, eh?
+
+**Example Code**
+
 ```php
 <!doctype html>
 <html>
@@ -135,6 +155,14 @@ $template['variables'] = array(
         <!-- the magic //-->
         <h1><?=$headline?></h1>
         <p><?=$copy?></p>
+        
+        <div id="contacts">
+            <?php foreach ($contacts as $contact): ?>
+                <div class="contact">
+                    <?=$title?> <?=$name?>
+                </div>
+            <?php endforeach; ?>
+        </div>
         
     </body>
 </html>
