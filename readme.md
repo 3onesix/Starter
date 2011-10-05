@@ -123,7 +123,7 @@ For string, binary, and HTML field types, this can be done with `<?=$variable_na
 
 For arrays, it's only a bit more complicated. See this example:
 
-``php
+```php
 <div id="contacts">
     <?php foreach ($contacts as $contact): ?>
         <div class="contact">
