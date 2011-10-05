@@ -9,6 +9,7 @@ Found in assets/site/templates, each template consists of two (2) files: the tem
 Simple, one line editor field (text input)
 
 **Example Code**
+
 ```php
 <?php
 $template['variables'] = array(
@@ -25,6 +26,7 @@ $template['variables'] = array(
 String variables also allow options, giving the user a dropdown to select from.
 
 **Example Code**
+
 ```php
 <?php
 $template['variables'] = array(
@@ -42,6 +44,7 @@ $template['variables'] = array(
 Multi-line editor field (textarea)
 
 **Example Code**
+
 ```php
 <?php
 $template['variables'] = array(
@@ -59,6 +62,7 @@ $template['variables'] = array(
 Multi-line rich text field (WYSIWYG)
 
 **Example Code**
+
 ```php
 <?php
 $template['variables'] = array(
@@ -76,6 +80,7 @@ $template['variables'] = array(
 Can contain any of the above, produces a repeatable set of field.
 
 **Example Code**
+
 ```php
 <?php
 $template['variables'] = array(
