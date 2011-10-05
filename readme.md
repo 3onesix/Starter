@@ -127,7 +127,7 @@ For arrays, it's only a bit more complicated. See this example:
 <div id="contacts">
     <?php foreach ($contacts as $contact): ?>
         <div class="contact">
-            <?=$title?> <?=$name?>
+            <?=$contact['title']?> <?=$contact['name']?>
         </div>
     <?php endforeach; ?>
 </div>
@@ -159,7 +159,7 @@ A `foreach` is used to cycle through each contact, and then the variables are di
         <div id="contacts">
             <?php foreach ($contacts as $contact): ?>
                 <div class="contact">
-                    <?=$title?> <?=$name?>
+                    <?=$contact['title']?> <?=$contact['name']?>
                 </div>
             <?php endforeach; ?>
         </div>
