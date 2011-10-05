@@ -103,7 +103,7 @@ class Page_Model extends My_Model
 		$array = array();
 		foreach ($variables as $variable)
 		{
-			$array[$variable->name] = $variable->value;
+			$array[$variable->name] = $variable->type == 'array' ? unserialize($variable->value) : $variable->value;
 		}
 		return $array;
 	}

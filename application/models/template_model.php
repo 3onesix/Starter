@@ -63,10 +63,10 @@ class Template_Model extends My_Model
 				//check each variable to see if it exists already
 				foreach ($template['variables'] as $variable)
 				{
-					if (!$this->template_variables->exists(array('name' => $variable['name'])))
+					if (!$this->template_variables->exists(array('name' => $variable['name'], 'template_variable_id' => null)))
 					{
 						//create variable
-						$this->template_variable_model->create(array(
+						$var = $this->template_variable_model->create(array(
 							'template_id' => $this->id,
 							'type'  => isset($variable['type']) ? $variable['type'] : 'string',
 							'name'  => $variable['name'],
@@ -75,20 +75,46 @@ class Template_Model extends My_Model
 							'options' => isset($variable['options']) ? serialize($variable['options']) : ''
 						));
 						
-						if ($variable['type'] == 'array')
+						if ($variable['type'] == 'array' && $variable['variables'])
 						{
-							
+							foreach ($variable['variables'] as $sub_variable) {
+								$this->template_variable_model->create(array(
+									'template_id' => $this->id,
+									'template_variable_id' => $var->id,
+									'type'  => isset($sub_variable['type']) ? $sub_variable['type'] : 'string',
+									'name'  => $sub_variable['name'],
+									'label' => isset($sub_variable['label']) ? $sub_variable['label'] : $sub_variable['name'],
+									'value' => isset($sub_variable['default']) ? $sub_variable['default'] : '',
+									'options' => isset($sub_variable['options']) ? serialize($sub_variable['options']) : ''
+								));
+							}
 						}
 					}
 					else
 					{
 						//update variable
-						$var = $this->template_variables->first(array('name' => $variable['name']));
+						$var = $this->template_variables->first(array('name' => $variable['name'], 'template_variable_id' => null));
 						$var->type    = $variable['type'];
 						$var->label   = isset($variable['label']) ? $variable['label'] : $variable['name'];
 						$var->value   = isset($variable['default']) ? $variable['default'] : '';
 						$var->options = isset($variable['options']) ? serialize($variable['options']) : '';
 						$var->save();
+						
+						if ($variable['type'] == 'array' && $variable['variables'])
+						{
+							foreach ($variable['variables'] as $sub_variable) {
+								
+								/*$this->template_variable_model->create(array(
+									'template_id' => $this->id,
+									'template_variable_id' => $var->id,
+									'type'  => isset($sub_variable['type']) ? $sub_variable['type'] : 'string',
+									'name'  => $sub_variable['name'],
+									'label' => isset($sub_variable['label']) ? $sub_variable['label'] : $sub_variable['name'],
+									'value' => isset($sub_variable['default']) ? $sub_variable['default'] : '',
+									'options' => isset($sub_variable['options']) ? serialize($sub_variable['options']) : ''
+								));*/
+							}
+						}
 					}
 					$variables[] = $variable['name'];
 				}
@@ -96,7 +122,7 @@ class Template_Model extends My_Model
 			
 			//delete any variables that have been removed
 			foreach ($this->template_variables->all() as $tv) {
-				if (!in_array($tv->name, $variables)) {
+				if (!in_array($tv->name, $variables) && !$tv->template_variable_id) {
 					$tv->destroy();
 				}
 			}

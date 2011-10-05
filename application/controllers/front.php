@@ -23,7 +23,7 @@ class Front extends My_Controller {
 			else 
 			{
 				if ($this->page_model->exists(array('page_id' => -1, 'slug' => $segment))) {
-					$page = $this->page_model->first(array('page_id' => -1, 'slug' => $segment));
+					$page = $this->page_model->first(array('conditions' => array('page_id' => -1, 'slug' => $segment), 'include' => array('page_variables', 'page_modules')));
 				}
 			}
 			

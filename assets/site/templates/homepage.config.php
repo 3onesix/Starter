@@ -27,7 +27,7 @@ $template['variables'] = array(
 		'label' => 'Title',
 		'options' => array('Mr.', 'Mrs.', 'Ms.')
 	),
-	/*array(
+	array(
 		'type' => 'array',
 		'name' => 'contacts',
 		'label' => 'Contacts',
@@ -45,5 +45,5 @@ $template['variables'] = array(
 				'label' => 'Name'
 			)
 		)
-	)*/
+	)
 );

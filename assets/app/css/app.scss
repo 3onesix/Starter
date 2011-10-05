@@ -184,7 +184,7 @@ form {
 
 	fieldset {
 		margin: 0 0 10px;
-		padding: 10px;
+		padding: 10px 10px 0;
 		border: 1px solid #eee;
 		-webkit-border-radius: 2px;	
 		
@@ -198,7 +198,9 @@ form {
 	}
 	
 	
-	.field {		
+	.field {	
+		margin-bottom: 10px;
+				
 		label {
 			display: block;
 			&.disabled {
@@ -282,7 +284,54 @@ form {
 #page_variables {
 	float: left;
 	width: 700px;
-	margin-bottom: 20px;	
+	margin-bottom: 20px;
+	
+	.repeatable_block {
+		position: relative;
+		min-height: 100px;
+		border: 2px solid #bbb;
+		@include rounded(2px);
+		-webkit-box-shadow: 0 0 0 2px #eee;
+		-moz-box-shadow: 0 0 0 2px #eee;
+		box-shadow: 0 0 0 2px #eee;
+		@include gradient(#fff, #f9f9f9);
+		margin-bottom: 10px;
+		padding: 10px 10px 0;
+		
+		.repeatable_buttons {
+			position: absolute;
+			top: 0;
+			right: 0;
+			display: block;
+			width: 72px;
+			height: 24px;
+			opacity: 0;
+			overflow: hidden;
+			-webkit-transition: .15s;
+			
+			a {
+				display: block;
+				float: left;
+				width: 24px;
+				height: 24px;
+				text-indent: -9000px;
+				
+				&.repeatable_buttons_add {
+					background: url(../images/icon_repeatable_add.png) no-repeat center center;
+				}
+				&.repeatable_buttons_drag {
+					background: url(../images/icon_repeatable_drag.png) no-repeat center center;
+				}
+				&.repeatable_buttons_remove {
+					background: url(../images/icon_repeatable_remove.png) no-repeat center center;
+				}
+			}
+		}
+		
+		&:hover .repeatable_buttons {
+			opacity: 1;
+		}
+	}
 }
 
 #sidebar {

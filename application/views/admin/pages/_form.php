@@ -32,25 +32,104 @@
 	<?php if ($page->template_id && $page->template->template_variables->count()): ?>
 		<fieldset>
 			<legend>Page Variables</legend>
-			<?php foreach ($page->template->template_variables->all() as $variable): ?>
-				<?php $variables[] = $variable->name; ?>
-				<div class="field">
-					<label><?=$variable->label?>:</label>
-					<?php if ($variable->type == 'string' && !$variable->options): ?>
-						<input type="text" name="variables[<?=$variable->name?>]" value="<?=($page->variable($variable->name) !== null ? $page->variable($variable->name) : $variable->value)?>" />
-					<?php elseif ($variable->type == 'string' && $variable->options): ?>
-						<?php $variable->options = unserialize($variable->options); ?>
-						<select name="variables[<?=$variable->name?>]">
-							<?php foreach($variable->options as $option): ?>
-								<option value="<?=$option?>"<?=($page->variable($variable->name) !== null && $page->variable($variable->name) == $option ? ' selected="selected"' : '')?>><?=$option?></option>
-							<?php endforeach; ?>
-						</select>
-					<?php elseif ($variable->type == 'binary'): ?>
-						<textarea type="text" name="variables[<?=$variable->name?>]"><?=($page->variable($variable->name) !== null ? $page->variable($variable->name) : $variable->value)?></textarea>
-					<?php elseif ($variable->type == 'html'): ?>
-						<textarea type="text" name="variables[<?=$variable->name?>]" id="variables_<?=$variable->name?>_field" class="wysiwyg"><?=($page->variable($variable->name) !== null ? $page->variable($variable->name) : $variable->value)?></textarea>
-					<?php endif; ?>
-				</div>
+			<?php 
+			
+			function build_variable($variable, &$page, &$variables, $sub = false, $index = 0)
+			{
+				if (!$sub) $variables[] = $variable->name;
+				else
+				{
+					if ($page_var = $page->variable($sub->name))
+					{
+						$page_var = unserialize($page_var);
+					}
+					else
+					{
+						$page_var = null;
+					}
+				}
+				
+				if ($variable->type != 'array')
+				{
+					$name  = 'variables'.($sub ? '['.$sub->name.']['.$index.']' : '').'['.$variable->name.']';
+					$id    = 'variables_'.($sub ? $sub->name.'_'.$index.'_' : '').$variable->name.'_field';
+					if ($sub)
+					{
+						$value = $page_var && isset($page_var[$index][$variable->name]) ? $page_var[$index][$variable->name] : $variable->value;
+					}
+					else
+					{
+						$value = $page->variable($variable->name) !== null ? $page->variable($variable->name) : $variable->value;
+					}
+					
+					$html  = '<div class="field">';
+					$html .= '<label for="'.$id.'">'.$variable->label.':</label>';
+					
+					switch ($variable->type) {
+						case 'string':
+							if (!$variable->options)
+							{
+								$html .= '<input type="text" name="'.$name.'" id="'.$id.'" value="'.$value.'" />';
+							}
+							else
+							{
+								$variable->options = is_array($variable->options) ? $variable->options : unserialize($variable->options);
+								
+								$html .= '<select name="'.$name.'" id="'.$id.'">';
+								
+								foreach ($variable->options as $option)
+								{
+									$html .= '<option value="'.$option.'"'.($value && $value == $option ? ' selected="selected"' : '').'>'.$option.'</option>';
+								}
+								
+								$html .= '</select>';
+							}
+						break;
+						case 'binary':
+							$html .= '<textarea type="text" name="'.$name.'" id="'.$id.'">'.$value.'</textarea>';
+						break;
+						case 'html':
+							$html .= '<textarea type="text" name="'.$name.'" id="'.$id.'" class="wysiwyg">'.$value.'</textarea>';
+						break;
+					}
+					
+					$html .= '</div>';
+				}
+				else
+				{
+					$html  = '<fieldset class="repeatable">';
+					$html .= '<legend>'.$variable->name.'</legend>';
+					
+					if ($page_var = $page->variable($variable->name))
+					{
+						$page_var = unserialize($page_var);
+						$count    = count($page_var);
+					}
+					else
+					{
+						$count = 1;
+					}
+					
+					for ($i=0; $i<$count; $i++)
+					{
+						$html .= '<div class="repeatable_block" data-name="'.$variable->name.'"  data-index="'.$i.'">';
+						$vars  = $variable->template_variables->all();
+						foreach ($vars as $v)
+						{
+							$html .= build_variable($v, $page, $variables, $variable, $i);
+						}
+						$html .= '</div>';
+					}
+					
+					$html .= '</fieldset>';
+				}
+				
+				return $html;
+			}
+			
+			?>
+			<?php foreach ($page->template->template_variables->all(array('template_variable_id' => null)) as $variable): ?>
+				<?=build_variable($variable, $page, $variables)?>
 			<?php endforeach; ?>
 		</fieldset>
 	<?php endif; ?>

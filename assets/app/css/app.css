@@ -137,7 +137,7 @@ form #title {
     color: #555; }
 form fieldset {
   margin: 0 0 10px;
-  padding: 10px;
+  padding: 10px 10px 0;
   border: 1px solid #eee;
   -webkit-border-radius: 2px; }
   form fieldset legend {
@@ -146,42 +146,44 @@ form fieldset {
     color: #777;
     font-size: 12px;
     font-weight: bold; }
-form .field label {
-  display: block; }
-  form .field label.disabled {
-    color: #888; }
-form .field.checkbox label {
-  display: inline; }
-form .field input[type=text], form .field input[type=password] {
-  width: 300px;
-  padding: 4px;
-  border: 1px solid #aaa;
-  -webkit-border-radius: 1px;
-  font: 14px/20px Helvetica Neue, Helvetica, Arial, sans-serif; }
-  form .field input[type=text]:focus, form .field input[type=password]:focus {
-    outline: none;
-    border: 1px solid #666;
-    -webkit-box-shadow: 0 0 3px 1px #677c8c; }
-  form .field input[type=text][disabled=true], form .field input[type=password][disabled=true] {
-    color: #aaa; }
-form .field select {
-  width: 310px; }
-form .field textarea {
-  width: 400px;
-  max-width: 400px;
-  height: 200px;
-  max-height: 400px;
-  padding: 4px;
-  border: 1px solid #aaa;
-  -webkit-border-radius: 1px;
-  font: 14px/20px Helvetica Neue, Helvetica, Arial, sans-serif; }
-  form .field textarea:focus {
-    outline: none;
-    border: 1px solid #666;
-    -webkit-box-shadow: 0 0 3px 1px #677c8c; }
-  form .field textarea.wysiwyg {
-    width: 670px;
-    max-width: 670px; }
+form .field {
+  margin-bottom: 10px; }
+  form .field label {
+    display: block; }
+    form .field label.disabled {
+      color: #888; }
+  form .field.checkbox label {
+    display: inline; }
+  form .field input[type=text], form .field input[type=password] {
+    width: 300px;
+    padding: 4px;
+    border: 1px solid #aaa;
+    -webkit-border-radius: 1px;
+    font: 14px/20px Helvetica Neue, Helvetica, Arial, sans-serif; }
+    form .field input[type=text]:focus, form .field input[type=password]:focus {
+      outline: none;
+      border: 1px solid #666;
+      -webkit-box-shadow: 0 0 3px 1px #677c8c; }
+    form .field input[type=text][disabled=true], form .field input[type=password][disabled=true] {
+      color: #aaa; }
+  form .field select {
+    width: 310px; }
+  form .field textarea {
+    width: 400px;
+    max-width: 400px;
+    height: 200px;
+    max-height: 400px;
+    padding: 4px;
+    border: 1px solid #aaa;
+    -webkit-border-radius: 1px;
+    font: 14px/20px Helvetica Neue, Helvetica, Arial, sans-serif; }
+    form .field textarea:focus {
+      outline: none;
+      border: 1px solid #666;
+      -webkit-box-shadow: 0 0 3px 1px #677c8c; }
+    form .field textarea.wysiwyg {
+      width: 670px;
+      max-width: 670px; }
 form .actions {
   clear: left;
   margin-bottom: 10px; }
@@ -198,6 +200,54 @@ form p {
   float: left;
   width: 700px;
   margin-bottom: 20px; }
+  #page_variables .repeatable_block {
+    position: relative;
+    min-height: 100px;
+    border: 2px solid #bbb;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 0 0 2px #eee;
+    -moz-box-shadow: 0 0 0 2px #eee;
+    box-shadow: 0 0 0 2px #eee;
+    background: white;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, white 0%, #f9f9f9 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #f9f9f9));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, white 0%, #f9f9f9 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, white 0%, #f9f9f9 100%);
+    /* Opera11.10+ */
+    background: -ms-linear-gradient(top, white 0%, #f9f9f9 100%);
+    /* IE10+ */
+    background: linear-gradient(top, white 0%, #f9f9f9 100%);
+    /* W3C */
+    margin-bottom: 10px;
+    padding: 10px 10px 0; }
+    #page_variables .repeatable_block .repeatable_buttons {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: block;
+      width: 72px;
+      height: 24px;
+      opacity: 0;
+      overflow: hidden;
+      -webkit-transition: .15s; }
+      #page_variables .repeatable_block .repeatable_buttons a {
+        display: block;
+        float: left;
+        width: 24px;
+        height: 24px;
+        text-indent: -9000px; }
+        #page_variables .repeatable_block .repeatable_buttons a.repeatable_buttons_add {
+          background: url(../images/icon_repeatable_add.png) no-repeat center center; }
+        #page_variables .repeatable_block .repeatable_buttons a.repeatable_buttons_drag {
+          background: url(../images/icon_repeatable_drag.png) no-repeat center center; }
+        #page_variables .repeatable_block .repeatable_buttons a.repeatable_buttons_remove {
+          background: url(../images/icon_repeatable_remove.png) no-repeat center center; }
+    #page_variables .repeatable_block:hover .repeatable_buttons {
+      opacity: 1; }
 
 #sidebar {
   float: left;
