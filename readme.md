@@ -1,9 +1,8 @@
 # Templates
 Found in assets/site/templates, each template consists of two (2) files: the template and the template config. If the template is named `homepage.php`, the matching config should be `homepage.config.php`.
 
-## Template Variables
-### Types
-#### String
+# Template Config: Variables
+## String
 Simple, one line editor field (text input)
 
 **Example Code**
@@ -38,7 +37,7 @@ $template['variables'] = array(
 ?>
 ```
 
-#### Binary
+## Binary
 Multi-line editor field (textarea)
 
 **Example Code**
@@ -56,7 +55,7 @@ $template['variables'] = array(
 ?>
 ```
 
-#### HTML
+## HTML
 Multi-line rich text field (WYSIWYG)
 
 **Example Code**
@@ -74,7 +73,7 @@ $template['variables'] = array(
 ?>
 ```
 
-#### Array
+## Array
 Can contain any of the above, produces a repeatable set of field.
 
 **Example Code**
@@ -105,5 +104,5 @@ $template['variables'] = array(
 ?>
 ```
 
-## Template Partials
+# Template Partials
 Template partials are great for repeated content across a site, such as a header or footer. To create one, prefix the name with an underscore (eg. `_header.php`). This will prevent it from being stored in the database, and will waive the requirement for a template config file.
