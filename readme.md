@@ -1,6 +1,18 @@
 # Templates
 Found in assets/site/templates, each template consists of two (2) files: the template and the template config. If the template is named `homepage.php`, the matching config should be `homepage.config.php`.
 
+# Template Config
+
+```php
+<?php
+
+$template = array();
+
+$template['name'] = 'Homepage'; //readable name for page
+$template['modules'] = array('blog'); //required modules for page
+$template['variables'] = array(); //template variables (see below)
+```
+
 # Template Config: Variables
 ## String
 Simple, one line editor field (text input)
@@ -103,6 +115,8 @@ $template['variables'] = array(
 );
 ?>
 ```
+
+# 
 
 # Template Partials
 Template partials are great for repeated content across a site, such as a header or footer. To create one, prefix the name with an underscore (eg. `_header.php`). This will prevent it from being stored in the database, and will waive the requirement for a template config file.
