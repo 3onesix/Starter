@@ -209,7 +209,7 @@ Take the example above, let's split this up a bit.
 <div id="contacts">
     <?php foreach ($contacts as $contact): ?>
         <div class="contact">
-            <?=$title?> <?=$name?>
+            <?=$contact['title']?> <?=$contact['name']?>
         </div>
     <?php endforeach; ?>
 </div>
