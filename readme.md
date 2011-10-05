@@ -62,6 +62,7 @@ $template['variables'] = array(
 Can contain any of the above, produces a repeatable set of field.
 
 ```php
+<?php
 $template['variables'] = array(
     array(
         'type' => 'array',
@@ -83,6 +84,7 @@ $template['variables'] = array(
         )
     )
 );
+?>
 ```
 
 ### Template Partials
