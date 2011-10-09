@@ -7,3 +7,6 @@
 [submodule "system/database/drivers/sqlite3"]
 	path = system/database/drivers/sqlite3
 	url = git@github.com:tomkrush/SQLite3-Driver.git
+[submodule "assets/app/css/mixins"]
+	path = assets/app/css/mixins
+	url = git@github.com:3onesix/SASS-Mixins.git
