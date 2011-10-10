@@ -70,6 +70,13 @@ class Page_Model extends My_Model
 		return $this->page && $this->page_id > 0 ? $this->page->full_slug.'/'.$slug : $slug;
 	}
 	
+	public function has_module($module)
+	{
+		$module = $this->modules_model->first(array('simple_name' => $module));
+		
+		return $this->page_modules->exists(array('module_id' => $module->id));
+	}
+	
 	public function includes()
 	{
 		$includes = array('helper' => array(), 'stylesheet' => array(), 'model' => array());
