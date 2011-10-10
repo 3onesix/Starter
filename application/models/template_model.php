@@ -27,7 +27,7 @@ class Template_Model extends My_Model
 	{
 		$templates = opendir(FCPATH.'assets/site/templates');
 		while (($file = readdir($templates)) !== false) {
-			if (!is_dir(FCPATH.'assets/site/templates/'.$file) && strrpos($file, '.config.php') == false && (strrpos($file, '_') === false || substr($file, 1) != '_'))
+			if (!is_dir(FCPATH.'assets/site/templates/'.$file) && strrpos($file, '.config.php') == false && substr($file, 1) != '_')
 			{	
 				$name = str_replace('.php', '', $file);
 				
