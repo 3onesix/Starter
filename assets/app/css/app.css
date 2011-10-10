@@ -39,6 +39,9 @@ header {
   height: 40px;
   margin: 10px auto 0;
   padding: 0 10px; }
+  @media only screen and (min-width: 720px) and (max-width: 959px) {
+    header {
+      width: 720px; } }
   header h1 {
     float: left;
     width: 200px;
@@ -67,6 +70,9 @@ header {
   -webkit-border-radius: 4px;
   -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
   background: #fff; }
+  @media only screen and (min-width: 720px) and (max-width: 959px) {
+    .container {
+      width: 720px; } }
 
 #navigation {
   list-style: none;
@@ -200,6 +206,9 @@ form p {
   float: left;
   width: 700px;
   margin-bottom: 20px; }
+  @media only screen and (min-width: 720px) and (max-width: 959px) {
+    #page_variables {
+      width: 510px; } }
   #page_variables .repeatable_block {
     position: relative;
     min-height: 100px;
@@ -259,6 +268,9 @@ form p {
   padding: 10px;
   -webkit-border-radius: 3px;
   background: #f6f6f6; }
+  @media only screen and (min-width: 720px) and (max-width: 959px) {
+    #sidebar {
+      width: 180px; } }
   #sidebar.left {
     margin: 0 10px 10px 0; }
   #sidebar h2 {
@@ -429,6 +441,9 @@ ul#sidebar {
   width: 700px;
   height: 26px;
   margin-bottom: 10px; }
+  @media only screen and (min-width: 720px) and (max-width: 959px) {
+    #actions {
+      width: 510px; } }
   #actions h2 {
     position: absolute;
     left: 0;
@@ -442,6 +457,9 @@ ul#sidebar {
   float: left;
   width: 700px;
   margin-bottom: 10px; }
+  @media only screen and (min-width: 720px) and (max-width: 959px) {
+    #records {
+      width: 510px; } }
   #records ul {
     list-style: none;
     margin: 0; }
@@ -522,3 +540,6 @@ ul#sidebar {
   padding: 10px 10px 0;
   border-top: 1px solid #ccc;
   font-size: 11px; }
+  @media only screen and (min-width: 720px) and (max-width: 959px) {
+    #footer {
+      width: 720px; } }

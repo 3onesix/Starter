@@ -59,6 +59,11 @@ header {
 	height: 40px;
 	margin: 10px auto 0;
 	padding: 0 10px;
+	
+	@media only screen and (min-width: 720px) and (max-width: 959px) {
+		width: 720px;
+	}
+	
 	h1 {
 		float: left;
 		width: 200px;
@@ -93,6 +98,10 @@ header {
 	-webkit-border-radius: 4px;
 	-webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
 	background: #fff;
+	
+	@media only screen and (min-width: 720px) and (max-width: 959px) {
+		width: 720px;
+	}
 }
 
 #navigation {
@@ -269,6 +278,10 @@ form {
 	width: 700px;
 	margin-bottom: 20px;
 	
+	@media only screen and (min-width: 720px) and (max-width: 959px) {
+		width: 510px;
+	}
+	
 	.repeatable_block {
 		position: relative;
 		min-height: 100px;
@@ -325,6 +338,10 @@ form {
 	padding: 10px;
 	-webkit-border-radius: 3px;
 	background: #f6f6f6;
+	
+	@media only screen and (min-width: 720px) and (max-width: 959px) {
+		width: 180px;
+	}
 	
 	&.left {
 		margin: 0 10px 10px 0;
@@ -435,6 +452,10 @@ ul#sidebar {
 	height: 26px;
 	margin-bottom: 10px;
 	
+	@media only screen and (min-width: 720px) and (max-width: 959px) {
+		width: 510px;
+	}
+	
 	h2 {
 		position: absolute;
 		left: 0;
@@ -452,6 +473,10 @@ ul#sidebar {
 	float: left;
 	width: 700px;
 	margin-bottom: 10px;
+	
+	@media only screen and (min-width: 720px) and (max-width: 959px) {
+		width: 510px;
+	}
 	
 	ul {
 		list-style: none;
@@ -543,4 +568,8 @@ ul#sidebar {
 	padding: 10px 10px 0;
 	border-top: 1px solid #ccc;
 	font-size: 11px;
+	
+	@media only screen and (min-width: 720px) and (max-width: 959px) {
+		width: 720px;
+	}
 }
