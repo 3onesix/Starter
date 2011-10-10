@@ -93,6 +93,17 @@ class Pages extends MY_Controller
 				));
 			}
 		}
+		foreach ($page->template->required_modules as $module)
+		{
+			$module = $this->module_model->first_by_simple_name($module);
+			if ($module && !$this->page_module_model->exists(array('page_id' => $page->id, 'module_id' => $module->id)))
+			{
+				$this->page_module_model->create(array(
+					'page_id' => $page->id,
+					'module_id' => $module->id
+				));
+			}
+		}
 		
 		//update variables
 		$variables = $this->input->post('variables');

@@ -167,7 +167,7 @@
 	<div class="field checkbox"><input type="checkbox" name="page_[modules][googleanalytics]" value="1" /> <label for="">Google Analytics</label></div>
 	//-->
 	<?php foreach ($this->module_model->all() as $module): ?>
-		<div class="field checkbox"><input type="checkbox" name="modules[<?=$module->id?>]" value="1" <?=($page->page_modules->exists(array('module_id' => $module->id)) ? 'checked="checked"' : '')?> /> <label for=""><?=$module->name?></label></div>
+		<div class="field checkbox"><input type="checkbox" name="modules[<?=$module->id?>]" id="moduled_<?=$module->id?>_field" value="1" <?=($page->template->requires_module($module->simple_name) ? 'checked="checked" disabled="disabled"' : ($page->page_modules->exists(array('module_id' => $module->id)) ? 'checked="checked"' : ''))?> /> <label for="moduled_<?=$module->id?>_field"<?=($page->template->requires_module($module->simple_name) ? ' class="disabled"' : '')?>><?=$module->name?></label></div>
 	<?php endforeach; ?>
 </div>
 <div class="actions">

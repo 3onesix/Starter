@@ -55,6 +55,19 @@ class Template_Model extends My_Model
 			$this->save();
 			
 			//check for modules
+			$modules = isset($template['modules']) ? $template['modules'] : array();
+			foreach ($modules as $module)
+			{
+				if (!$this->requires_module($module))
+				{
+					$this->db->insert('template_required_modules', array(
+						'template_id' => $this->id,
+						'module_name' => $module,
+						'created_at'  => time(),
+						'updated_at'  => time()
+					));
+				}
+			}
 			
 			//check for variables
 			$variables = array();
@@ -134,5 +147,28 @@ class Template_Model extends My_Model
 		$variable = $this->template_variables->first(array('name' => $name));
 		if ($variable->options) $variable->options = unserialize($variable->options);
 		return $variable;
+	}
+	
+	function requires_module($module)
+	{
+		$check = $this->db->get_where('template_required_modules', array(
+			'template_id' => $this->id,
+			'module_name' => $module
+		));
+		
+		if ($check->num_rows()) return true;
+		return false;
+	}
+	
+	function get_required_modules()
+	{
+		$array = array();
+		$modules = $this->db->get_where('template_required_modules', array('template_id' => $this->id));
+		foreach ($modules->result() as $module)
+		{
+			$array[] = $module->module_name;
+		}
+		
+		return $array;
 	}
 }

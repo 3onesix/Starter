@@ -5,7 +5,7 @@ $template = array();
 $template['name'] = 'Homepage';
 
 $template['modules'] = array(
-	'blog'
+	'starter_blog'
 );
 
 $template['variables'] = array(
