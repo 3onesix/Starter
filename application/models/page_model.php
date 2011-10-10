@@ -72,7 +72,7 @@ class Page_Model extends My_Model
 	
 	public function has_module($module)
 	{
-		$module = $this->modules_model->first(array('simple_name' => $module));
+		$module = $this->module_model->first(array('simple_name' => $module));
 		
 		return $this->page_modules->exists(array('module_id' => $module->id));
 	}
