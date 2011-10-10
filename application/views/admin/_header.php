@@ -8,7 +8,7 @@
 		<![endif]-->
 		<link rel="stylesheet" media="all" href="<?=base_url()?>assets/app/css/app.css"/>
 		<script type="text/javascript" src="<?=base_url()?>assets/app/js/ckeditor/ckeditor.js"></script>
-		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 		<!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
 	</head>
 	<body>
