@@ -35,8 +35,8 @@ function update($version)
 
 install();
 
-$this->load->model('blog_model');
-$this->blog_model->create(array('name' => 'Blog', 'url' => 'blog'));
+//$this->load->model('blog_model');
+//$this->blog_model->create(array('name' => 'Blog', 'url' => 'blog'));
 
 /*
 
