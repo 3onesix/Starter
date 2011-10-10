@@ -56,6 +56,11 @@ $module		 						= array(
 			'type'					=> 'view',
 			'name'					=> 'admin/new.php',
 			'include_on_page'		=> 0
+		),
+		array(
+			'type'					=> 'stylesheet',
+			'name'					=> 'blog.css',
+			'include_on_page'		=> 0
 		)
 	),
 	'screens'						=> array(

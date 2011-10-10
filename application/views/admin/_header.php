@@ -10,6 +10,22 @@
 		<script type="text/javascript" src="<?=base_url()?>assets/app/js/ckeditor/ckeditor.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 		<!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
+		<?php 
+		
+		$module_screen = $this->module_screen_model->first_by_url($this->uri->segment(2));
+		if ($module_screen)
+		{
+			$module = $this->module_model->first_by_id($module_screen->module_id);
+			
+			$stylesheets = $module->module_files->find(array('conditions' => array('type' => 'stylesheet'), 'limit' => 100));
+			
+			foreach ($stylesheets as $stylesheet)
+			{
+				echo '<link rel="stylesheet" media="all" href="'.base_url().'assets/site/modules/'.$module->simple_name.'/css/'.$stylesheet->name.'"/>';
+			}
+		}
+		
+		?>
 	</head>
 	<body>
 		<header>
