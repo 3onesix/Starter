@@ -74,6 +74,7 @@ class Page_Model extends My_Model
 	{
 		$module = $this->module_model->first(array('simple_name' => $module));
 		
+		if (!$module) return false;
 		return $this->page_modules->exists(array('module_id' => $module->id));
 	}
 	
