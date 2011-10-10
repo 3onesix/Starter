@@ -26,7 +26,7 @@ class Blog extends MY_Controller
 	
 	public function action_new()
 	{
-		if (!count($this->blog_model->all()) $this->blog_model->create(array('name' => 'Blog', 'url' => 'blog'));
+		if (!count($this->blog_model->all())) $this->blog_model->create(array('name' => 'Blog', 'url' => 'blog'));
 		
 		foreach($this->blog_model->all(array('order' => 'name')) as $blog) $blogs[$blog->id] = $blog->name;		
 		$this->load->vars('blogs', $blogs);
