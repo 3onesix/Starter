@@ -4,12 +4,14 @@
 
 <div id="actions">
 	<h2>All Pages</h2>
-	<a href="<?php echo site_url('admin/pages/new'); ?>" class="button new page">Create a New Page</a>
+	<div id="action_buttons">
+		<?php if (isset($has_site_variables) && $has_site_variables): ?>
+			<a href="<?php echo site_url('admin/pages/edit/0'); ?>" class="button edit page">Edit Site Variables</a>
+		<?php endif; ?>
+		<a href="<?php echo site_url('admin/pages/new'); ?>" class="button new page">Create a New Page</a>
+	</div>
 </div>
 <div id="records" class="pages">
-	<?php if (isset($has_site_variables) && $has_site_variables): ?>
-		<a href="<?=site_url('admin/pages/edit/0')?>">Edit Site Variables</a>
-	<?php endif; ?>
 	<?php page_hierarchial_list($pages, FALSE); ?>
 </div>
 

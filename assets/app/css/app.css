@@ -387,6 +387,17 @@ ul#sidebar {
       width: 16px;
       height: 16px;
       background: url(../images/icon_add.png) no-repeat; }
+  .button.edit {
+    position: relative;
+    padding-left: 24px; }
+    .button.edit:after {
+      content: ' ';
+      position: absolute;
+      left: 4px;
+      top: 4px;
+      width: 16px;
+      height: 16px;
+      background: url(../images/icon_edit.png) no-repeat; }
   .button.green {
     background: #00cc00;
     /* Old browsers */
@@ -452,6 +463,12 @@ ul#sidebar {
     position: absolute;
     right: 0;
     bottom: 0; }
+  #actions #action_buttons {
+    float: right; }
+    #actions #action_buttons .button {
+      position: relative;
+      padding-top: 3px;
+      padding-bottom: 4px; }
 
 #records {
   float: left;

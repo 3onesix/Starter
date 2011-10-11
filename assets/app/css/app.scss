@@ -431,6 +431,21 @@ ul#sidebar {
 		}
 	}
 	
+	&.edit {
+		position: relative;
+		padding-left: 24px;
+		
+		&:after {
+			content: ' ';
+			position: absolute;
+			left: 4px;
+			top: 4px;
+			width: 16px;
+			height: 16px;
+			background: url(../images/icon_edit.png) no-repeat;
+		}
+	}
+	
 	&.green {
 		@include gradient(lighten(#030, 30%), lighten(#030, 20%));
 		border-color: lighten(#030, 10%);
@@ -466,6 +481,16 @@ ul#sidebar {
 		position: absolute;
 		right: 0;
 		bottom: 0;
+	}
+	
+	#action_buttons {
+		float: right;
+		
+		.button {
+			position: relative;
+			padding-top: 3px;
+			padding-bottom: 4px;
+		}
 	}
 }
 
