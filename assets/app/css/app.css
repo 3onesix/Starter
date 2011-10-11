@@ -257,6 +257,9 @@ form p {
           background: url(../images/icon_repeatable_drag.png) no-repeat center center; }
         #page_variables .repeatable_block .repeatable_buttons a.repeatable_buttons_remove {
           background: url(../images/icon_repeatable_remove.png) no-repeat center center; }
+      @media only screen and (min-width: 720px) and (max-width: 959px) {
+        #page_variables .repeatable_block .repeatable_buttons {
+          opacity: 1; } }
     #page_variables .repeatable_block:hover .repeatable_buttons {
       opacity: 1; }
 

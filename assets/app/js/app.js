@@ -60,7 +60,7 @@ var repeatables = {
 			items: '.repeatable_block',
 			handle: '.repeatable_buttons_drag',
 			opacity: 0.8,
-			tolerance: 'pointer',
+			//tolerance: 'pointer',
 			axis: 'y',
 			stop: function(event, ui) {
 				ui.item.effect('highlight', 500);

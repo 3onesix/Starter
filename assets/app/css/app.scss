@@ -322,6 +322,10 @@ form {
 					background: url(../images/icon_repeatable_remove.png) no-repeat center center;
 				}
 			}
+			
+			@media only screen and (min-width: 720px) and (max-width: 959px) {
+				opacity: 1;
+			}
 		}
 		
 		&:hover .repeatable_buttons {
