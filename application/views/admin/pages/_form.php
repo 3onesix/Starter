@@ -31,7 +31,7 @@
 		</fieldset>
 	<?php endif; ?>
 	<?php $variables = array(); ?>
-	<?php if (($page->template_id && $page->template->template_variables->count()) || $is_site_variables): ?>
+	<?php if (($page->template_id && $page->template->template_variables->count()) || (isset($is_site_variables) && $is_site_variables)): ?>
 		<fieldset>
 			<legend><?=$is_site_variables ? 'Site' : 'Page'?> Variables</legend>
 			<?php 
@@ -195,7 +195,7 @@
 	<?php endif; ?>
 </div>
 <div id="sidebar">
-	<?php if (!$is_site_variables && $page->template_id): ?>
+	<?php if ((!isset($is_site_variables) || !$is_site_variables) && $page->template_id): ?>
 		<h2>Modules</h2>
 		<?php foreach ($this->module_model->all() as $module): ?>
 			<div class="field checkbox"><input type="checkbox" name="modules[<?=$module->id?>]" id="moduled_<?=$module->id?>_field" value="1" <?=($page->template->requires_module($module->simple_name) ? 'checked="checked" disabled="disabled"' : ($page->page_modules->exists(array('module_id' => $module->id)) ? 'checked="checked"' : ''))?> /> <label for="moduled_<?=$module->id?>_field"<?=($page->template->requires_module($module->simple_name) ? ' class="disabled"' : '')?>><?=$module->name?></label></div>
