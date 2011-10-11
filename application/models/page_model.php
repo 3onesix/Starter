@@ -43,7 +43,7 @@ class Page_Model extends My_Model
 						if (!isset($array[$block->array_index])) $array[$block->array_index] = array();
 						$array[$block->array_index][$block->name] = $block->value;
 					}
-					return serialize($array);
+					return $array;
 				}
 				else
 				{
@@ -127,7 +127,7 @@ class Page_Model extends My_Model
 		$array = array();
 		foreach ($variables as $variable)
 		{
-			$array[$variable->name] = $variable->type == 'array' ? unserialize($this->variable($variable->name)) : $this->variable($variable->name);
+			$array[$variable->name] = $this->variable($variable->name);
 		}
 		return $array;
 	}

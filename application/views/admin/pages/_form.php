@@ -47,7 +47,7 @@
 					{
 						if ($page_var = $CI->page_variable_model->first(array('name' => $sub->name, 'page_id' => 0)))
 						{
-							$page_var = unserialize($page_var);
+							$page_var = ($page_var);
 						}
 						else
 						{
@@ -58,7 +58,7 @@
 					{
 						if ($page_var = $page->variable($sub->name))
 						{
-							$page_var = unserialize($page_var);
+							$page_var = ($page_var);
 						}
 						else
 						{
@@ -136,7 +136,7 @@
 					
 					if ($page_var = ($site_variables ? $CI->page_variable_model->first(array('name' => $variable->name, 'page_id' => 0)) : $page->variable($variable->name)))
 					{
-						$page_var = unserialize($page_var);
+						$page_var = ($page_var);
 						$count    = count($page_var);
 					}
 					else
