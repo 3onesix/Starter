@@ -58,9 +58,9 @@ var repeatables = {
 	init: function () {
 		$('fieldset.repeatable').sortable({
 			items: '.repeatable_block',
-			handle: '.repeatable_buttons_drag',
+			handle: /iPad/.test( navigator.userAgent ) ? false : '.repeatable_buttons_drag',
 			opacity: 0.8,
-			//tolerance: 'pointer',
+			tolerance: 'pointer',
 			axis: 'y',
 			stop: function(event, ui) {
 				ui.item.effect('highlight', 500);
