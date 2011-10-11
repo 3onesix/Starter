@@ -34,7 +34,7 @@ class Page_Model extends My_Model
 			{
 				$variable = $this->page_variables->first(array('name' => $name));
 				
-				if ($variable->type == 'array')
+				if ($variable->type == 'array' && $variable->value == '')
 				{
 					$blocks = $variable->page_variables->all(array('order' => 'array_index'));
 					$array = array();
