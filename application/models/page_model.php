@@ -32,7 +32,23 @@ class Page_Model extends My_Model
 		{
 			if ($this->template_id && $this->page_variables->exists(array('name' => $name)))
 			{
-				return $this->page_variables->first(array('name' => $name))->value;
+				$variable = $this->page_variables->first(array('name' => $name));
+				
+				if ($variable->type == 'array')
+				{
+					$blocks = $variable->page_variables->all(array('order' => 'array_index'));
+					$array = array();
+					foreach ($blocks as $block)
+					{
+						if (!isset($array[$block->array_index])) $array[$block->array_index] = array();
+						$array[$block->array_index][$block->name] = $block->value;
+					}
+					return serialize($array);
+				}
+				else
+				{
+					return $variable->value;
+				}
 			}
 			return null;
 		}
@@ -107,7 +123,7 @@ class Page_Model extends My_Model
 	
 	public function variables()
 	{
-		$variables = $this->page_variables->all();
+		$variables = $this->page_variables->all(array('page_variable_id' => null));
 		$array = array();
 		foreach ($variables as $variable)
 		{

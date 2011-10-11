@@ -147,6 +147,7 @@
 					for ($i=0; $i<$count; $i++)
 					{
 						$html .= '<div class="repeatable_block" data-name="'.$variable->name.'"  data-index="'.$i.'">';
+						$html .= '<input type="hidden" name="variables['.$variable->name.']['.$i.'][id]" value="'.$variable->id.'_'.$i.'" />';
 						$vars  = $variable->template_variables->all();
 						foreach ($vars as $v)
 						{
@@ -169,7 +170,7 @@
 	<?php endif; ?>
 	<?php 
 		$not_used = array();
-		foreach ($page->page_variables->all() as $variable) {
+		foreach ($page->page_variables->all(array('page_variable_id' => null)) as $variable) {
 			if (!in_array($variable->name, $variables)) {
 				$not_used[] = $variable;
 			}

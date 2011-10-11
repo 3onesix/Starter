@@ -86,7 +86,9 @@ var repeatables = {
 		});
 	},
 	duplicate: function (block) {
-		block.clone(true).insertAfter(block).effect('highlight', 1000);
+		var clone = block.clone(true);
+		clone.find('input[type=hidden]').remove();
+		clone.insertAfter(block).effect('highlight', 1000);
 		
 		this.updateIndexes();
 	},
@@ -108,7 +110,7 @@ var repeatables = {
 				var i 		= $(this).attr('data-index'),
 					name 	= $(this).attr('data-name');
 				
-				var fields 	= $(this).find('select, input, textarea, span.cke_skin_kama, label');
+				var fields 	= $(this).find('select, input[type=text], textarea, span.cke_skin_kama, label');
 				fields.each(function () {
 					if ($(this).get(0).nodeName.toLowerCase() == 'label') {
 						var field_for = $(this).attr('for');

@@ -142,37 +142,111 @@ class Pages extends MY_Controller
 					$tv = $this->template_variable_model->first(array('name' => $key, 'template_id' => 0));
 				}
 				
-				if ($tv->type == 'array') $variable = serialize($variable);
-				
-				if ($v)
-				{
-					if ($v->value != $variable)
+				if ($tv->type == 'array') {
+					if ($v)
 					{
-						$hasChanged = true;
-						
-						$v->value = $variable;
+						if ($v->value != '')
+						{
+							$hasChanged = true;
+							
+							$v->value = '';
+						}
+						if ($tv->label != $v->label || $tv->type != $v->type)
+						{
+							$hasChanged = true;
+							
+							$v->label = $tv->label;
+							$v->type  = $tv->type;
+						}
+						if ($hasChanged)
+						{
+							$v->save();
+						}
 					}
-					if ($tv->label != $v->label || $tv->type != $v->type)
+					else
 					{
-						$hasChanged = true;
-						
-						$v->label = $tv->label;
-						$v->type  = $tv->type;
+						$v = $this->page_variable_model->create(array(
+							'page_id' => $id != 0 ? $page->id : 0,
+							'name'    => $key,
+							'value'   => $variable,
+							'label'   => $tv->label,
+							'type'    => $tv->type
+						));
 					}
-					if ($hasChanged)
+					
+					foreach ($variable as $index => $block)
 					{
-						$v->save();
+						
+						if (isset($block['id']))
+						{
+							$block['id'] = explode('_', $block['id']); //block id is mashup of page_variable_id + array_index
+						}
+						
+						foreach ($block as $v_name => $v_value)
+						{
+							if (!in_array($v_name, array('index', 'id')))
+							{
+								//check if variable is stored in block
+								if ($b_v = isset($block['id']) ? $v->page_variables->first(array('page_variable_id' => $block['id'][0], 'array_index' => $block['id'][1], 'name' => $v_name)) : false )
+								{
+									//update variable
+									if ($b_v->value != $block[$v_name])
+									{
+										$b_v->value       = $v_value;
+										$b_v->array_index = $index;
+										$b_v->save();
+									}
+								}
+								else
+								{
+									//store new variable
+									$this->page_variable_model->create(array(
+										'page_id'          => $id != 0 ? $page->id : 0,
+										'page_variable_id' => $v->id,
+										'array_index'      => $index,
+										'name'             => $v_name,
+										'value'            => $v_value,
+										'label'            => '',
+										'type'             => ''
+									));
+								}
+							}
+						}
+							
+							
 					}
 				}
-				else
-				{
-					$this->page_variable_model->create(array(
-						'page_id' => $id != 0 ? $page->id : 0,
-						'name'    => $key,
-						'value'   => $variable,
-						'label'   => $tv->label,
-						'type'    => $tv->type
-					));
+				else {
+					if ($v)
+					{
+						if ($v->value != $variable)
+						{
+							$hasChanged = true;
+							
+							$v->value = $variable;
+						}
+						if ($tv->label != $v->label || $tv->type != $v->type)
+						{
+							$hasChanged = true;
+							
+							$v->label = $tv->label;
+							$v->type  = $tv->type;
+						}
+						if ($hasChanged)
+						{
+							$v->save();
+						}
+					}
+					else
+					{
+						$this->page_variable_model->create(array(
+							'page_id' => $id != 0 ? $page->id : 0,
+							'name'    => $key,
+							'value'   => $variable,
+							'label'   => $tv->label,
+							'type'    => $tv->type
+						));
+					}
 				}
 			}
 		}

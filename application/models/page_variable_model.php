@@ -8,6 +8,7 @@ class Page_Variable_Model extends My_Model
 		$this->validates('name', 'required');
 		
 		$this->belongs_to('page');
+		$this->has_many('page_variables');
 		
 		$this->before_update('store_revision');
 	}
