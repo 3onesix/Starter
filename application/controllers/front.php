@@ -6,6 +6,8 @@ class Front extends My_Controller {
 	{
 		//$this->output->enable_profiler(TRUE);
 		
+		$this->load->helper('page');
+		
 		$uri = $this->uri->segment_array();
 		
 		if (!count($uri))
