@@ -47,6 +47,19 @@ class Front extends My_Controller {
 				}
 			}
 			
+			if ($this->page_variable_model->exists(array('page_id' => 0)))
+			{
+				$variables = $this->page_variable_model->all(array('page_id' => 0));
+				$vars = array();
+				
+				foreach ($variables as $variable)
+				{
+					$vars[$variable->name] = $variable->value;
+				}
+				
+				extract($vars);
+			}
+			
 			extract($page->variables());
 			
 			include('assets/site/templates/'.$page->template->file.'.php');

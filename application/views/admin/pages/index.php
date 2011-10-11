@@ -7,6 +7,9 @@
 	<a href="<?php echo site_url('admin/pages/new'); ?>" class="button new page">Create a New Page</a>
 </div>
 <div id="records" class="pages">
+	<?php if (isset($has_site_variables) && $has_site_variables): ?>
+		<a href="<?=site_url('admin/pages/edit/0')?>">Edit Site Variables</a>
+	<?php endif; ?>
 	<?php page_hierarchial_list($pages, FALSE); ?>
 </div>
 

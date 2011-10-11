@@ -1,37 +1,39 @@
 <?php $this->load->view('admin/_errors', array('errors' => $page->errors()))?>
 <div id="page_variables">
-	<fieldset>
-		<legend>Page Info</legend>
-		<div class="field">
-			<?php echo $f->label('name', 'Name:'); ?>
-			<?php echo $f->text_field('name'); ?>				
-		</div>
-		<div class="field">
-			<?php echo $f->label('slug', 'Slug:'); ?>
-			<?php echo $f->text_field('slug'); ?>				
-		</div>
-		<?php if ($page->page_id > 0): ?>
-			<div class="field">
-				<label>Parent Page:</label>
-				<input type="text" disabled="true" value="<?=$page->page->name?>" />
-			</div>
-		<?php elseif($page->persisted() == FALSE): ?>
-			<div class="field">
-				<?php echo $f->label('page_id', 'Parent Page:'); ?>
-				<?php echo $f->select('page_id', $parents); ?>
-			</div>
-		<?php endif; ?>
-		<?php if($page->persisted() == FALSE): ?>
-			<div class="field">
-				<?php print $f->label('template_id', 'Template:'); ?>
-				<?php print $f->select('template_id', $templates); ?>
-			</div>
-		<?php endif; ?>
-	</fieldset>
-	<?php $variables = array(); ?>
-	<?php if ($page->template_id && $page->template->template_variables->count()): ?>
+	<?php if (!isset($is_site_variables) || $is_site_variables == false): ?>
 		<fieldset>
-			<legend>Page Variables</legend>
+			<legend>Page Info</legend>
+			<div class="field">
+				<?php echo $f->label('name', 'Name:'); ?>
+				<?php echo $f->text_field('name'); ?>				
+			</div>
+			<div class="field">
+				<?php echo $f->label('slug', 'Slug:'); ?>
+				<?php echo $f->text_field('slug'); ?>				
+			</div>
+			<?php if ($page->page_id > 0): ?>
+				<div class="field">
+					<label>Parent Page:</label>
+					<input type="text" disabled="true" value="<?=$page->page->name?>" />
+				</div>
+			<?php elseif($page->persisted() == FALSE): ?>
+				<div class="field">
+					<?php echo $f->label('page_id', 'Parent Page:'); ?>
+					<?php echo $f->select('page_id', $parents); ?>
+				</div>
+			<?php endif; ?>
+			<?php if($page->persisted() == FALSE): ?>
+				<div class="field">
+					<?php print $f->label('template_id', 'Template:'); ?>
+					<?php print $f->select('template_id', $templates); ?>
+				</div>
+			<?php endif; ?>
+		</fieldset>
+	<?php endif; ?>
+	<?php $variables = array(); ?>
+	<?php if (($page->template_id && $page->template->template_variables->count()) || $is_site_variables): ?>
+		<fieldset>
+			<legend><?=$is_site_variables ? 'Site' : 'Page'?> Variables</legend>
 			<?php 
 			
 			function build_variable($variable, &$page, &$variables, $sub = false, $index = 0)
@@ -128,7 +130,7 @@
 			}
 			
 			?>
-			<?php foreach ($page->template->template_variables->all(array('template_variable_id' => null)) as $variable): ?>
+			<?php foreach (($is_site_variables ? $this->template_variable_model->all(array('template_variable_id' => null, 'template_id' => 0)) : $page->template->template_variables->all(array('template_variable_id' => null))) as $variable): ?>
 				<?=build_variable($variable, $page, $variables)?>
 			<?php endforeach; ?>
 		</fieldset>
@@ -160,7 +162,7 @@
 	<?php endif; ?>
 </div>
 <div id="sidebar">
-	<?php if ($page->template_id): ?>
+	<?php if (!$is_site_variables && $page->template_id): ?>
 		<h2>Modules</h2>
 		<?php foreach ($this->module_model->all() as $module): ?>
 			<div class="field checkbox"><input type="checkbox" name="modules[<?=$module->id?>]" id="moduled_<?=$module->id?>_field" value="1" <?=($page->template->requires_module($module->simple_name) ? 'checked="checked" disabled="disabled"' : ($page->page_modules->exists(array('module_id' => $module->id)) ? 'checked="checked"' : ''))?> /> <label for="moduled_<?=$module->id?>_field"<?=($page->template->requires_module($module->simple_name) ? ' class="disabled"' : '')?>><?=$module->name?></label></div>

@@ -15,6 +15,7 @@ class Pages extends MY_Controller
 	{		
 		$this->db->order_by('name');
 		$pages = $this->page_model->find(array('page_id'=>-1), 0, 0);
+		$this->load->vars(array('has_site_variables' => $this->template_variable_model->exists(array('template_id' => 0))));
 		
 		$templates = array('');
 		foreach($this->template_model->all() as $template) $templates[$template->id] = $template->name;		
@@ -58,50 +59,68 @@ class Pages extends MY_Controller
 	}
 
 	public function action_edit($id)
-	{	
-		if ($this->page_model->first($id)->template_id)
+	{
+		if ($id != 0)
 		{
-			$this->page_model->first($id)->template->check_for_updates();
+			if ($this->page_model->first($id)->template_id)
+			{
+				$this->page_model->first($id)->template->check_for_updates();
+			}
+		}
+		else
+		{
+			$this->template_model->check_for_site_updates();
 		}
 		
 		$templates = array('');
 		foreach($this->template_model->all() as $template) $templates[$template->id] = $template->name;
 		$this->load->vars('templates', $templates);
-				
-		$this->load->vars('page', flash_jot('page', $id));
-				
-		$this->load->vars('title', 'Edit Page : '.flash_jot('page', $id)->name.'');	
+		
+		if ($id != 0)
+		{
+			$this->load->vars('page', flash_jot('page', $id));
+			$this->load->vars(array('is_site_variables' => false));
+			$this->load->vars('title', 'Edit Page : '.flash_jot('page', $id)->name.'');
+		}
+		else {
+			$this->load->vars('page', flash_jot('page', $id));
+			$this->load->vars('is_site_variables', true);
+			$this->load->vars('title', 'Edit Site Variables');
+		}
 		$this->load->view('admin/pages/edit');
 	}
 	
 	public function action_update($id)
 	{
-		$data = $this->input->post('page');
-		$data['user_id'] = $this->current_user->id;
-		$page = $this->page_model->update($id, $data);
-		
-		//update modules
-		$modules = $this->input->post('modules');
-		$this->db->where('page_id', $page->id)->delete('page_modules');
-		if ($modules)
+		if ($id != 0)
 		{
-			foreach ($modules as $key=>$value)
+			$data = $this->input->post('page');
+			$data['user_id'] = $this->current_user->id;
+			$page = $this->page_model->update($id, $data);
+			
+			//update modules
+			$modules = $this->input->post('modules');
+			$this->db->where('page_id', $page->id)->delete('page_modules');
+			if ($modules)
 			{
-				$this->page_module_model->create(array(
-					'page_id' => $page->id,
-					'module_id' => $key
-				));
+				foreach ($modules as $key=>$value)
+				{
+					$this->page_module_model->create(array(
+						'page_id' => $page->id,
+						'module_id' => $key
+					));
+				}
 			}
-		}
-		foreach ($page->template->required_modules as $module)
-		{
-			$module = $this->module_model->first_by_simple_name($module);
-			if ($module && !$this->page_module_model->exists(array('page_id' => $page->id, 'module_id' => $module->id)))
+			foreach ($page->template->required_modules as $module)
 			{
-				$this->page_module_model->create(array(
-					'page_id' => $page->id,
-					'module_id' => $module->id
-				));
+				$module = $this->module_model->first_by_simple_name($module);
+				if ($module && !$this->page_module_model->exists(array('page_id' => $page->id, 'module_id' => $module->id)))
+				{
+					$this->page_module_model->create(array(
+						'page_id' => $page->id,
+						'module_id' => $module->id
+					));
+				}
 			}
 		}
 		
@@ -112,8 +131,16 @@ class Pages extends MY_Controller
 			foreach ($variables as $key=>$variable)
 			{
 				$hasChanged = false;
-				$v  = $page->page_variables->first(array('name' => $key));
-				$tv = $page->template->template_variables->first(array('name' => $key));
+				if ($id != 0)
+				{
+					$v  = $page->page_variables->first(array('name' => $key));
+					$tv = $page->template->template_variables->first(array('name' => $key));
+				}
+				else
+				{
+					$v  = $this->page_variable_model->first(array('name' => $key, 'page_id' => 0));
+					$tv = $this->template_variable_model->first(array('name' => $key, 'template_id' => 0));
+				}
 				
 				if ($tv->type == 'array') $variable = serialize($variable);
 				
@@ -140,7 +167,7 @@ class Pages extends MY_Controller
 				else
 				{
 					$this->page_variable_model->create(array(
-						'page_id' => $page->id,
+						'page_id' => $id != 0 ? $page->id : 0,
 						'name'    => $key,
 						'value'   => $variable,
 						'label'   => $tv->label,
@@ -150,14 +177,14 @@ class Pages extends MY_Controller
 			}
 		}
 				
-		if ( $page->errors() )
+		if ( $id != 0 && $page->errors() )
 		{
 			flash('page', $page);
 			redirect('admin/pages/edit/'.$id);
 		}
 		else
 		{
-			flash('notice', 'Page was updated successfully.');
+			flash('notice', ($id != 0 ? 'Page was' : 'Site variables were').' updated successfully.');
 		}
 		
 		redirect('admin/pages');

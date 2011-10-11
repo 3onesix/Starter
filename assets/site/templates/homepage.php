@@ -5,3 +5,5 @@
 		<li><?=$contact['title']?> <?=$contact['name']?></li>
 	<?php endforeach; ?>
 </ul>
+
+<?=$disclaimer?>
