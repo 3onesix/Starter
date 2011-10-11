@@ -36,18 +36,34 @@
 			<legend><?=$is_site_variables ? 'Site' : 'Page'?> Variables</legend>
 			<?php 
 			
-			function build_variable($variable, &$page, &$variables, $sub = false, $index = 0)
+			function build_variable($variable, &$page, &$variables, $sub = false, $index = 0, $site_variables = null)
 			{
+				$CI =& get_instance();
+				
 				if (!$sub) $variables[] = $variable->name;
 				else
 				{
-					if ($page_var = $page->variable($sub->name))
+					if ($site_variables)
 					{
-						$page_var = unserialize($page_var);
+						if ($page_var = $CI->page_variable_model->first(array('name' => $sub->name, 'page_id' => 0)))
+						{
+							$page_var = unserialize($page_var);
+						}
+						else
+						{
+							$page_var = null;
+						}
 					}
-					else
+					else 
 					{
-						$page_var = null;
+						if ($page_var = $page->variable($sub->name))
+						{
+							$page_var = unserialize($page_var);
+						}
+						else
+						{
+							$page_var = null;
+						}
 					}
 				}
 				
@@ -55,13 +71,29 @@
 				{
 					$name  = 'variables'.($sub ? '['.$sub->name.']['.$index.']' : '').'['.$variable->name.']';
 					$id    = 'variables_'.($sub ? $sub->name.'_'.$index.'_' : '').$variable->name.'_field';
-					if ($sub)
+					
+					if ($site_variables)
 					{
-						$value = $page_var && isset($page_var[$index][$variable->name]) ? $page_var[$index][$variable->name] : $variable->value;
+						
+						if ($sub)
+						{
+							$value = $page_var && isset($page_var[$index][$variable->name]) ? $page_var[$index][$variable->name] : $variable->value;
+						}
+						else
+						{
+							$value = $CI->page_variable_model->first(array('name' => $variable->name, 'page_id' => 0)) ? $CI->page_variable_model->first(array('name' => $variable->name, 'page_id' => 0))->value : $variable->value;
+						}
 					}
-					else
+					else 
 					{
-						$value = $page->variable($variable->name) !== null ? $page->variable($variable->name) : $variable->value;
+						if ($sub)
+						{
+							$value = $page_var && isset($page_var[$index][$variable->name]) ? $page_var[$index][$variable->name] : $variable->value;
+						}
+						else
+						{
+							$value = $page->variable($variable->name) !== null ? $page->variable($variable->name) : $variable->value;
+						}
 					}
 					
 					$html  = '<div class="field">';
@@ -102,7 +134,7 @@
 					$html  = '<fieldset class="repeatable">';
 					$html .= '<legend>'.$variable->name.'</legend>';
 					
-					if ($page_var = $page->variable($variable->name))
+					if ($page_var = ($site_variables ? $CI->page_variable_model->first(array('name' => $variable->name, 'page_id' => 0)) : $page->variable($variable->name)))
 					{
 						$page_var = unserialize($page_var);
 						$count    = count($page_var);
@@ -118,7 +150,7 @@
 						$vars  = $variable->template_variables->all();
 						foreach ($vars as $v)
 						{
-							$html .= build_variable($v, $page, $variables, $variable, $i);
+							$html .= build_variable($v, $page, $variables, $variable, $i, $site_variables);
 						}
 						$html .= '</div>';
 					}
@@ -131,7 +163,7 @@
 			
 			?>
 			<?php foreach (($is_site_variables ? $this->template_variable_model->all(array('template_variable_id' => null, 'template_id' => 0)) : $page->template->template_variables->all(array('template_variable_id' => null))) as $variable): ?>
-				<?=build_variable($variable, $page, $variables)?>
+				<?=build_variable($variable, $page, $variables, false, 0, $is_site_variables ? $this->page_variable_model->all(array('page_id' => 0)) : null)?>
 			<?php endforeach; ?>
 		</fieldset>
 	<?php endif; ?>
