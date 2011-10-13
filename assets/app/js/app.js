@@ -97,6 +97,9 @@ var repeatables = {
 		var answer = confirm('Are you sure?');
 		
 		if (answer == true) {
+			var hidden = block.find('input[type=hidden].remove_on_clone');
+			hidden.val(hidden.val()+'_remove');
+			hidden.appendTo('#page_form');
 			block.remove();
 			
 			this.updateIndexes();

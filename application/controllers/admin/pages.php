@@ -189,70 +189,76 @@ class Pages extends MY_Controller
 							$block['id'] = explode('_', $block['id']); //block id is mashup of page_variable_id + array_index
 						}
 						
-						foreach ($block as $v_name => $v_value)
+						if (isset($block['id']) && isset($block['id'][2]) && $block['id'][2] == 'remove')
 						{
-							if (!in_array($v_name, array('index', 'id')))
+							$this->db->query('DELETE FROM page_variables WHERE page_variable_id = '.$block['id'][0].' AND array_index = '.$block['id'][1]);
+						}
+						else {
+							foreach ($block as $v_name => $v_value)
 							{
-								//check if variable is stored in block
-								if ($b_v = isset($block['id']) ? $v->page_variables->first(array('page_variable_id' => $block['id'][0], 'array_index' => $block['id'][1], 'name' => $v_name)) : false )
+								if (!in_array($v_name, array('index', 'id')))
 								{
-									if ( value_for_key($v_name, $editables) == 'file' )
+									//check if variable is stored in block
+									if ($b_v = isset($block['id']) ? $v->page_variables->first(array('page_variable_id' => $block['id'][0], 'array_index' => $block['id'][1], 'name' => $v_name)) : false )
 									{
-										$filename = value_for_key('variables.name.'.$v->name.'.'.$index.'.'.$b_v->name, $_FILES, array());
-										$type     = value_for_key('variables.type.'.$v->name.'.'.$index.'.'.$b_v->name, $_FILES, array());
-										$tmp_name = value_for_key('variables.tmp_name.'.$v->name.'.'.$index.'.'.$b_v->name, $_FILES, array());
-										$size     = value_for_key('variables.size.'.$v->name.'.'.$index.'.'.$b_v->name, $_FILES, array());
-										$error    = value_for_key('variables.error.'.$v->name.'.'.$index.'.'.$b_v->name, $_FILES, array());
-										
-										
-										if ($filename)
+										if ( value_for_key($v_name, $editables) == 'file' )
 										{
-											$info   = pathinfo($filename);
-											$ext 	= value_for_key('extension', $info);
-																									
-											# Create file cache instance;
-											$b_v->set_file_attachment('file', $ext, $type, $tmp_name, $error, $size);
+											$filename = value_for_key('variables.name.'.$v->name.'.'.$index.'.'.$b_v->name, $_FILES, array());
+											$type     = value_for_key('variables.type.'.$v->name.'.'.$index.'.'.$b_v->name, $_FILES, array());
+											$tmp_name = value_for_key('variables.tmp_name.'.$v->name.'.'.$index.'.'.$b_v->name, $_FILES, array());
+											$size     = value_for_key('variables.size.'.$v->name.'.'.$index.'.'.$b_v->name, $_FILES, array());
+											$error    = value_for_key('variables.error.'.$v->name.'.'.$index.'.'.$b_v->name, $_FILES, array());
+											
+											
+											if ($filename)
+											{
+												$info   = pathinfo($filename);
+												$ext 	= value_for_key('extension', $info);
+																										
+												# Create file cache instance;
+												$b_v->set_file_attachment('file', $ext, $type, $tmp_name, $error, $size);
+											}
+										}
+										
+										//update variable
+										if ($b_v->value != $block[$v_name])
+										{
+											$b_v->value       = $v_value;
+											$b_v->array_index = $index;
+											$b_v->type        = value_for_key($v_name, $editables);
+											$b_v->save();
 										}
 									}
-									
-									//update variable
-									if ($b_v->value != $block[$v_name])
-									{
-										$b_v->value       = $v_value;
-										$b_v->array_index = $index;
-										$b_v->type        = value_for_key($v_name, $editables);
-										$b_v->save();
-									}
-								}
-								else
-								{	
-									//store new variable
-									$b_v = $this->page_variable_model->create(array(
-										'page_id'          => $id != 0 ? $page->id : 0,
-										'page_variable_id' => $v->id,
-										'array_index'      => $index,
-										'name'             => $v_name,
-										'value'            => $v_value,
-										'label'            => '',
-										'type'             => value_for_key($v_name, $editables)
-									));
-									
-									if ( value_for_key($v_name, $editables) == 'file' )
-									{
-										$filename = value_for_key('variables.name.'.$v->name.'.'.$index.'.'.$b_v->name, $_FILES, array());
-										$type     = value_for_key('variables.type.'.$v->name.'.'.$index.'.'.$b_v->name, $_FILES, array());
-										$tmp_name = value_for_key('variables.tmp_name.'.$v->name.'.'.$index.'.'.$b_v->name, $_FILES, array());
-										$size     = value_for_key('variables.size.'.$v->name.'.'.$index.'.'.$b_v->name, $_FILES, array());
-										$error    = value_for_key('variables.error.'.$v->name.'.'.$index.'.'.$b_v->name, $_FILES, array());
+									else
+									{	
+										//store new variable
+										$b_v = $this->page_variable_model->create(array(
+											'page_id'          => $id != 0 ? $page->id : 0,
+											'page_variable_id' => $v->id,
+											'array_index'      => $index,
+											'name'             => $v_name,
+											'value'            => $v_value,
+											'label'            => '',
+											'type'             => value_for_key($v_name, $editables)
+										));
 										
-										if ($filename)
+										if ( value_for_key($v_name, $editables) == 'file' )
 										{
-											$info   = pathinfo($filename);
-											$ext 	= value_for_key('extension', $info);
-																									
-											# Create file cache instance;
-											$b_v->set_file_attachment('file', $ext, $type, $tmp_name, $error, $size);
-											$b_v->save();
+											$filename = value_for_key('variables.name.'.$v->name.'.'.$index.'.'.$b_v->name, $_FILES, array());
+											$type     = value_for_key('variables.type.'.$v->name.'.'.$index.'.'.$b_v->name, $_FILES, array());
+											$tmp_name = value_for_key('variables.tmp_name.'.$v->name.'.'.$index.'.'.$b_v->name, $_FILES, array());
+											$size     = value_for_key('variables.size.'.$v->name.'.'.$index.'.'.$b_v->name, $_FILES, array());
+											$error    = value_for_key('variables.error.'.$v->name.'.'.$index.'.'.$b_v->name, $_FILES, array());
+											
+											if ($filename)
+											{
+												$info   = pathinfo($filename);
+												$ext 	= value_for_key('extension', $info);
+																										
+												# Create file cache instance;
+												$b_v->set_file_attachment('file', $ext, $type, $tmp_name, $error, $size);
+												$b_v->save();
+											}
 										}
 									}
 								}
