@@ -168,7 +168,7 @@ class Pages extends MY_Controller
 						$v = $this->page_variable_model->create(array(
 							'page_id' => $id != 0 ? $page->id : 0,
 							'name'    => $key,
-							'value'   => $variable,
+							'value'   => '',
 							'label'   => $tv->label,
 							'type'    => $tv->type
 						));
