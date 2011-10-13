@@ -239,7 +239,7 @@ class Pages extends MY_Controller
 					}
 					else
 					{
-						$filename = value_for_key("name.{$key}", $_FILES['variables']);
+						/*$filename = value_for_key("name.{$key}", $_FILES['variables']);
 						if ($filename)
 						{
 							if (!$filename) return false;
@@ -260,7 +260,7 @@ class Pages extends MY_Controller
 						}
 						else {
 							unset($this->page_variable_model->files_cache_local);
-						}
+						}*/
 						$this->page_variable_model->create(array(
 							'page_id' => $id != 0 ? $page->id : 0,
 							'name'    => $key,
