@@ -45,5 +45,10 @@ $template['variables'] = array(
 				'label' => 'Name'
 			)
 		)
+	),
+	array(
+		'type'  => 'file',
+		'name'  => 'upload',
+		'label' => 'upload'
 	)
 );

@@ -119,6 +119,10 @@
 								$html .= '</select>';
 							}
 						break;
+						case 'file':
+							$html .= '<input type="hidden" name="'.$name.'" />';
+							$html .= '<input type="file" name="'.$name.'" id="'.$id.'" />';
+						break;
 						case 'binary':
 							$html .= '<textarea type="text" name="'.$name.'" id="'.$id.'">'.$value.'</textarea>';
 						break;

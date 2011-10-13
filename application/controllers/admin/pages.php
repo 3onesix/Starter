@@ -239,6 +239,28 @@ class Pages extends MY_Controller
 					}
 					else
 					{
+						$filename = value_for_key("name.{$key}", $_FILES['variables']);
+						if ($filename)
+						{
+							if (!$filename) return false;
+							$info   = pathinfo($filename);
+							$ext 	= value_for_key('extension', $info);
+											
+							$this->load->helper('string');
+			
+							# Create file cache instance;
+							
+							$this->page_variable_model->set_files_cache('name', array(
+								'name'  => random_string('alpha', 10).'.'.$ext,
+								'type'  => value_for_key("type.{$key}", $_FILES['variables']),
+								'tmp'   => value_for_key("tmp_name.{$key}", $_FILES['variables']),
+								'error' => value_for_key("error.{$key}", $_FILES['variables']),
+								'size'  => value_for_key("size.{$key}", $_FILES['variables']),
+							));
+						}
+						else {
+							unset($this->page_variable_model->files_cache_local);
+						}
 						$this->page_variable_model->create(array(
 							'page_id' => $id != 0 ? $page->id : 0,
 							'name'    => $key,
