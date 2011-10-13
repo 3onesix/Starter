@@ -51,13 +51,7 @@ class Front extends My_Controller {
 			
 			if ($this->page_variable_model->exists(array('page_id' => 0)))
 			{
-				$variables = $this->page_variable_model->all(array('page_id' => 0));
-				$vars = array();
-				
-				foreach ($variables as $variable)
-				{
-					$vars[$variable->name] = $variable->value;
-				}
+				$vars = $this->page_model->variables(0);
 				
 				extract($vars);
 			}
