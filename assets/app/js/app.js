@@ -87,7 +87,8 @@ var repeatables = {
 	},
 	duplicate: function (block) {
 		var clone = block.clone(true);
-		clone.find('input[type=hidden]').remove();
+		clone.find('input[type=hidden].remove_on_clone').remove();
+		clone.find('.view_file').remove();
 		clone.insertAfter(block).effect('highlight', 1000);
 		
 		this.updateIndexes();
@@ -110,7 +111,7 @@ var repeatables = {
 				var i 		= $(this).attr('data-index'),
 					name 	= $(this).attr('data-name');
 				
-				var fields 	= $(this).find('select, input[type=text], textarea, span.cke_skin_kama, label');
+				var fields 	= $(this).find('select, input[type=text], input[type=file], input[type=hidden], textarea, span.cke_skin_kama, label');
 				fields.each(function () {
 					if ($(this).get(0).nodeName.toLowerCase() == 'label') {
 						var field_for = $(this).attr('for');
@@ -124,7 +125,9 @@ var repeatables = {
 						$(this).attr('name', field_name.replace('variables['+name+']['+i+']', 'variables['+name+']['+index+']'));
 						
 						var field_id = $(this).attr('id');
-						$(this).attr('id', field_id.replace('variables_'+name+'_'+i+'_', 'variables_'+name+'_'+index+'_'));
+						if (field_id) {
+							$(this).attr('id', field_id.replace('variables_'+name+'_'+i+'_', 'variables_'+name+'_'+index+'_'));
+						}
 					}
 				});
 				

@@ -26,13 +26,13 @@ class Page_Model extends My_Model
 		}
 	}
 	
-	function variable($name, $value = null)
+	function variable($name, $value = null, $page_id = null)
 	{
 		if ($value === null)
 		{
-			if ($this->template_id && $this->page_variables->exists(array('name' => $name)))
+			if (($this->template_id || $page_id !== null) && ($page_id !== null ? $this->page_variable_model->exists(array('page_id' => $page_id, 'name' => $name)) : $this->page_variables->exists(array('name' => $name))))
 			{
-				$variable = $this->page_variables->first(array('name' => $name));
+				$variable = ($page_id !== null ? $this->page_variable_model->first(array('page_id' => $page_id, 'name' => $name)) : $this->page_variables->first(array('name' => $name)));
 				
 				if ($variable->type == 'array' && $variable->value == '')
 				{
@@ -121,13 +121,13 @@ class Page_Model extends My_Model
 		return $includes;
 	}
 	
-	public function variables()
+	public function variables($page_id = null)
 	{
-		$variables = $this->page_variables->all(array('page_variable_id' => null));
+		$variables = $page_id !== null ? $this->page_variable_model->all(array('page_id' => $page_id, 'page_variable_id' => null)) : $this->page_variables->all(array('page_variable_id' => null));
 		$array = array();
 		foreach ($variables as $variable)
 		{
-			$array[$variable->name] = $this->variable($variable->name);
+			$array[$variable->name] = $this->variable($variable->name, null, $page_id);
 		}
 		return $array;
 	}

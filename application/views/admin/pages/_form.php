@@ -45,7 +45,7 @@
 				{
 					if ($site_variables)
 					{
-						if ($page_var = $CI->page_variable_model->first(array('name' => $sub->name, 'page_id' => 0)))
+						if ($page_var = $CI->page_model->variable($sub->name, null, 0))
 						{
 							$page_var = ($page_var);
 						}
@@ -77,22 +77,46 @@
 						
 						if ($sub)
 						{
+							$page_variable = $CI->page_variable_model->first(array('name' => $sub->name, 'page_variable_id' => null, 'page_id' => 0));
+							
 							$value = $page_var && isset($page_var[$index][$variable->name]) ? $page_var[$index][$variable->name] : $variable->value;
+							
+							if ($variable->type == 'file' && $page_variable)
+							{
+								$file_variable = $CI->page_variable_model->first(array('page_id' => 0, 'name' => $variable->name, 'page_variable_id' => $page_variable->id, 'array_index' => $index));
+							}
 						}
 						else
 						{
 							$value = $CI->page_variable_model->first(array('name' => $variable->name, 'page_id' => 0)) ? $CI->page_variable_model->first(array('name' => $variable->name, 'page_id' => 0))->value : $variable->value;
+							
+							if ($variable->type == 'file')
+							{
+								$file_variable = $CI->page_variable_model->first(array('page_id' => 0, 'name' => $variable->name, 'page_variable_id' => null));
+							}
 						}
 					}
 					else 
 					{
 						if ($sub)
 						{
+							$page_variable = $CI->page_variable_model->first(array('name' => $sub->name, 'page_variable_id' => null, 'page_id' => $page->id));
+							
 							$value = $page_var && isset($page_var[$index][$variable->name]) ? $page_var[$index][$variable->name] : $variable->value;
+							
+							if ($variable->type == 'file' && $page_variable)
+							{
+								$file_variable = $CI->page_variable_model->first(array('page_id' => $page->id, 'name' => $variable->name, 'page_variable_id' => $page_variable->id, 'array_index' => $index));
+							}
 						}
 						else
 						{
 							$value = $page->variable($variable->name) !== null ? $page->variable($variable->name) : $variable->value;
+							
+							if ($variable->type == 'file')
+							{
+								$file_variable = $CI->page_variable_model->first(array('page_id' => $page->id, 'name' => $variable->name, 'page_variable_id' => null));
+							}
 						}
 					}
 					
@@ -122,10 +146,9 @@
 						case 'file':
 							$html .= '<input type="hidden" name="'.$name.'" value="1"/>';
 							$html .= '<input type="file" name="'.$name.'" id="'.$id.'" />';
-							$file_variable = $page->page_variables->first(array('name'=>$variable->name));
 														
-							if ( $file_variable ) {
-								$html .= '<a href="'.$file_variable->file->url().'">View File</a>';
+							if ( $variable->type == 'file' && isset($file_variable) && $file_variable->file_file_name ) {
+								$html .= '<a href="'.$file_variable->file->url().'" class="view_file">View File</a>';
 							}
 						break;
 						case 'binary':
@@ -143,7 +166,7 @@
 					$html  = '<fieldset class="repeatable">';
 					$html .= '<legend>'.$variable->name.'</legend>';
 					
-					if ($page_var = ($site_variables ? $CI->page_variable_model->first(array('name' => $variable->name, 'page_id' => 0)) : $page->variable($variable->name)))
+					if ($page_var = ($site_variables ? $page->variable($variable->name, null, 0) : $page->variable($variable->name)))
 					{
 						$page_var = ($page_var);
 						$count    = count($page_var);
@@ -152,11 +175,12 @@
 					{
 						$count = 1;
 					}
+					$page_variable = $CI->page_variable_model->first(array('name' => $variable->name, 'page_variable_id' => null, 'page_id' => $site_variables ? 0 : $page->id));
 					
 					for ($i=0; $i<$count; $i++)
 					{
 						$html .= '<div class="repeatable_block" data-name="'.$variable->name.'"  data-index="'.$i.'">';
-						$html .= '<input type="hidden" name="variables['.$variable->name.']['.$i.'][id]" value="'.$variable->id.'_'.$i.'" />';
+						$html .= '<input type="hidden" name="variables['.$variable->name.']['.$i.'][id]" value="'.($page_variable ? $page_variable->id.'_'.$i : $variable->id.'_'.$i).'" class="remove_on_clone" />';
 						$vars  = $variable->template_variables->all();
 						foreach ($vars as $v)
 						{
