@@ -216,9 +216,33 @@ class Pages extends MY_Controller
 							
 					}
 				}
-				else {
+				else 
+				{
 					if ($v)
-					{
+					{					
+						if ( $tv->type == 'file' )
+						{
+							$file_variables = value_for_key('variables', $_FILES, array());
+						
+							$filename = value_for_key("name.{$v->name}", $file_variables);
+							$type = value_for_key("type.{$v->name}", $file_variables);
+							$tmp_name = value_for_key("tmp_name.{$v->name}", $file_variables);
+							$size = value_for_key("size.{$v->name}", $file_variables);
+							$error = value_for_key("error.{$v->name}", $file_variables);
+							
+							
+							if ($filename)
+							{
+								$hasChanged = true;
+								
+								$info   = pathinfo($filename);
+								$ext 	= value_for_key('extension', $info);
+																						
+								# Create file cache instance;
+								$v->set_file_attachment('file', $ext, $type, $tmp_name, $error, $size);
+							}
+						}
+							
 						if ($v->value != $variable)
 						{
 							$hasChanged = true;
@@ -239,35 +263,35 @@ class Pages extends MY_Controller
 					}
 					else
 					{
-						/*$filename = value_for_key("name.{$key}", $_FILES['variables']);
-						if ($filename)
-						{
-							if (!$filename) return false;
-							$info   = pathinfo($filename);
-							$ext 	= value_for_key('extension', $info);
-											
-							$this->load->helper('string');
-			
-							# Create file cache instance;
-							
-							$this->page_variable_model->set_files_cache('name', array(
-								'name'  => random_string('alpha', 10).'.'.$ext,
-								'type'  => value_for_key("type.{$key}", $_FILES['variables']),
-								'tmp'   => value_for_key("tmp_name.{$key}", $_FILES['variables']),
-								'error' => value_for_key("error.{$key}", $_FILES['variables']),
-								'size'  => value_for_key("size.{$key}", $_FILES['variables']),
-							));
-						}
-						else {
-							unset($this->page_variable_model->files_cache_local);
-						}*/
-						$this->page_variable_model->create(array(
-							'page_id' => $id != 0 ? $page->id : 0,
-							'name'    => $key,
-							'value'   => $variable,
-							'label'   => $tv->label,
-							'type'    => $tv->type
+						$v = $this->page_variable_model->create(array(
+						    'page_id' => $id != 0 ? $page->id : 0,
+						    'name'    => $key,
+						    'value'   => $variable,
+						    'label'   => $tv->label,
+						    'type'    => $tv->type
 						));
+
+						if ( $tv->type == 'file' )
+						{
+							$file_variables = value_for_key('variables', $_FILES, array());
+						
+							$filename = value_for_key("name.{$v->name}", $file_variables);
+							$type = value_for_key("type.{$v->name}", $file_variables);
+							$tmp_name = value_for_key("tmp_name.{$v->name}", $file_variables);
+							$size = value_for_key("size.{$v->name}", $file_variables);
+							$error = value_for_key("error.{$v->name}", $file_variables);
+							
+							
+							if ($filename)
+							{								
+								$info   = pathinfo($filename);
+								$ext 	= value_for_key('extension', $info);
+																						
+								# Create file cache instance;
+								$v->set_file_attachment('file', $ext, $type, $tmp_name, $error, $size);
+								$v->save();
+							}
+						}
 					}
 				}
 			}

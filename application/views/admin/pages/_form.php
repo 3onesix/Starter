@@ -120,8 +120,13 @@
 							}
 						break;
 						case 'file':
-							$html .= '<input type="hidden" name="'.$name.'" />';
+							$html .= '<input type="hidden" name="'.$name.'" value="1"/>';
 							$html .= '<input type="file" name="'.$name.'" id="'.$id.'" />';
+							$file_variable = $page->page_variables->first(array('name'=>$variable->name));
+														
+							if ( $file_variable ) {
+								$html .= '<a href="'.$file_variable->file->url().'">View File</a>';
+							}
 						break;
 						case 'binary':
 							$html .= '<textarea type="text" name="'.$name.'" id="'.$id.'">'.$value.'</textarea>';
