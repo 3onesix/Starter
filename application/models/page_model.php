@@ -41,13 +41,13 @@ class Page_Model extends My_Model
 					foreach ($blocks as $block)
 					{
 						if (!isset($array[$block->array_index])) $array[$block->array_index] = array();
-						$array[$block->array_index][$block->name] = $block->value;
+						$array[$block->array_index][$block->name] = $block->type == 'file' ? $block->file : $block->value;
 					}
 					return $array;
 				}
 				else
 				{
-					return $variable->value;
+					return $variable->type == 'file' ? $variable->file : $variable->value;
 				}
 			}
 			return null;
