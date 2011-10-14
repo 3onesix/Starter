@@ -12,7 +12,7 @@ class Migrations extends CI_Controller
 	
 	function index()
 	{
-		if (ENVIRONMENT == 'development' || IS_CLI)
+		if (ENVIRONMENT == 'development' || $this->input->is_cli_request())
 		{
 			$migrations = new JotMigrations();
 			$migrations->up();
