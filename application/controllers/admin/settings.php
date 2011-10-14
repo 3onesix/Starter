@@ -180,22 +180,16 @@ class Settings extends MY_Controller
 			{
 				$password_reset = false;
 				
-				$data = array(
-					'first_name' => $userinfo['first_name'],
-					'last_name'  => $userinfo['last_name'],
-					'username'   => $userinfo['username'],
-					'email'      => $userinfo['email']
-				);
 				
-				if (isset($userinfo['password']) && isset($userinfo['confirm_password']) && $userinfo['password'] == $userinfo['confirm_password'])
+				$password = value_for_key('password', $userinfo);
+				if ( $password == value_for_key('confirm_password', $userinfo) )
 				{
-					$data['password'] = md5($userinfo['password']);
-					$password_reset = true;
+					if ( $password && $user->password != md5($password) ) {
+						$password_reset = TRUE;
+					}
 				}
-				
-				$this->db->update('users', $data, array(
-					'id' => $user->id
-				));
+
+				$user->update_attributes($userinfo);
 				
 				if ($password_reset) {
 					$this->session->set_flashdata('notice', 'Password changed.');
