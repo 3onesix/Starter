@@ -1,7 +1,7 @@
 <?php
 
 function path_diff($from_path, $to_path)
-{
+{	
 	// Handle relative paths
 	if ( substr($from_path, 0, 1) != '/' )
 	{
@@ -12,24 +12,24 @@ function path_diff($from_path, $to_path)
 	{
 		$to_path = FCPATH.$to_path;
 	}
-		
+	
 	$from_path = explode('/', trim($from_path, '/'));
 	$to_path = explode('/', trim($to_path,'/'));
-				
+		
 	$similar = array();	
-
-	$diff = $to_path;
+		
 	foreach($from_path as $index => $component)
 	{
+	
 		if ( isset($to_path[$index]) && $to_path[$index] == $component )
 		{
 			$similar[] = $component;
-			array_shift($diff);
 		}
 	}
-		
+	
 	$path = '';
-
+	
+	$diff = array_diff($to_path, $similar);
 	$count = count($from_path) - count($similar);
 	
 	for ($i = 0; $i < $count; $i++)
@@ -53,7 +53,7 @@ class My_Router extends CI_Router
 		$segment = array_shift($segments);
 
 		if ( is_dir($options['path'].$segment.'/') )
-		{	
+		{
 			$options['path'] .= $segment.'/';
 
 			if ( count($segments) )
@@ -69,6 +69,7 @@ class My_Router extends CI_Router
 		}
 		else if ( file_exists($options['path'].$segment.EXT) )
 		{
+
 			$options['path'] .= $segment.EXT;
 			$options['segments'] = $all_segments;
 
@@ -125,12 +126,12 @@ class My_Router extends CI_Router
 			$options = $this->validate_controller($segments, $options);
 			
 			if ( file_exists($options['path']) && ! is_dir($options['path']) )
-			{				
+			{
 				if ( APPPATH != $path)
 				{					
 					$relative_path = path_diff(FCPATH.APPPATH.'controllers/', $path.'controllers/');
 				}
-				
+
 				$path = $options['path'];
 				$new_segments = $options['segments'];
 
