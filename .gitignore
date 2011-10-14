@@ -9,8 +9,7 @@
 */config/testing/database.php
 *db/*.db
 
-Starter.esproj/user.jamesfinley.espressostorage
-Starter.esproj/Project.espressostorage
+*.esproj
 
 .sass-cache
 
