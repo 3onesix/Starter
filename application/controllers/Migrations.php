@@ -1,4 +1,5 @@
 <?php
+
 class Migrations extends CI_Controller 
 {	
 	function __construct()
@@ -6,24 +7,45 @@ class Migrations extends CI_Controller
 		parent::__construct();
 
 		$this->load->database();
-		$this->load->helper(array('directory','jot_migrations'));	
+		$this->load->helper('jot_migrations');	
 	}
 	
 	function index()
 	{
-		$migrations = new JotMigrations();
-		$migrations->up();
+		if (ENVIRONMENT == 'development' || IS_CLI)
+		{
+			$migrations = new JotMigrations();
+			$migrations->up();
+		}
+		else
+		{
+			show_404();
+		}
 	}
 	
 	function reset()
 	{		
-		$migrations = new JotMigrations();
-		$migrations->reset(TRUE);
+		if (ENVIRONMENT == 'development' || IS_CLI)
+		{
+			$migrations = new JotMigrations();
+			$migrations->reset(TRUE);
+		}
+		else
+		{
+			show_404();
+		}
 	}
 	
 	function create($path)
 	{
-		$migrations = new JotMigrations();
-		$migrations->create($path);
+		if (ENVIRONMENT == 'development' || IS_CLI)
+		{
+			$migrations = new JotMigrations();
+			$migrations->create($path);
+		}
+		else
+		{
+			show_404();
+		}
 	}
 }
