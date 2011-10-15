@@ -506,7 +506,6 @@ ul#sidebar {
         background: #f2f2f2; }
       #records ul li .what .sub {
         display: inline-block;
-        width: 300px;
         max-width: 300px;
         overflow: hidden;
         text-overflow: ellipsis;
