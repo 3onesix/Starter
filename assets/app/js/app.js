@@ -142,6 +142,12 @@ var repeatables = {
 	}
 };
 
+function activateToolTips () {
+	$('.field[data-help]').each(function () {
+		$(this).find('label').eq(0).append(' <div class="tooltip-help"><span class="icon">help</span> <span class="tooltip">'+$(this).attr('data-help')+'</span></div>');
+	});
+}
+
 $(function () {
 	$('.destroy, .delete').click('click', function() {
 		var answer = confirm('Are you sure?');
@@ -159,4 +165,6 @@ $(function () {
 	}
 	
 	activateHTMLFields();
+	
+	activateToolTips();
 });

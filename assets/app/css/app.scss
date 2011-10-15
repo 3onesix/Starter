@@ -198,6 +198,37 @@ form {
 			&.disabled {
 				color: #888;
 			}
+			
+			.tooltip-help {
+				position: relative;
+				display: inline-block;
+				
+				.icon {
+					display: inline-block;
+					width: 20px;
+					height: 20px;
+					background: url(../images/icon_help.png) no-repeat center center;
+					text-indent: -9000px;
+				}
+				
+				.tooltip {
+					display: none;
+					position: absolute;
+					top: -5px;
+					left: 24px;
+					width: 250px;
+					padding: 5px 5px 10px;
+					background: #ffc url(../images/sidebar_note_bg.png) repeat-x bottom left;
+					border: 1px solid #cc9;
+					border-bottom: none;
+					@include border-radius(2px);
+					@include box-shadow($x: 0, $y: 1px, $blur: 0, $color: rgba(255, 255, 255, .5), $inset: true);
+				}
+				
+				&:hover .tooltip {
+					display: block;
+				}
+			}
 		}
 		&.checkbox label {
 			display: inline;

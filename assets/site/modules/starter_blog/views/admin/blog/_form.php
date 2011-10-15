@@ -14,7 +14,7 @@
 			<?php echo $f->text_field('subject'); ?>				
 		</div>
 		<?php if ($this->module->setting('include_short')): ?>
-			<div class="field">
+			<div class="field" data-help="If a summary is provided, this will be displayed on list pages.">
 				<?php echo $f->label('short', 'Short Summary:'); ?>
 				<?php echo $f->text_field('short'); ?>				
 			</div>
