@@ -7,7 +7,7 @@
 				<?php echo $f->label('name', 'Name:'); ?>
 				<?php echo $f->text_field('name'); ?>				
 			</div>
-			<div class="field">
+			<div class="field" data-help="The slug is a URL safe name for the page, which becomes it&rsquo;s web address. So a page with the slug of &ldquo;about&rdquo; is accessible at <?=site_url('about')?>">
 				<?php echo $f->label('slug', 'Slug:'); ?>
 				<?php echo $f->text_field('slug'); ?>				
 			</div>
