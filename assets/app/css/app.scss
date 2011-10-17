@@ -214,11 +214,11 @@ form {
 				.tooltip {
 					display: none;
 					position: absolute;
-					top: -5px;
+					top: 0;
 					left: 24px;
 					width: 250px;
 					padding: 5px 5px 10px;
-					background: #ffc url(../images/sidebar_note_bg.png) repeat-x bottom left;
+					background: url(../images/tooltip_bg.png) repeat-x bottom left;
 					border: 1px solid #cc9;
 					border-bottom: none;
 					@include border-radius(2px);
@@ -227,6 +227,14 @@ form {
 				
 				&:hover .tooltip {
 					display: block;
+					
+					&:before {
+						@include position($top: 5px, $left: -6px);
+						content: '';
+						width: 6px;
+						height: 10px;
+						background: url(../images/tooltip_arrow.png) no-repeat;
+					}
 				}
 			}
 		}
