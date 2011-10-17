@@ -3,7 +3,7 @@
 	<?php if (!isset($is_site_variables) || $is_site_variables == false): ?>
 		<fieldset>
 			<legend>Page Info</legend>
-			<div class="field">
+			<div class="field" data-help="Many templates use this for the title bar in the browser. My suggestion, keep is short and simple.">
 				<?php echo $f->label('name', 'Name:'); ?>
 				<?php echo $f->text_field('name'); ?>				
 			</div>
