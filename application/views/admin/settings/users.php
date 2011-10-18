@@ -4,7 +4,7 @@
 <?php if(flash('notice')): ?><div class="notice"><?php echo flash('notice'); ?></div><?php endif; ?>
 
 <form method="post" action="<?=site_url('admin/settings')?>">
-	<h2 id="title"><span class="section">Settings &raquo;</span> <span class="page">Manage Users</span></h2>
+	<h2 id="title" style="position: relative;"><span class="section">Settings &raquo;</span> <span class="page">Manage Users</span> <a href="<?php echo site_url('admin/settings/users/new'); ?>" class="button new user" style="position: absolute; bottom: 5px; right: 0; font-size: 14px;">Add User</a></h2>
 	<?php $this->load->view('admin/settings/_sidebar.php'); ?>
 	<div id="records" class="users">
 		<ul>

@@ -169,6 +169,24 @@ class Settings extends MY_Controller
                 'users' => $users
             ));
         }
+        elseif ($id == 'new')
+        {
+        	if ($userinfo = $this->input->post('user'))
+        	{
+				$data = array(
+				    'first_name' => $userinfo['first_name'],
+				    'last_name'  => $userinfo['last_name'],
+				    'username'   => $userinfo['username'],
+				    'email'      => $userinfo['email'],
+				    'password'   => md5($userinfo['password'])
+				);
+				$this->db->insert('users', $data);
+				
+				flash('notice', 'User successfully created.');
+				redirect('admin/settings/users');
+        	}
+	        $this->load->view('admin/settings/new_user');
+        }
         else
         {
             $user = $this->user_model->first_by_id($id);
@@ -187,7 +205,7 @@ class Settings extends MY_Controller
                     'email'      => $userinfo['email']
                 );
                  
-                if (isset($userinfo['password']) && isset($userinfo['confirm_password']) && $userinfo['password'] == $userinfo['confirm_password'])
+                if (isset($userinfo['password']) && isset($userinfo['confirm_password']) && $userinfo['password'] == $userinfo['confirm_password'] && $userinfo['password'])
                 {
                     $data['password'] = md5($userinfo['password']);
                     $password_reset = true;
