@@ -26,6 +26,13 @@ $route['migrations/seed']				= "migrations/seed";
 $route['migrations/reset']				= "migrations/reset";
 $route['migrations'] 					= 'migrations/index';
 
+$modules = array();
+if (file_exists(MODPATH.'modules.php')) require(MODPATH.'modules.php');
+foreach ($modules as $module)
+{
+	if (file_exists($module.'/config/routes.php')) require($module.'/config/routes.php');
+}
+
 $route['(:any)'] = "front";
 
 $route['default_controller'] = "front";
