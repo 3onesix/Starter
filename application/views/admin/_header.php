@@ -30,7 +30,8 @@
 	<body>
 		<header>
 			<h1 class="image" style="background-image: url(<?=site_url($this->config->item('starter_product_image'))?>)"><a href="<?=site_url('admin')?>"><?=$this->config->item('starter_product_name')?></a></h1>
-			<div class="global"><a href="<?=site_url('admin/settings')?>"<?=($this->uri->segment(2) == 'settings' ? ' class="selected"' : '')?>>Settings</a> &bull; <a href="<?=site_url('admin/signout')?>">Signout</a></div>
+			<?php $greetings = array('Welcome back', 'Hey there'); ?>
+			<div class="global"><?=$greetings[array_rand($greetings)]?>, <?=$this->current_user->first_name?>! (<a href="<?=site_url('admin/settings')?>"<?=($this->uri->segment(2) == 'settings' ? ' class="selected"' : '')?>>Settings</a> &bull; <a href="<?=site_url('admin/signout')?>">Signout</a>)</div>
 		</header>
 		<div class="container">
 			<ul id="navigation">
