@@ -30,7 +30,26 @@
 	<body>
 		<header>
 			<h1 class="image" style="background-image: url(<?=site_url($this->config->item('starter_product_image'))?>)"><a href="<?=site_url('admin')?>"><?=$this->config->item('starter_product_name')?></a></h1>
-			<?php $greetings = array(array('Welcome back', '!'), array('Hey there', '!'), array('Waaaaasup', '?!')); $key = array_rand($greetings); ?>
+			<?php 
+				$greetings = array(array('Welcome back', '!'), array('Hey there', '!'), array('Waaaaasup', '?!'));
+				if (date('H') < 11)
+				{
+					$greetings[] = array('Top o\' the mornin\' to ya', '!');
+					$greetings[] = array('Morning', '!');
+					$greetings[] = array('Good morning', '!');
+				}
+				elseif (date('H') >= 13 && date('H') < 17)
+				{
+					$greetings[] = array('Good afternoon', '!');
+					$greetings[] = array('Afternoon', '!');
+				}
+				elseif (date('H') >= 17)
+				{
+					$greetings[] = array('Good evening', '!');
+					$greetings[] = array('Evenin\'', '!');
+				}
+				$key = array_rand($greetings);
+			?>
 			<div class="global"><?=$greetings[$key][0]?>, <?=$this->current_user->first_name?><?=$greetings[$key][1]?> (<a href="<?=site_url('admin/settings')?>"<?=($this->uri->segment(2) == 'settings' ? ' class="selected"' : '')?>>Settings</a> &bull; <a href="<?=site_url('admin/signout')?>">Signout</a>)</div>
 		</header>
 		<div class="container">
