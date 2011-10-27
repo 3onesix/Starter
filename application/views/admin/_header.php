@@ -17,7 +17,7 @@
 		<link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/shared/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
 		<script type="text/javascript">
 			$(function () {
-				$('#page_variables .field a[href~=.jpg], #page_variables .field a[href~=.png]#page_variables .field a[href~=.jpeg]').fancybox({'transitionIn': 'elastic', 'transitionOut': 'elastic'});
+				$('#page_variables .field a[href~=".jpg"], #page_variables .field a[href~=".png"], #page_variables .field a[href~=".jpeg"]').fancybox({'transitionIn': 'elastic', 'transitionOut': 'elastic'});
 			})
 		</script>
 		<?php 
