@@ -10,6 +10,15 @@
 		<script type="text/javascript" src="<?=base_url()?>assets/app/js/ckeditor/ckeditor.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 		<!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
+		
+		<script type="text/javascript" src="<?=base_url()?>assets/shared/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+		<script type="text/javascript" src="<?=base_url()?>assets/shared/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+		<link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/shared/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+		<script type="text/javascript">
+			$(function () {
+				$('#page_variables .field a[href~=.jpg], #page_variables .field a[href~=.png]#page_variables .field a[href~=.jpeg]').fancybox({'transitionIn': 'elastic', 'transitionOut': 'elastic'});
+			})
+		</script>
 		<?php 
 		
 		$module_screen = $this->module_screen_model->first_by_url($this->uri->segment(2));
