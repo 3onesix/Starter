@@ -17,7 +17,17 @@
 		<link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/shared/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
 		<script type="text/javascript">
 			$(function () {
-				$('#page_variables .field a[href~=".jpg"], #page_variables .field a[href~=".png"], #page_variables .field a[href~=".jpeg"]').fancybox({'transitionIn': 'elastic', 'transitionOut': 'elastic'});
+				$('#page_variables .field a').each(function () {
+					if (($(this).attr('href') ? $(this).attr('href').indexOf('.jpg') : -1) > -1) {
+						$(this).fancybox({'transitionIn': 'elastic', 'transitionOut': 'elastic'});
+					}
+					else if (($(this).attr('href') ? $(this).attr('href').indexOf('.jpeg') : -1) > -1) {
+						$(this).fancybox({'transitionIn': 'elastic', 'transitionOut': 'elastic'});
+					}
+					else if (($(this).attr('href') ? $(this).attr('href').indexOf('.png') : -1) > -1) {
+						$(this).fancybox({'transitionIn': 'elastic', 'transitionOut': 'elastic'});
+					}
+				});
 			})
 		</script>
 		<?php 
