@@ -584,6 +584,15 @@ ul#sidebar {
 		}
 	}
 	
+	#pagination {
+		list-style: none;
+		text-align: center;
+		
+		li {
+			display: inline;
+		}
+	}
+	
 	&.pages {
 		
 		$i: 10;
