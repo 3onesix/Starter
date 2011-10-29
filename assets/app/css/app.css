@@ -549,6 +549,11 @@ ul#sidebar {
         text-overflow: ellipsis;
         white-space: nowrap;
         color: #999; }
+  #records #pagination {
+    list-style: none;
+    text-align: center; }
+    #records #pagination li {
+      display: inline; }
   #records.pages ul ul li {
     padding-left: 10px; }
   #records.pages ul ul ul li {
