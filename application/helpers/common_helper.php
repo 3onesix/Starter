@@ -109,3 +109,26 @@ if ( ! function_exists('message'))
 		return NULL;
 	}
 }
+
+if ( ! function_exists('pagination'))
+{
+	
+	function pagination($pages, $page = 1)
+	{
+		echo '<ul id="pagination">';
+		if ($page > 1)
+		{
+			echo '<li class="previous"><a href="?page='.($page - 1).'">'.($page - 1).'</a></li>';
+		}
+		for ($i=1; $i<=$page; $i++)
+		{
+			echo '<li class="page'.($i == $page ? ' current' : '').'"><a href="?page='.$i.'">'.$i.'</a></li>';
+		}
+		if ($page < $pages)
+		{
+			echo '<li class="next"><a href="?page='.($page + 1).'">'.($page + 1).'</a></li>';
+		}
+		echo '</ul>';
+	}
+	
+}
