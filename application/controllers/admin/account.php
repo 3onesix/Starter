@@ -9,7 +9,10 @@ class Account extends My_Controller
 			redirect('admin'); 
 		}
 		
-		$this->load->view('admin/account/signin', array('notice' => $this->session->flashdata('notice'), 'error' => $this->session->flashdata('error')));
+		$this->load->view('admin/account/signin', array(
+			'notice' => $this->session->flashdata('notice'), 
+			'error' => $this->session->flashdata('error')
+		));
 	}
 	
 	public function action_authenticate()
@@ -40,7 +43,7 @@ class Account extends My_Controller
 		else
 		{
 			$this->session->unset_userdata('user');
-			$this->session->set_flashdata('error', 'Username and/or password is incorrect.');
+			flash('error', 'Username and/or password is incorrect.');
 			redirect('admin/signin');
 		}
 	}
@@ -56,9 +59,14 @@ class Account extends My_Controller
 		if ($code)
 		{
 			$user = $this->user_model->first_by_forgot_code($code);
+			
 			if ($user)
 			{
-				$this->load->view('admin/account/reset', array('notice' => $this->session->flashdata('notice'), 'error' => $this->session->flashdata('error'), 'user' => $user));
+				$this->load->view('admin/account/reset', array(
+					'notice' => $this->session->flashdata('notice'), 
+					'error' => $this->session->flashdata('error'), 
+					'user' => $user
+				));
 			}
 			else
 			{
@@ -68,12 +76,17 @@ class Account extends My_Controller
 		}
 		else
 		{
-			$this->load->view('admin/account/forgot', array('notice' => $this->session->flashdata('notice'), 'error' => $this->session->flashdata('error')));
+			$this->load->view('admin/account/forgot', array(
+				'notice' => $this->session->flashdata('notice'), 
+				'error' => $this->session->flashdata('error')
+			));
 		}
 	}
 	
-	public function action_forgot_process() {
+	public function action_forgot_process() 
+	{
 		$email = $this->input->post('email');
+		
 		if ( $user = $this->user_model->first_by_email($email) )
 		{
 			//create code
@@ -86,18 +99,20 @@ class Account extends My_Controller
 			//email
 			mail($user->email, 'Password reset from '.$this->config->item('starter_product_name'), 'Your username is '.$user->username.'. To reset your password, click the link below: '."\n".$url);
 			
-			$this->session->set_flashdata('notice', 'Check your email for a reset link.');
+			flash('notice', 'Check your email for a reset link.');
 			redirect('admin/forgot_password');
 		}
 		else
 		{
-			$this->session->set_flashdata('error', 'Email address not found.');
+			flash('error', 'Email address not found.');
 			redirect('admin/forgot_password');
 		}
 	}
 	
-	public function action_reset_process($code) {
+	public function action_reset_process($code) 
+	{
 		$user = $this->user_model->first_by_forgot_code($code);
+		
 		if ($user)
 		{
 			$password         = $this->input->post('password');
@@ -107,18 +122,18 @@ class Account extends My_Controller
 			{
 				$this->db->update('users', array('password' => md5($password)), array('id' => $user->id));
 				
-				$this->session->set_flashdata('notice', 'Your password has been reset.');
+				flash('notice', 'Your password has been reset.');
 				redirect('admin/signin');
 			}
 			else
 			{
-				$this->session->set_flashdata('error', 'Password and confirm password must match');
+				flash('error', 'Password and confirm password must match');
 				redirect('admin/forgot_password/'.$code);
 			}
 		}
 		else
 		{
-			$this->session->set_flashdata('error', 'Invalid reset code.');
+			flash('error', 'Invalid reset code.');
 			redirect('admin/signin');
 		}
 	}
