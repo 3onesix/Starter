@@ -550,6 +550,7 @@ ul#sidebar {
         white-space: nowrap;
         color: #999; }
   #records #pagination {
+    margin-top: 10px;
     list-style: none;
     text-align: center; }
     #records #pagination li {
@@ -560,9 +561,12 @@ ul#sidebar {
         text-align: center; }
         #records #pagination li a:hover {
           background: #51626f;
-          color: #fff; }
+          color: #fff;
+          text-decoration: none; }
       #records #pagination li.page a {
         width: 20px; }
+      #records #pagination li.current {
+        font-weight: bold; }
   #records.pages ul ul li {
     padding-left: 10px; }
   #records.pages ul ul ul li {
