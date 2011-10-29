@@ -585,6 +585,7 @@ ul#sidebar {
 	}
 	
 	#pagination {
+		margin-top: 10px;
 		list-style: none;
 		text-align: center;
 		
@@ -593,18 +594,22 @@ ul#sidebar {
 			
 			a {
 				display: inline-block;
-				width: 20px;
 				padding: 5px;
 				text-align: center;
-				
-				&.next, &.previous {
-					width: auto;
-				}
 				
 				&:hover {
 					background: $navigation;
 					color: #fff;
+					text-decoration: none;
 				}
+			}
+			
+			&.page a {
+				width: 20px;
+			}
+			
+			&.current {
+				font-weight: bold;
 			}
 		}
 	}
