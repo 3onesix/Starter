@@ -115,6 +115,8 @@ if ( ! function_exists('pagination'))
 	
 	function pagination($pages, $page = 1)
 	{
+		if ($pages == 1) return false;
+		
 		echo '<ul id="pagination">';
 		if ($page > 1)
 		{
