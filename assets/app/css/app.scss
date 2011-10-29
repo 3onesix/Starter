@@ -590,6 +590,22 @@ ul#sidebar {
 		
 		li {
 			display: inline;
+			
+			a {
+				display: inline-block;
+				width: 20px;
+				padding: 5px;
+				text-align: center;
+				
+				&.next, &.previous {
+					width: auto;
+				}
+				
+				&:hover {
+					background: $navigation;
+					color: #fff;
+				}
+			}
 		}
 	}
 	
