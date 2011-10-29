@@ -113,8 +113,10 @@ if ( ! function_exists('message'))
 if ( ! function_exists('pagination'))
 {
 	
-	function pagination($pages, $page = 1)
+	function pagination($pages)
 	{
+		$page = $this->input->get('page');
+	
 		if ($pages == 1) return false;
 		
 		echo '<ul id="pagination">';
