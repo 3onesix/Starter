@@ -115,7 +115,8 @@ if ( ! function_exists('pagination'))
 	
 	function pagination($pages)
 	{
-		$page = $this->input->get('page');
+		$CI =& get_instance();
+		$page = $CI->input->get('page');
 	
 		if ($pages == 1) return false;
 		
