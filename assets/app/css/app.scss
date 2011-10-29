@@ -591,13 +591,8 @@ ul#sidebar {
 		li {
 			display: inline;
 			
-			&.next a, &.previous a {
-				width: auto;
-			}
-			
 			a {
 				display: inline-block;
-				width: 20px;
 				padding: 5px;
 				text-align: center;
 				
@@ -605,6 +600,10 @@ ul#sidebar {
 					background: $navigation;
 					color: #fff;
 				}
+			}
+			
+			&.page a {
+				width: 20px;
 			}
 		}
 	}

@@ -556,14 +556,13 @@ ul#sidebar {
       display: inline; }
       #records #pagination li a {
         display: inline-block;
-        width: 20px;
         padding: 5px;
         text-align: center; }
-        #records #pagination li a.next, #records #pagination li a.previous {
-          width: auto; }
         #records #pagination li a:hover {
           background: #51626f;
           color: #fff; }
+      #records #pagination li.page a {
+        width: 20px; }
   #records.pages ul ul li {
     padding-left: 10px; }
   #records.pages ul ul ul li {
