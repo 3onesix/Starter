@@ -47,7 +47,7 @@ class Page_Model extends My_Model
 				}
 				else
 				{
-					return $variable->type == 'file' ? $variable->file : $variable->value;
+					return $variable->type == 'file' ? ($variable->file_file_name ? $variable->file : null) : $variable->value;
 				}
 			}
 			return null;
