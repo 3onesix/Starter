@@ -230,7 +230,7 @@
 <div id="sidebar">
 	<?php if ((!isset($is_site_variables) || !$is_site_variables) && $page->template_id): ?>
 		<h2>Modules</h2>
-		<?php foreach ($this->module_model->all() as $module): ?>
+		<?php foreach ($this->module_model->all('order' => 'name ASC') as $module): ?>
 			<div class="field checkbox"><input type="checkbox" name="modules[<?=$module->id?>]" id="moduled_<?=$module->id?>_field" value="1" <?=($page->template->requires_module($module->simple_name) ? 'checked="checked" disabled="disabled"' : ($page->page_modules->exists(array('module_id' => $module->id)) ? 'checked="checked"' : ''))?> /> <label for="moduled_<?=$module->id?>_field"<?=($page->template->requires_module($module->simple_name) ? ' class="disabled"' : '')?>><?=$module->name?></label></div>
 		<?php endforeach; ?>
 	<?php endif; ?>
