@@ -11,6 +11,18 @@ class Module_Model extends My_Model {
 		$this->after_save('save_module_array');
 	}
 	
+	function page_modules() //get all modules that can be included on a page
+	{
+		$query = $this->db->query('SELECT DISTINCT module_id FROM module_files WHERE include_on_page = 1');
+		$ids   = array();
+		if ($query->num_rows())
+		{
+			foreach ($query->result() as $row) $ids[] = $row->module_id;
+		}
+		$this->db->order_by('name');
+		return $this->all(array('id' => $ids));
+	}
+	
 	function save_module_array()
 	{		
 		$names = array();
