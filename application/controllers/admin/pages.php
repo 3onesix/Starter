@@ -13,13 +13,7 @@ class Pages extends MY_Controller
 		$ga = $this->module_model->first(array('simple_name' => 'starter_googleanalytics'));
 		if ($ga)
 		{
-			$this->load->library('GoogleAnalytics', array(
-				'email' => $ga->setting('username'),
-				'password' => $ga->setting('password')
-			));
-			$this->googleanalytics->setProfile('ga:'.$ga->setting('profile'));
 			$this->load->helper('googleanalytics');
-			
 			$this->load->vars(array('ga' => $ga));
 		}
 	}
