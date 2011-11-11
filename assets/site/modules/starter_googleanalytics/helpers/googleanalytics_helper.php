@@ -5,7 +5,7 @@ if ( ! function_exists('analytics_view') )
 	function analytics_view($title, $method, $options = array()) {
 		$time = time();
 		?>
-			<div class="googleanalytics_view" id="ga-<?=$time?>" style="margin-bottom: 10px"><h2 style="margin-bottom: 10px"><?=$title?></h2><ul style="position: relative; height: 200px; list-style: none; border: 4px solid #fff; background: #f1f1f1; box-shadow: 0 2px 3px rgba(0, 0, 0, .3), inset 0 3px 5px rgba(0, 0, 0, .2);"></ul></div>
+			<div class="googleanalytics_view" id="ga-<?=$time?>" style="margin-bottom: 10px"><h2 style="margin-bottom: 10px"><?=$title?></h2><ul style="position: relative; height: 200px; margin: 0; list-style: none; border: 4px solid #fff; background: #f1f1f1; box-shadow: 0 2px 3px rgba(0, 0, 0, .3), inset 0 3px 5px rgba(0, 0, 0, .2);"></ul></div>
 			<script type="text/javascript">
 				var activateGAView = function (view) {
 					var ul = view.find('ul');
