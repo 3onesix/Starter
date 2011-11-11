@@ -230,7 +230,7 @@
 	
 	if ($ga && $page->persisted())
 	{
-		analytics_view('Visits to '.$page->full_slug.' for the last week', 'page', array('range' => 'week', 'path' => '/'.($page->full_slug != 'index' ? $page->full_slug : '')));
+		analytics_view('Visits to /'.$page->full_slug.' for the last week', 'page', array('range' => 'week', 'path' => '/'.($page->full_slug != 'index' ? $page->full_slug : '')));
 	}
 	
 	?>
