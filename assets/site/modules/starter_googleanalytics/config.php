@@ -11,9 +11,24 @@ $module		 						= array(
 			'label' 				=> 'Google Analytics Key',
 			'key'					=> 'key',
 			'type'					=> 'string'
+		),
+		array(
+			'label' 				=> 'Google Analytics Username',
+			'key'					=> 'username',
+			'type'					=> 'string'
+		),
+		array(
+			'label' 				=> 'Google Analytics Password',
+			'key'					=> 'password',
+			'type'					=> 'string'
+		),
+		array(
+			'label' 				=> 'Google Analytics Profile',
+			'key'					=> 'profile',
+			'type'					=> 'string'
 		)
 	),
-	'files'							=> array(
+	/*'files'							=> array(
 		array(
 			'type'					=> 'widget',
 			'name'					=> 'page.php',
@@ -24,12 +39,12 @@ $module		 						= array(
 			'name'					=> 'googleanalytics.php',
 			'include_on_page'		=> 1
 		)
-	),
-	'widgets'						=> array(
+	),*/
+	/*'widgets'						=> array(
 		array(
 			'name'					=> 'Page Analytics',
 			'view'					=> 'page',
 			'where'					=> 'page'
 		)
-	)
+	)*/
 );

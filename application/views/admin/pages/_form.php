@@ -226,6 +226,14 @@
 			<?php endforeach; ?>
 		</fieldset>
 	<?php endif; ?>
+	<?php 
+	
+	if ($ga && $page->persisted())
+	{
+		analytics_view('Visits to '.$page->full_slug.' for the last week', 'page', array('range' => 'week', 'path' => '/'.$page->full_slug));
+	}
+	
+	?>
 </div>
 <div id="sidebar">
 	<?php if ((!isset($is_site_variables) || !$is_site_variables) && $page->template_id): ?>
