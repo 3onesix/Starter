@@ -1,3 +1,12 @@
+<?php 
+
+if (file_exists('assets/site/templates/error_404.php'))
+{
+	include('assets/site/templates/error_404.php');
+	die();
+}
+
+?>
 <html>
 <head>
 <title>404 Page Not Found</title>
