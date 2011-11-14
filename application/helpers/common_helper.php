@@ -145,7 +145,8 @@ if ( ! function_exists('sidebar_filters') )
 	{
 		$CI =& get_instance();
 		$CI->load->library('session');
-		$stored_filters = $CI->session->userdata('filters');
+		$page_id = md5(current_url());
+		$stored_filters = $CI->session->userdata('filters_'.$page_id);
 		if (!$stored_filters) $stored_filters = array();
 		
 		$html = '<form method="post" action="" class="sidebar_filters"><h2>Filters</h2>';
@@ -177,11 +178,13 @@ if ( ! function_exists('sidebar_filters') )
 	
 	function save_filters()
 	{
+		$CI =& get_instance();
+		$CI->load->library('session');
+		$page_id = md5(current_url());
+		
 		if (isset($_GET['clear_filters']) == 'true')
 		{
-			$CI =& get_instance();
-			$CI->load->library('session');
-			$CI->session->unset_userdata('filters');
+			$CI->session->unset_userdata('filters_'.$page_id);
 			redirect(current_url());
 		}
 		if (isset($_POST['sidebar_filters']))
@@ -191,10 +194,8 @@ if ( ! function_exists('sidebar_filters') )
 			{
 				$filters[$name] = $filter;
 			}
-			$CI =& get_instance();
-			$CI->load->library('session');
 			$CI->session->set_userdata(array(
-				'filters' => $filters
+				'filters_'.$page_id => $filters
 			));
 			redirect(current_url());
 		}
@@ -204,7 +205,8 @@ if ( ! function_exists('sidebar_filters') )
 	{
 		$CI =& get_instance();
 		$CI->load->library('session');
-		$stored_filters = $CI->session->userdata('filters');
+		$page_id = md5(current_url());
+		$stored_filters = $CI->session->userdata('filters_'.$page_id);
 		if (!$stored_filters) $stored_filters = array();
 		
 		if (isset($stored_filters[$name]))
