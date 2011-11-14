@@ -27,7 +27,7 @@ class Template_Model extends My_Model
 	{
 		$templates = opendir(FCPATH.'assets/site/templates');
 		while (($file = readdir($templates)) !== false) {
-			if (!is_dir(FCPATH.'assets/site/templates/'.$file) && strrpos($file, '.config.php') == false && substr($file, 0) != '_' && file_exists(FCPATH.'assets/site/templates/'.str_replace('.php', '.config.php', $file)))
+			if (!is_dir(FCPATH.'assets/site/templates/'.$file) && $file != 'error_404.php' && strrpos($file, '.config.php') == false && substr($file, 0) != '_' && file_exists(FCPATH.'assets/site/templates/'.str_replace('.php', '.config.php', $file)))
 			{	
 				$name = str_replace('.php', '', $file);
 				
