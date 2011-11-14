@@ -407,6 +407,21 @@ form {
 		@include border-radius(2px);
 		@include box-shadow($x: 0, $y: 1px, $blur: 0, $color: rgba(255, 255, 255, .5), $inset: true);
 	}
+	
+	.sidebar_filters {
+		font-size: 12px;
+		color: #555;
+		
+		label {
+			font-size: 12px;
+			color: #777;
+		}
+		
+		select, input[type=text] {
+			width: 100%;
+			margin-bottom: 5px;
+		}
+	}
 }
 ul#sidebar {
 	list-style: none;

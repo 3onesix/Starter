@@ -137,3 +137,99 @@ if ( ! function_exists('pagination'))
 	}
 	
 }
+
+if ( ! function_exists('sidebar_filters') )
+{
+	
+	function sidebar_filters($filters)
+	{
+		$CI =& get_instance();
+		$CI->load->library('session');
+		$stored_filters = $CI->session->userdata('filters');
+		if (!$stored_filters) $stored_filters = array();
+		
+		$html = '<form method="post" action="" class="sidebar_filters"><h2>Filters</h2>';
+		foreach ($filters as $label => $options)
+		{
+			$id = url_title('sidebar filters '.$label.' field', 'underscore', true);
+			$name = 'sidebar_filters['.url_title($label, 'underscore', true).']';
+			$html .= '<label for="'.$id.'">'.$label.'</label><br />';
+			
+			if ($options !== null)
+			{
+				$html .= '<select id="'.$id.'" name="'.$name.'">';
+				foreach ($options as $value => $option)
+				{
+					$html .= '<option value="'.$value.'"'.(isset($stored_filters[url_title($label, 'underscore', true)]) && $stored_filters[url_title($label, 'underscore', true)] == $value ? ' selected="selected"' : '').'>'.$option.'</option>';
+				}
+				$html .= '</select><br />';
+			}
+			else
+			{
+				$html .= '<input type="text" id="'.$id.'" name="'.$name.'" value="'.(isset($stored_filters[url_title($label, 'underscore', true)]) ? $stored_filters[url_title($label, 'underscore', true)] : '').'" />';
+			}
+		}
+		$html .= '<input type="submit" value="Submit" /> or <a href="?clear_filters=true">clear</a>';
+		$html .= '</form>';
+		
+		echo $html;
+	}
+	
+	function save_filters()
+	{
+		if (isset($_GET['clear_filters']) == 'true')
+		{
+			$CI =& get_instance();
+			$CI->load->library('session');
+			$CI->session->unset_userdata('filters');
+			redirect(current_url());
+		}
+		if (isset($_POST['sidebar_filters']))
+		{
+			$filters = array();
+			foreach ($_POST['sidebar_filters'] as $name => $filter)
+			{
+				$filters[$name] = $filter;
+			}
+			$CI =& get_instance();
+			$CI->load->library('session');
+			$CI->session->set_userdata(array(
+				'filters' => $filters
+			));
+			redirect(current_url());
+		}
+	}
+	
+	function get_filter($name)
+	{
+		$CI =& get_instance();
+		$CI->load->library('session');
+		$stored_filters = $CI->session->userdata('filters');
+		if (!$stored_filters) $stored_filters = array();
+		
+		if (isset($stored_filters[$name]))
+		{
+			return $stored_filters[$name];
+		}
+		return false;
+	}
+	
+	save_filters();
+	/*sidebar_filters(array(
+		'Order by' => array(
+			'created_at' => 'Created Date',
+			'updated_at' => 'Updated Date',
+			'subject'    => 'Article Title'
+		),
+		'Order direction' => array(
+			'DESC' => 'Descending',
+			'ASC'  => 'Ascending'
+		),
+		'Status' => array(
+			'all' => 'All',
+			'1'   => 'Published',
+			'0'   => 'Unpublished'
+		)
+	));*/
+	
+}
