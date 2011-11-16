@@ -216,22 +216,158 @@ if ( ! function_exists('sidebar_filters') )
 		return false;
 	}
 	
-	save_filters();
-	/*sidebar_filters(array(
-		'Order by' => array(
-			'created_at' => 'Created Date',
-			'updated_at' => 'Updated Date',
-			'subject'    => 'Article Title'
-		),
-		'Order direction' => array(
-			'DESC' => 'Descending',
-			'ASC'  => 'Ascending'
-		),
-		'Status' => array(
-			'all' => 'All',
-			'1'   => 'Published',
-			'0'   => 'Unpublished'
-		)
-	));*/
-	
+	save_filters();	
+}
+
+if ( ! function_exists('getVariableObject'))
+{
+	function getVariableObject($type, $variable, $fieldname, $page_id, $parent = null, $index = null)
+	{
+		$fileName = ucfirst($type).'_Variable.php';
+		$className = ucfirst($type).'_Variable';
+		$file = '';
+		
+		//check default location
+		if (file_exists('assets/app/variables/'.$fileName)) $file = 'assets/app/variables/'.$fileName;
+		
+		//check each module
+		if (file_exists(MODPATH.'modules.php')) require(MODPATH.'modules.php');
+		foreach ($modules as $module)
+		{
+			if (file_exists($module.'/variables/'.$fileName))
+			{
+				$file = file_exists($module.'/variables/'.$fileName);
+				break;
+			}
+		}
+		
+		if ($file)
+		{
+			require_once($file);
+			
+			if (class_exists($className))
+			{
+				return new $className($variable, $fieldname, $page_id, $parent, $index);
+			}
+		}
+		return false;
+	}
+}
+
+if ( ! class_exists('Starter_Variable'))
+{
+	class Starter_Variable {
+		
+		function __construct($variable, $fieldname, $page_id, $parent = null, $index = null)
+		{
+			$this->variable 	= $variable;
+			$this->fieldname 	= $fieldname;
+			$this->page_id 		= $page_id;
+			$this->parent 		= $parent;
+			$this->index 		= $index;
+			
+			$this->CI			= get_instance();
+		}
+		
+		function page_variable()
+		{
+			if (!isset($this->page_variable))
+			{
+				$this->page_variable = $this->CI->page_variable_model->first(array('name' => $this->variable->name, 'page_id' => $this->page_id, 'array_index' => $this->index, 'page_variable_id' => $this->parent ? $this->parent->id : null));
+			}
+			
+			return $this->page_variable;
+		}
+		
+		function post_variable()
+		{
+			if (!$this->parent)
+			{
+				return value_for_key($this->variable->name, $this->CI->input->post('variables'));
+			}
+			else
+			{
+				return value_for_key($this->parent->name.'.'.$this->index.'.'.$this->variable->name, $this->CI->input->post('variables'));
+			}
+		}
+		
+		function render()
+		{
+			$value = $this->value();
+			$id = url_title($this->fieldname, 'underscore', true).'_field';
+			
+			return '<div class="field"><label for="'.$id.'">'.$this->variable->label.':</label><input type="text" name="'.$this->fieldname.'" id="'.$id.'" value="'.$value.'" /></div>';
+		}
+		
+		function save()
+		{
+			//get page variable and template
+			$v  = $this->page_variable();
+			$tv = $this->variable;
+			
+			$variable = $this->post_variable();
+			
+			if ($v) //variable exists for page, so let's update it
+			{
+				$hasChanged = false;
+				if ($v->value != $variable) //variable has been updated
+				{
+					$v->value = $variable;
+					
+					$hasChanged = true;
+				}
+				if ($tv->label != $v->label || $tv->type != $v->type) //template has been updated
+				{
+					$v->label = $tv->label;
+					$v->type  = $tv->type;
+					
+					$hasChanged = true;
+				}
+				if ($hasChanged)
+				{
+					$v->save();
+				}
+			}
+			else //variable needs to be created
+			{
+				$v = $this->CI->page_variable_model->create(array(
+				    'page_id' 			=> $this->page_id,
+				    'name'    			=> $tv->name,
+				    'value'   			=> $variable,
+				    'label'   			=> $tv->label,
+				    'type'    			=> $tv->type,
+				    'array_index'		=> $this->index,
+				    'page_variable_id' 	=> $this->parent ? $this->parent->id : null
+				));
+			}
+		}
+		
+		function load()
+		{
+			//get page variable
+			$page_variable = $this->page_variable();
+			if ($page_variable)
+			{
+				return $page_variable->value;
+			}
+			return null;
+		}
+		
+		// return the value of the variable or the default value if the variable doesn't exist yet
+		protected function value()
+		{
+			if ($this->index === null)
+			{
+				$var = $this->CI->page_variable_model->first(array('name' => $this->variable->name, 'page_id' => $this->page_id));
+				if ($var) return $var->value;
+			}
+			elseif ($this->parent)
+			{
+				$page_var = $this->CI->page_model->variable($this->parent->name, null, $this->page_id);
+				return $page_var && isset($page_var[$this->index][$this->variable->name]) ? $page_var[$this->index][$this->variable->name] : $this->variable->value;
+			}
+			return $this->variable->value;
+		}
+		
+	}
 }

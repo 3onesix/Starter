@@ -17,3 +17,6 @@ assets/site/modules/modules.php
 
 assets/site/uploads/*
 *.psd
+
+assets/site/templates/test_template.php
+assets/site/templates/test_template.config.php

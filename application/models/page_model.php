@@ -28,50 +28,20 @@ class Page_Model extends My_Model
 	
 	function variable($name, $value = null, $page_id = null)
 	{
-		if ($value === null)
+		if ($value !== null)
 		{
-			if (($this->template_id || $page_id !== null) && ($page_id !== null ? $this->page_variable_model->exists(array('page_id' => $page_id, 'name' => $name)) : $this->page_variables->exists(array('name' => $name))))
-			{
-				$variable = ($page_id !== null ? $this->page_variable_model->first(array('page_id' => $page_id, 'name' => $name)) : $this->page_variables->first(array('name' => $name)));
-				
-				if ($variable->type == 'array' && $variable->value == '')
-				{
-					$blocks = $variable->page_variables->all(array('order' => 'array_index'));
-					$array = array();
-					foreach ($blocks as $block)
-					{
-						if (!isset($array[$block->array_index])) $array[$block->array_index] = array();
-						$array[$block->array_index][$block->name] = $block->type == 'file' ? $block->file : $block->value;
-					}
-					return $array;
-				}
-				else
-				{
-					return $variable->type == 'file' ? ($variable->file_file_name ? $variable->file : null) : $variable->value;
-				}
-			}
-			return null;
+			echo '$page->variable($name, $value) is a deprecated function.';
+			die();
 		}
-		else
+		
+		if (($this->template_id || $page_id !== null) && ($page_id !== null ? $this->page_variable_model->exists(array('page_id' => $page_id, 'name' => $name)) : $this->page_variables->exists(array('name' => $name))))
 		{
-			if ($this->template_id)
-			{
-				if ($this->page_variables->exists(array('name' => $name)))
-				{
-					$variable = $this->page_variables->first(array('name' => $name));
-					$variable->value = $value;
-					$variable->save();
-				}
-				else
-				{
-					$this->page_variable_model->create(array(
-						'page_id' => $this->id,
-						'name' => $name,
-						'value' => $value
-					));
-				}
-			}
+			$variable = ($page_id !== null ? $this->page_variable_model->first(array('page_id' => $page_id, 'name' => $name)) : $this->page_variables->first(array('name' => $name)));
+			$variableInstance = getVariableObject($variable->type, $variable, '', $page_id ? $page_id : 0);
+			
+			return $variableInstance->load();
 		}
+		return null;
 	}
 	
 	public function set_slug($key, $value)
@@ -127,7 +97,7 @@ class Page_Model extends My_Model
 		$array = array();
 		foreach ($variables as $variable)
 		{
-			$array[$variable->name] = $this->variable($variable->name, null, $page_id);
+			$array[$variable->name] = $this->variable($variable->name, null, $variable->page_id);
 		}
 		return $array;
 	}

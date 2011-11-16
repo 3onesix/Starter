@@ -35,170 +35,13 @@
 		<fieldset>
 			<legend><?=$is_site_variables ? 'Site' : 'Page'?> Variables</legend>
 			<?php 
-			
-			function build_variable($variable, &$page, &$variables, $sub = false, $index = 0, $site_variables = null)
-			{
-				$CI =& get_instance();
-				
-				if (!$sub) $variables[] = $variable->name;
-				else
+				foreach (($is_site_variables ? $this->template_variable_model->all(array('template_variable_id' => null, 'template_id' => 0)) : $page->template->template_variables->all(array('template_variable_id' => null))) as $variable)
 				{
-					if ($site_variables)
-					{
-						if ($page_var = $CI->page_model->variable($sub->name, null, 0))
-						{
-							$page_var = ($page_var);
-						}
-						else
-						{
-							$page_var = null;
-						}
-					}
-					else 
-					{
-						if ($page_var = $page->variable($sub->name))
-						{
-							$page_var = ($page_var);
-						}
-						else
-						{
-							$page_var = null;
-						}
-					}
+					$name = 'variables['.$variable->name.']';
+					$variableInstance = getVariableObject($variable->type, $variable, $name, $is_site_variables ? 0 : $page->id);
+					echo $variableInstance ? $variableInstance->render() : '';
 				}
-				
-				if ($variable->type != 'array')
-				{
-					$name  = 'variables'.($sub ? '['.$sub->name.']['.$index.']' : '').'['.$variable->name.']';
-					$id    = 'variables_'.($sub ? $sub->name.'_'.$index.'_' : '').$variable->name.'_field';
-					
-					if ($site_variables)
-					{
-						
-						if ($sub)
-						{
-							$page_variable = $CI->page_variable_model->first(array('name' => $sub->name, 'page_variable_id' => null, 'page_id' => 0));
-							
-							$value = $page_var && isset($page_var[$index][$variable->name]) ? $page_var[$index][$variable->name] : $variable->value;
-							
-							if ($variable->type == 'file' && $page_variable)
-							{
-								$file_variable = $CI->page_variable_model->first(array('page_id' => 0, 'name' => $variable->name, 'page_variable_id' => $page_variable->id, 'array_index' => $index));
-							}
-						}
-						else
-						{
-							$value = $CI->page_variable_model->first(array('name' => $variable->name, 'page_id' => 0)) ? $CI->page_variable_model->first(array('name' => $variable->name, 'page_id' => 0))->value : $variable->value;
-							
-							if ($variable->type == 'file')
-							{
-								$file_variable = $CI->page_variable_model->first(array('page_id' => 0, 'name' => $variable->name, 'page_variable_id' => null));
-							}
-						}
-					}
-					else 
-					{
-						if ($sub)
-						{
-							$page_variable = $CI->page_variable_model->first(array('name' => $sub->name, 'page_variable_id' => null, 'page_id' => $page->id));
-							
-							$value = $page_var && isset($page_var[$index][$variable->name]) ? $page_var[$index][$variable->name] : $variable->value;
-							
-							if ($variable->type == 'file' && $page_variable)
-							{
-								$file_variable = $CI->page_variable_model->first(array('page_id' => $page->id, 'name' => $variable->name, 'page_variable_id' => $page_variable->id, 'array_index' => $index));
-							}
-						}
-						else
-						{
-							$value = $page->variable($variable->name) !== null ? $page->variable($variable->name) : $variable->value;
-							
-							if ($variable->type == 'file')
-							{
-								$file_variable = $CI->page_variable_model->first(array('page_id' => $page->id, 'name' => $variable->name, 'page_variable_id' => null));
-							}
-						}
-					}
-					
-					$html  = '<div class="field">';
-					$html .= '<label for="'.$id.'">'.$variable->label.':</label>';
-					
-					switch ($variable->type) {
-						case 'string':
-							if (!$variable->options)
-							{
-								$html .= '<input type="text" name="'.$name.'" id="'.$id.'" value="'.$value.'" />';
-							}
-							else
-							{
-								$variable->options = is_array($variable->options) ? $variable->options : unserialize($variable->options);
-								
-								$html .= '<select name="'.$name.'" id="'.$id.'">';
-								
-								foreach ($variable->options as $option)
-								{
-									$html .= '<option value="'.$option.'"'.($value && $value == $option ? ' selected="selected"' : '').'>'.$option.'</option>';
-								}
-								
-								$html .= '</select>';
-							}
-						break;
-						case 'file':
-							$html .= '<input type="hidden" name="'.$name.'" value="1"/>';
-							$html .= '<input type="file" name="'.$name.'" id="'.$id.'" />';
-														
-							if ( $variable->type == 'file' && isset($file_variable) && $file_variable->file_file_name ) {
-								$html .= '<a href="'.$file_variable->file->url().'" class="view_file">View File</a>';
-							}
-						break;
-						case 'binary':
-							$html .= '<textarea type="text" name="'.$name.'" id="'.$id.'">'.$value.'</textarea>';
-						break;
-						case 'html':
-							$html .= '<textarea type="text" name="'.$name.'" id="'.$id.'" class="wysiwyg">'.$value.'</textarea>';
-						break;
-					}
-					
-					$html .= '</div>';
-				}
-				else
-				{
-					$html  = '<fieldset class="repeatable">';
-					$html .= '<legend>'.$variable->name.'</legend>';
-					
-					if ($page_var = ($site_variables ? $page->variable($variable->name, null, 0) : $page->variable($variable->name)))
-					{
-						$page_var = ($page_var);
-						$count    = count($page_var);
-					}
-					else
-					{
-						$count = 1;
-					}
-					$page_variable = $CI->page_variable_model->first(array('name' => $variable->name, 'page_variable_id' => null, 'page_id' => $site_variables ? 0 : $page->id));
-					
-					for ($i=0; $i<$count; $i++)
-					{
-						$html .= '<div class="repeatable_block" data-name="'.$variable->name.'"  data-index="'.$i.'">';
-						$html .= '<input type="hidden" name="variables['.$variable->name.']['.$i.'][id]" value="'.($page_variable ? $page_variable->id.'_'.$i : $variable->id.'_'.$i).'" class="remove_on_clone" />';
-						$vars  = $variable->template_variables->all();
-						foreach ($vars as $v)
-						{
-							$html .= build_variable($v, $page, $variables, $variable, $i, $site_variables);
-						}
-						$html .= '</div>';
-					}
-					
-					$html .= '</fieldset>';
-				}
-				
-				return $html;
-			}
-			
 			?>
-			<?php foreach (($is_site_variables ? $this->template_variable_model->all(array('template_variable_id' => null, 'template_id' => 0)) : $page->template->template_variables->all(array('template_variable_id' => null))) as $variable): ?>
-				<?=build_variable($variable, $page, $variables, false, 0, $is_site_variables ? $this->page_variable_model->all(array('page_id' => 0)) : null)?>
-			<?php endforeach; ?>
 		</fieldset>
 	<?php endif; ?>
 	<?php 
@@ -209,7 +52,7 @@
 			}
 		}
 	?>
-	<?php if (count($not_used)): ?>
+	<?php if (0 == 1 && count($not_used)): ?>
 		<fieldset>
 			<legend>Unavailable Page Variables</legend>
 			<?php foreach ($not_used as $variable): ?>
