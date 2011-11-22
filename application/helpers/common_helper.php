@@ -161,7 +161,19 @@ if ( ! function_exists('sidebar_filters') )
 				$html .= '<select id="'.$id.'" name="'.$name.'">';
 				foreach ($options as $value => $option)
 				{
-					$html .= '<option value="'.$value.'"'.(isset($stored_filters[url_title($label, 'underscore', true)]) && $stored_filters[url_title($label, 'underscore', true)] == $value ? ' selected="selected"' : '').'>'.$option.'</option>';
+					if (is_array($option))
+					{
+						$html .= '<optgroup label="'.$value.'">';
+						foreach ($option as $value => $opt)
+						{
+							$html .= '<option value="'.$value.'"'.(isset($stored_filters[url_title($label, 'underscore', true)]) && $stored_filters[url_title($label, 'underscore', true)] == $value ? ' selected="selected"' : '').'>'.$opt.'</option>';
+						}
+						$html .= '</optgroup>';
+					}
+					else
+					{
+						$html .= '<option value="'.$value.'"'.(isset($stored_filters[url_title($label, 'underscore', true)]) && $stored_filters[url_title($label, 'underscore', true)] == $value ? ' selected="selected"' : '').'>'.$option.'</option>';
+					}
 				}
 				$html .= '</select><br />';
 			}
