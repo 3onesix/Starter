@@ -12,7 +12,7 @@
 			<?php $is_odd = true; ?>
 			<?php $installed = array(); ?>
 			<?php foreach ($modules as $module): ?>
-				<li<?=($is_odd ? ' class="odd"' : '')?>><div class="what"><?=$module->name?></div> <div class="actions"><?php if($module->settings->count()): ?><a href="<?=site_url('admin/settings/modules/'.$module->simple_name)?>" class="settings">settings</a> <?php endif; ?><a href="#" class="delete">delete</a></div></li>
+				<li<?=($is_odd ? ' class="odd"' : '')?>><div class="what"><?=$module->name?><?=$module->has_update ? ' (<a href="'.site_url('admin/settings/modules/update/'.$module->simple_name).'">update module</a>)' : ''?></div> <div class="actions"><?php if($module->settings->count()): ?><a href="<?=site_url('admin/settings/modules/'.$module->simple_name)?>" class="settings">settings</a> <?php endif; ?><a href="#" class="delete">delete</a></div></li>
 				<?php $is_odd = !$is_odd; ?>
 				<?php $installed[] = $module->simple_name; ?>
 			<?php endforeach; ?>

@@ -48,4 +48,26 @@ class Module_Model extends My_Model {
 		return $setting ? $setting->value : null;
 	}
 	
+	function get_current_config()
+	{
+		$file = 'assets/site/modules/'.$this->simple_name.'/config.php';
+		if (file_exists($file))
+		{
+			include($file);
+			return isset($module) && is_array($module) ? $module : null;
+		}
+		return null;
+	}
+	
+	function get_has_update()
+	{
+		
+		if ($this->current_config && is_array($this->current_config) && $this->current_config['version'] != $this->version)
+		{
+			return true;
+		}
+		
+		return false;
+	}
+	
 }
