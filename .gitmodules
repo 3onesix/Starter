@@ -7,3 +7,6 @@
 [submodule "assets/app/css/mixins"]
 	path = assets/app/css/mixins
 	url = git@github.com:3onesix/SASS-Mixins.git
+[submodule "assets/site/modules/starter_blog"]
+	path = assets/site/modules/starter_blog
+	url = git@github.com:3onesix/Blog-Module.git
