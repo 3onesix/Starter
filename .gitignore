@@ -20,3 +20,5 @@ assets/site/uploads/*
 
 assets/site/templates/test_template.php
 assets/site/templates/test_template.config.php
+
+assets/site/modules/starter_blog/*
