@@ -3,7 +3,7 @@ var activateHTMLFields = function () {
 		CKEDITOR.replace( $(this).attr('id'), {
 			toolbar :
 			[
-				[ 'Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink', 'Source' ],
+				[ 'Bold', 'Italic', '-', 'Styles', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink', 'PasteFromWord', 'Source' ],
 				[ 'UIColor' ]
 			],
 			/*
@@ -36,19 +36,12 @@ var activateHTMLFields = function () {
 			 * Styles combo.
 			 */
 			stylesSet : [
-				{ name : 'Strong Emphasis', element : 'strong' },
-				{ name : 'Emphasis', element : 'em' },
-			
-				{ name : 'Computer Code', element : 'code' },
-				{ name : 'Keyboard Phrase', element : 'kbd' },
-				{ name : 'Sample Text', element : 'samp' },
-				{ name : 'Variable', element : 'var' },
-			
-				{ name : 'Deleted Text', element : 'del' },
-				{ name : 'Inserted Text', element : 'ins' },
-			
-				{ name : 'Cited Work', element : 'cite' },
-				{ name : 'Inline Quotation', element : 'q' }
+				{ name : 'H1', element : 'h1'},
+				{ name : 'H2', element : 'h2'},
+				{ name : 'H3', element : 'h3'},
+				{ name : 'H4', element : 'h4'},
+				{ name : 'H5', element : 'h5'},
+				{ name : 'H6', element : 'h6'}
 			]
 		});
 	});
