@@ -116,7 +116,7 @@ if ( ! function_exists('pagination'))
 	function pagination($pages)
 	{
 		$CI =& get_instance();
-		$page = $CI->input->get('page');
+		$page = $CI->input->get('page') ? $CI->input->get('page') : 1;
 	
 		if ($pages == 1) return false;
 		
