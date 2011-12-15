@@ -7,6 +7,7 @@ class MY_Controller extends CI_Controller
 		'full_tag_open' => '<div id="pagination">',
 		'full_tag_close' => '</div>'
 	);
+	private $models = array();
 	
 	public $current_user = NULL;
 	
@@ -37,5 +38,11 @@ class MY_Controller extends CI_Controller
 		$config['full_tag_open'] = '<div id="pagination">';
 		$config['full_tag_close'] = '</div>';
 		$this->pagination->initialize($config);
+		
+		
+		if (is_array($this->models))
+		{
+			foreach ($this->models as $m) $this->load->model($m);
+		}
 	}
 }
