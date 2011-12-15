@@ -4,12 +4,12 @@ class Admin_Controller extends MY_Controller {
 	
 	protected $require_login 	= TRUE;
 
-	private $module_name		= '';
-	private $controller_path 	= '';
-	private $content_singular 	= '';
-	private $content_plural 	= '';
-	private $content_table_name	= '';
-	private $content_model_name	= '';
+	public $module_name			= '';
+	public $controller_path 	= '';
+	public $content_singular 	= '';
+	public $content_plural 		= '';
+	public $content_table_name	= '';
+	public $content_model_name	= '';
 	
 	public function __construct() 
 	{
@@ -33,7 +33,8 @@ class Admin_Controller extends MY_Controller {
 	
 	private function model()
 	{
-		eval('return $this->'.$this->content_model_name);
+		eval('$model = $this->'.$this->content_model_name.';');
+		return $model;
 	}
 	
 	public function action_index()
@@ -52,7 +53,8 @@ class Admin_Controller extends MY_Controller {
 			'per_page'		=> $per_page,
 			'pages'			=> $pages,
 			'current_page'	=> $current_page,
-			'title'			=> ucfirst($this->content_plural)
+			'title'			=> ucfirst($this->content_plural),
+			'items'			=> $items
 		));
 		
 		//load view
