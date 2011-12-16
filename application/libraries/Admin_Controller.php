@@ -23,6 +23,12 @@ class Admin_Controller extends MY_Controller {
 		//load models
 		if ($this->content_model_name) $this->load->model($this->content_model_name);
 		
+		//check properties
+		if (!$this->content_table_name)
+		{
+			$this->content_table_name = $this->model()->singular_table_name();
+		}
+		
 		//load variables
 		$this->load->vars(array(
 			'controller_path' 	=> $this->controller_path,
@@ -37,7 +43,7 @@ class Admin_Controller extends MY_Controller {
 		return $model;
 	}
 	
-	public function action_index()
+	public function action_index($title = null, $notice = null)
 	{
 		//load page of items
 		$per_page		= 20;
@@ -48,12 +54,12 @@ class Admin_Controller extends MY_Controller {
 		
 		//hand to view
 		$this->load->vars(array(
-			'notice'		=> flash('notice'),
+			'notice'		=> $notice ? $notice : flash('notice'),
 			'item_count'	=> $item_count,
 			'per_page'		=> $per_page,
 			'pages'			=> $pages,
 			'current_page'	=> $current_page,
-			'title'			=> ucfirst($this->content_plural),
+			'title'			=> $title ? $title : ucfirst($this->content_plural),
 			'items'			=> $items
 		));
 		
@@ -61,10 +67,10 @@ class Admin_Controller extends MY_Controller {
 		$this->load->view($this->controller_path.'/index');
 	}
 	
-	public function action_new()
+	public function action_new($title = null)
 	{
 		$this->load->view($this->controller_path.'/new', array(
-			'title'	=> 'New '.ucfirst($this->content_singular).' | '.ucfirst($this->content_plural),
+			'title'	=> $title ? $title : 'New '.ucfirst($this->content_singular).' | '.ucfirst($this->content_plural),
 			$this->content_singular => flash_jot($this->content_singular)
 		));
 	}
@@ -87,10 +93,10 @@ class Admin_Controller extends MY_Controller {
 		}
 	}
 	
-	public function action_edit($id)
+	public function action_edit($id, $title = null)
 	{
 		$this->load->vars(array(
-			'title'	=> 'Edit '.ucfirst($this->content_singular).' | '.ucfirst($this->content_plural),
+			'title'	=> $title ? $title : 'Edit '.ucfirst($this->content_singular).' | '.ucfirst($this->content_plural),
 			$this->content_singular => flash_jot($this->content_singular, $id)
 		));
 		$this->load->view($this->controller_path.'/edit');
