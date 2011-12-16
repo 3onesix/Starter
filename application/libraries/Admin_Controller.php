@@ -28,6 +28,10 @@ class Admin_Controller extends MY_Controller {
 		{
 			$this->content_table_name = $this->model()->singular_table_name();
 		}
+		if (!$this->content_plural)
+		{
+			$this->inflector->pluralize($this->content_singular);
+		}
 		
 		//load variables
 		$this->load->vars(array(
