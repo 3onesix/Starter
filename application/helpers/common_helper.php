@@ -125,10 +125,22 @@ if ( ! function_exists('pagination'))
 		{
 			echo '<li class="previous"><a href="?page='.($page - 1).'">&laquo; previous page</a></li>';
 		}
-		for ($i=1; $i<=$pages; $i++)
+		
+		if ($page > 3)
+		{
+			$start = $page - 3;
+			$end   = $page + 3;
+		}
+		elseif ($page <= 3)
+		{
+			$start = 1;
+			$end   = 7;
+		}
+		for ($i=$start; $i<=$end; $i++)
 		{
 			echo '<li class="page'.($i == $page ? ' current' : '').'"><a href="?page='.$i.'">'.$i.'</a></li>';
 		}
+		
 		if ($page < $pages)
 		{
 			echo '<li class="next"><a href="?page='.($page + 1).'">next page &raquo;</a></li>';
