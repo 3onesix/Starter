@@ -138,7 +138,10 @@ if ( ! function_exists('pagination'))
 		}
 		for ($i=$start; $i<=$end; $i++)
 		{
-			echo '<li class="page'.($i == $page ? ' current' : '').'"><a href="?page='.$i.'">'.$i.'</a></li>';
+			if ($i <= $pages)
+			{
+				echo '<li class="page'.($i == $page ? ' current' : '').'"><a href="?page='.$i.'">'.$i.'</a></li>';
+			}
 		}
 		
 		if ($page < $pages)
