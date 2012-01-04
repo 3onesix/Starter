@@ -35,7 +35,7 @@
 		<fieldset>
 			<legend><?=$is_site_variables ? 'Site' : 'Page'?> Variables</legend>
 			<?php 
-				foreach (($is_site_variables ? $this->template_variable_model->all(array('template_variable_id' => null, 'template_id' => 0)) : $page->template->template_variables->all(array('template_variable_id' => null))) as $variable)
+				foreach ((Array)($is_site_variables ? $this->template_variable_model->all(array('template_variable_id' => null, 'template_id' => 0)) : $page->template->template_variables->all(array('template_variable_id' => null))) as $variable)
 				{
 					$name = 'variables['.$variable->name.']';
 					$variableInstance = getVariableObject($variable->type, $variable, $name, $is_site_variables ? 0 : $page->id);
