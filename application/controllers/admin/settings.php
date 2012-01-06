@@ -101,6 +101,25 @@ class Settings extends MY_Controller
                             }
                         }
                     }
+                    
+                   //add widgets
+					if (isset($module['widgets']) && count($module['widgets']))
+					{
+						foreach ($module['widgets'] as $widget)
+						{
+							if (isset($widget['name']) && isset($widget['view']))
+							{
+								if (!isset($widget['where'])) $widget['where'] = 'dashboard';
+								
+								$this->module_widget_model->create(array(
+									'module_id' => $m->id,
+									'name' => $widget['name'],
+									'view' => $widget['view'],
+									'where' => $widget['where']
+								));
+							}
+						}
+					}
                      
                     if (isset($module['install']))
                     {
@@ -140,7 +159,7 @@ class Settings extends MY_Controller
 		
 		if (!$module->has_update) redirect('admin/settings/modules');
 		
-    	if (file_exists($folder.'/'.$module->current_config['update']))
+    	if (isset($module->current_config['update']) && file_exists($folder.'/'.$module->current_config['update']))
     	{
 		    $this->load->helper('jot_migrations');
 		    ob_start();
@@ -215,6 +234,26 @@ class Settings extends MY_Controller
 		           ));
 		       }
 		   }
+		}
+		 
+		//update widgets
+		$this->db->where('module_id', $m->id)->delete('module_widgets');
+		if (isset($module->current_config['widgets']) && count($module->current_config['widgets']))
+		{
+			foreach ($module->current_config['widgets'] as $widget)
+			{
+				if (isset($widget['name']) && isset($widget['view']))
+				{
+					if (!isset($widget['where'])) $widget['where'] = 'dashboard';
+					
+					$this->module_widget_model->create(array(
+						'module_id' => $m->id,
+						'name' => $widget['name'],
+						'view' => $widget['view'],
+						'where' => $widget['where']
+					));
+				}
+			}
 		}
 		
 		//update screens
