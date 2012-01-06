@@ -255,10 +255,18 @@ if ( ! function_exists('getVariableObject'))
 		$file = '';
 		
 		//check default location
-		if (file_exists('assets/app/variables/'.$fileName)) $file = 'assets/app/variables/'.$fileName;
+		if (file_exists('assets/app/variables/'.$fileName)) 
+		{
+			$file = 'assets/app/variables/'.$fileName;
+		}
 		
 		//check each module
-		if (file_exists(MODPATH.'modules.php')) require(MODPATH.'modules.php');
+		$modules = array();
+		if (file_exists(MODPATH.'modules.php')) 
+		{
+			require(MODPATH.'modules.php');
+		}
+		
 		foreach ($modules as $module)
 		{
 			if (file_exists($module.'/variables/'.$fileName))
