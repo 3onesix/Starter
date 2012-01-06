@@ -1,34 +1,6 @@
-@mixin rounded($radius: 10px, $topLeft: true, $topRight: true, $bottomLeft: true, $bottomRight: true) {
-	@if $topLeft == true and $topRight == true and $bottomLeft == true and $bottomRight == true { 
-		border-radius: $radius;
-	} @else {
-		@if $topLeft == true {
-			border-top-left-radius: $radius;
-		}
-		@if $topRight == true {
-			border-top-right-radius: $radius;
-		}
-		@if $bottomLeft == true {
-			border-bottom-left-radius: $radius;
-		}
-		@if $bottomRight == true {
-			border-bottom-right-radius: $radius;
-		}
-	}
-}
-
-@mixin gradient($first, $last) {
-	background: $first; /* Old browsers */
-	background: -moz-linear-gradient(top, $first 0%, $last 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$first), color-stop(100%,$last)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, $first 0%,$last 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, $first 0%,$last 100%); /* Opera11.10+ */
-	background: -ms-linear-gradient(top, $first 0%,$last 100%); /* IE10+ */
-	background: linear-gradient(top, $first 0%,$last 100%); /* W3C */
-}
+@import "mixins/_mixins";
 
 $navigation: #51626F;
-
 
 /*-------------------------------------------------
 BASIC & RESET
@@ -76,7 +48,7 @@ a {
 	margin: 50px auto;
 	padding: 10px;
 	background: #fff;
-	@include rounded(4px);
+	@include border-radius(4px);
 	-webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
 	
 	h1 {
@@ -127,7 +99,7 @@ a {
 		margin: 0 0 10px;
 		padding: 4px;
 		border: 1px solid #ccc;
-		@include rounded(2px);
+		@include border-radius(2px);
 		font: 14px/20px Helvetica Neue, Helvetica, Arial, sans-serif;
 	}
 	input[type=submit] {
@@ -136,16 +108,16 @@ a {
 		margin: 0 auto 5px;
 		padding: 4px 10px;
 		border: none;
-		@include rounded(2px);
+		@include border-radius(2px);
 		background: $navigation;
-		@include gradient($navigation, darken($navigation, 5%));
+		@include linear-gradient($navigation, darken($navigation, 5%));
 		font: 14px/20px Helvetica Neue, Helvetica, Arial, sans-serif;
 		text-shadow: 0 1px 3px rgba(0, 0, 0, .25);
 		color: #fff;
 		text-transform: lowercase;
 		
 		&:focus, &:active {
-			@include gradient(darken($navigation, 5%), $navigation);
+			@include linear-gradient(darken($navigation, 5%), $navigation);
 		}
 	}
 	
