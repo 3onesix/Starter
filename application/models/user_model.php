@@ -2,6 +2,9 @@
 
 class User_Model extends My_Model
 {
+
+	public $allow_api = false;
+	
 	public function init()
 	{
 		$this->before_save('encrypt_password');

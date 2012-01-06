@@ -1,6 +1,8 @@
 <?php
 
 class Roles_Model extends MY_Model {
+
+	public $allow_api = false;
 	
 	function init()
 	{

@@ -2,6 +2,9 @@
 
 class Page_Variable_Model extends My_Model
 {
+
+	public $allow_api = false;
+	
 	public function init()
 	{
 		//$this->validates('page_id', 'required');

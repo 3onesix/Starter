@@ -2,6 +2,9 @@
 
 class Setting_Model extends My_Model
 {
+
+	public $allow_api = false;
+	
 	public function init()
 	{
 		$this->validates('key', 'required');

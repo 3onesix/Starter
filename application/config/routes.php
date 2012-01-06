@@ -21,6 +21,9 @@ $route['admin/(:any)/(:any)']						= "admin/$1/action_$2";
 $route['admin/(:any)']								= "admin/$1/action_index";
 $route['admin']										= "admin/dashboard/action_index";
 
+$route['api/([^\/]*)/([^\/]*)']						= 'api/process/$1/$2';
+$route['api/([^\/]*)']								= 'api/process/$1/index';
+
 $route['migrations/create/(:any)']					= "migrations/create/$1";
 $route['migrations/seed']							= "migrations/seed";
 $route['migrations/reset']							= "migrations/reset";

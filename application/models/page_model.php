@@ -2,6 +2,8 @@
 
 class Page_Model extends My_Model
 {
+	public $api_include = array('template');
+
 	public function init()
 	{
 		$this->validates('name', 'required');
