@@ -11,7 +11,13 @@
 			<?php $is_odd = true; ?>
 			<?php $installed = array(); ?>
 			<?php foreach ($users as $user): ?>
-				<li<?=($is_odd ? ' class="odd"' : '')?>><div class="what"><?=$user->last_name?>, <?=$user->first_name?> <span class="sub">(<?=$user->email?>)</span></div> <div class="actions"><a href="<?=site_url('admin/settings/users/'.$user->id)?>" class="edit">edit</a> <a href="#" class="delete">delete</a></div></li>
+				<li<?=($is_odd ? ' class="odd"' : '')?>>
+					<div class="what"><?=$user->last_name?>, <?=$user->first_name?> <?php if($user->email): ?><span class="sub">(<?=$user->email?>)<?php endif; ?></span></div>
+					<div class="actions">
+						<a href="<?=site_url('admin/settings/users/'.$user->id)?>" class="edit">edit</a> 
+						<a href="#" class="delete">delete</a>
+					</div>
+				</li>
 				<?php $is_odd = !$is_odd; ?>
 			<?php endforeach; ?>
 		</ul>
