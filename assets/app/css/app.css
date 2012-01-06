@@ -92,6 +92,8 @@ header {
   /* Opera11.10+ */
   background: -ms-linear-gradient(top, #51626f 0%, #465560 100%);
   /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$first', endColorstr='$last',GradientType=0);
+  /*IE6-9 */
   background: linear-gradient(top, #51626f 0%, #465560 100%);
   /* W3C */
   -webkit-box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25), inset 0 -2px 1px rgba(255, 255, 255, 0.15), inset 0 -1px 1px rgba(0, 0, 0, 0.35); }
@@ -183,7 +185,6 @@ form .field {
         border-radius: 2px;
         -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
         -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
-        -o-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
         font-size: 12px; }
       form .field label .tooltip-help:hover .tooltip {
@@ -269,6 +270,8 @@ form p {
     /* Opera11.10+ */
     background: -ms-linear-gradient(top, white 0%, #f9f9f9 100%);
     /* IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$first', endColorstr='$last',GradientType=0);
+    /*IE6-9 */
     background: linear-gradient(top, white 0%, #f9f9f9 100%);
     /* W3C */
     margin-bottom: 10px;
@@ -329,7 +332,6 @@ form p {
     border-radius: 2px;
     -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
-    -o-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5); }
   #sidebar .sidebar_filters {
     font-size: 12px;
@@ -373,6 +375,8 @@ ul#sidebar {
     /* Opera11.10+ */
     background: -ms-linear-gradient(top, #e6e6e6 0%, #cccccc 100%);
     /* IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$first', endColorstr='$last',GradientType=0);
+    /*IE6-9 */
     background: linear-gradient(top, #e6e6e6 0%, #cccccc 100%);
     /* W3C */
     font-size: 12px;
@@ -398,6 +402,8 @@ ul#sidebar {
   /* Opera11.10+ */
   background: -ms-linear-gradient(top, #f2f2f2 0%, #cccccc 100%);
   /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$first', endColorstr='$last',GradientType=0);
+  /*IE6-9 */
   background: linear-gradient(top, #f2f2f2 0%, #cccccc 100%);
   /* W3C */
   color: #222;
@@ -417,6 +423,8 @@ ul#sidebar {
     /* Opera11.10+ */
     background: -ms-linear-gradient(top, white 0%, #d9d9d9 100%);
     /* IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$first', endColorstr='$last',GradientType=0);
+    /*IE6-9 */
     background: linear-gradient(top, white 0%, #d9d9d9 100%);
     /* W3C */
     color: #222;
@@ -434,6 +442,8 @@ ul#sidebar {
     /* Opera11.10+ */
     background: -ms-linear-gradient(top, #bfbfbf 0%, #e6e6e6 100%);
     /* IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$first', endColorstr='$last',GradientType=0);
+    /*IE6-9 */
     background: linear-gradient(top, #bfbfbf 0%, #e6e6e6 100%);
     /* W3C */
     color: #222;
@@ -473,6 +483,8 @@ ul#sidebar {
     /* Opera11.10+ */
     background: -ms-linear-gradient(top, #00cc00 0%, #009900 100%);
     /* IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$first', endColorstr='$last',GradientType=0);
+    /*IE6-9 */
     background: linear-gradient(top, #00cc00 0%, #009900 100%);
     /* W3C */
     border-color: #006600;
@@ -491,6 +503,8 @@ ul#sidebar {
       /* Opera11.10+ */
       background: -ms-linear-gradient(top, #00e600 0%, #00b300 100%);
       /* IE10+ */
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$first', endColorstr='$last',GradientType=0);
+      /*IE6-9 */
       background: linear-gradient(top, #00e600 0%, #00b300 100%);
       /* W3C */ }
     .button.green:active {
@@ -506,6 +520,8 @@ ul#sidebar {
       /* Opera11.10+ */
       background: -ms-linear-gradient(top, green 0%, #00b300 100%);
       /* IE10+ */
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$first', endColorstr='$last',GradientType=0);
+      /*IE6-9 */
       background: linear-gradient(top, green 0%, #00b300 100%);
       /* W3C */ }
 
