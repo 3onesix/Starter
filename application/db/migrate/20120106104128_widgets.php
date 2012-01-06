@@ -8,6 +8,7 @@ class Widgets
 			array('name' => 'name', 'type' => 'string'),
 			array('name' => 'view', 'type' => 'string'),
 			array('name' => 'where', 'type' => 'string'),
+			array('name' => 'size', 'type' => 'string'),
 			MIGRATION_TIMESTAMPS
 		));
 	}

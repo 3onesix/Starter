@@ -3,7 +3,7 @@
 if ( ! function_exists('analytics_view') )
 {
 	function analytics_view($title, $method, $options = array()) {
-		$time = time();
+		$time = md5(microtime());
 		?>
 			<div class="googleanalytics_view" id="ga-<?=$time?>" style="margin-bottom: 10px"><h2 style="margin-bottom: 10px"><?=$title?></h2><ul style="position: relative; height: 200px; margin: 0; list-style: none; border: 4px solid #fff; background: #f1f1f1; box-shadow: 0 2px 3px rgba(0, 0, 0, .3), inset 0 3px 5px rgba(0, 0, 0, .2);"></ul></div>
 			<script type="text/javascript">
@@ -44,7 +44,8 @@ if ( ! function_exists('analytics_view') )
 					});
 				};
 				$(function () {
-					$.getJSON('/admin/google/api/<?=$method?>', {
+					var method = '<?=$method?>';
+					$.getJSON('/admin/google/api/'+method, {
 						<?php if (isset($options['path'])): ?>
 						'path': '<?=$options['path']?>',
 						<?php endif; ?>
@@ -54,11 +55,30 @@ if ( ! function_exists('analytics_view') )
 					}, function (data) {
 						var view = $('#ga-<?=$time?>');
 						var html = '';
-						for (var i in data)
-						{
-							<?php if ($method == 'page' || $method == 'visits'): ?>
-							html += '<li title="'+i.substring(0, 4)+'-'+i.substring(4, 6)+'-'+i.substring(6, 8)+': '+data[i]['ga:visits']+' visits" data-visits="'+data[i]['ga:visits']+'"></li>';
-							<?php endif; ?>
+						if (method != 'mobile') {
+							for (var i in data)
+							{
+								<?php if ($method == 'page' || $method == 'visits'): ?>
+								html += '<li title="'+i.substring(0, 4)+'-'+i.substring(4, 6)+'-'+i.substring(6, 8)+': '+data[i]['ga:visits']+' visits" data-visits="'+data[i]['ga:visits']+'"></li>';
+								<?php endif; ?>
+							}
+						}
+						else {
+							var s, date, answer, each = [];
+							for (var i in data) {
+								s 		= i.split('~~');
+								date 	= s[0];
+								answer 	= s[1];
+								if (!each[date]) each[date] = [];
+								each[date][answer] = data[i]['ga:visits'];
+							}
+							var percent;
+							for (var i in each) {
+								percent = (each[i]['Yes'] / (each[i]['Yes'] + each[i]['No']));
+								if (!percent) percent = 0;
+								percent = Math.round(percent * 100);
+								html += '<li title="'+i.substring(0, 4)+'-'+i.substring(4, 6)+'-'+i.substring(6, 8)+': '+percent+'% mobile" data-visits="'+percent+'"></li>';
+							}
 						}
 						view.find('ul').append(html);
 						

@@ -77,6 +77,9 @@ class Google extends MY_Controller
 			case 'browsers':
 				$report = $this->get('ga:browser', 'ga:visits', '-ga:visits');
 			break;
+			case 'mobile':
+				$report = $this->get('ga:date,ga:isMobile', 'ga:visits');
+			break;
 			case 'page':
 				if ($this->input->get('path'))
 				{

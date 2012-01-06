@@ -110,12 +110,14 @@ class Settings extends MY_Controller
 							if (isset($widget['name']) && isset($widget['view']))
 							{
 								if (!isset($widget['where'])) $widget['where'] = 'dashboard';
+								if (!isset($widget['size'])) $widget['size'] = 'full';
 								
 								$this->module_widget_model->create(array(
 									'module_id' => $m->id,
 									'name' => $widget['name'],
 									'view' => $widget['view'],
-									'where' => $widget['where']
+									'where' => $widget['where'],
+									'size' => $widget['size']
 								));
 							}
 						}
@@ -245,12 +247,14 @@ class Settings extends MY_Controller
 				if (isset($widget['name']) && isset($widget['view']))
 				{
 					if (!isset($widget['where'])) $widget['where'] = 'dashboard';
+					if (!isset($widget['size'])) $widget['size'] = 'full';
 					
 					$this->module_widget_model->create(array(
 						'module_id' => $m->id,
 						'name' => $widget['name'],
 						'view' => $widget['view'],
-						'where' => $widget['where']
+						'where' => $widget['where'],
+						'size' => $widget['size']
 					));
 				}
 			}

@@ -44,7 +44,8 @@ $module		 						= array(
 		array(
 			'name'					=> 'Site Analytics',
 			'view'					=> 'dashboard',
-			'where'					=> 'dashboard'
+			'where'					=> 'dashboard',
+			'size'					=> 'full'
 		)
 	)
 );
