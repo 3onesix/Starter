@@ -112,7 +112,6 @@ if ( ! function_exists('message'))
 
 if ( ! function_exists('pagination'))
 {
-	
 	function pagination($pages)
 	{
 		$CI =& get_instance();
@@ -234,7 +233,10 @@ if ( ! function_exists('sidebar_filters') )
 		$CI->load->library('session');
 		$page_id = md5(current_url());
 		$stored_filters = $CI->session->userdata('filters_'.$page_id);
-		if (!$stored_filters) $stored_filters = array();
+		if (!$stored_filters) 
+		{
+			$stored_filters = array();
+		}
 		
 		if (isset($stored_filters[$name]))
 		{
@@ -291,7 +293,8 @@ if ( ! function_exists('getVariableObject'))
 
 if ( ! class_exists('Starter_Variable'))
 {
-	class Starter_Variable {
+	class Starter_Variable 
+	{
 		
 		function __construct($variable, $fieldname, $page_id, $parent = null, $index = null)
 		{
@@ -308,7 +311,12 @@ if ( ! class_exists('Starter_Variable'))
 		{
 			if (!isset($this->page_variable))
 			{
-				$this->page_variable = $this->CI->page_variable_model->first(array('name' => $this->variable->name, 'page_id' => $this->page_id, 'array_index' => $this->index, 'page_variable_id' => $this->parent ? $this->parent->id : null));
+				$this->page_variable = $this->CI->page_variable_model->first(array(
+					'name' => $this->variable->name, 
+					'page_id' => $this->page_id, 
+					'array_index' => $this->index, 
+					'page_variable_id' => $this->parent ? $this->parent->id : null)
+				);
 			}
 			
 			return $this->page_variable;
