@@ -71,7 +71,7 @@
 	<?php endif; ?>
 	<?php 
 	
-	if (isset($ga) && $ga && $page->persisted())
+	if (isset($ga) && $ga && $ga->setting('username') && $ga->setting('password') && $ga->setting('profile') && $page->persisted())
 	{
 		analytics_view('Visits to /'.$page->full_slug.' for the last week', 'page', array('range' => 'week', 'path' => '/'.($page->full_slug != 'index' ? $page->full_slug : '')));
 	}
