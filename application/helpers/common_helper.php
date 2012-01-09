@@ -273,7 +273,7 @@ if ( ! function_exists('getVariableObject'))
 		{
 			if (file_exists($module.'/variables/'.$fileName))
 			{
-				$file = file_exists($module.'/variables/'.$fileName);
+				$file = $module.'/variables/'.$fileName;
 				break;
 			}
 		}
