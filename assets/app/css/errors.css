@@ -1,0 +1,56 @@
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, a, abbr, address, cite, code, del, dfn, em,
+img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, hr,
+dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figure, figcaption, hgroup,
+menu, footer, header, nav, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0; }
+
+article, aside, canvas, figure, figure img, figcaption, hgroup,
+footer, header, nav, section, audio, video {
+  display: block; }
+
+a img {
+  border: 0; }
+
+/*-------------------------------------------------
+BASIC & RESET
+-------------------------------------------------*/
+body {
+  font: 14px/20px Helvetica Neue, Helvetica, Arial, sans-serif;
+  background: #eeeeee url(../images/bg.png);
+  -webkit-font-smoothing: antialiased; }
+
+a {
+  color: #51626f;
+  text-decoration: none; }
+  a:hover {
+    color: #677c8c;
+    text-decoration: underline; }
+
+#content {
+  width: 300px;
+  margin: 50px auto;
+  padding: 10px;
+  background: #fff;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25); }
+  #content h1 {
+    width: 200px;
+    height: 40px;
+    margin-bottom: 10px; }
+  #content h1.image {
+    background-position: center center;
+    background-repeat: no-repeat; }
+    #content h1.image a {
+      display: block;
+      width: 200px;
+      height: 40px;
+      text-indent: -9000px; }
+  #content .url {
+    color: #51626f; }
