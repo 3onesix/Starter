@@ -41,7 +41,7 @@ class Admin_Controller extends MY_Controller {
 		));
 	}
 	
-	private function model()
+	protected function model()
 	{
 		eval('$model = $this->'.$this->content_model_name.';');
 		return $model;
