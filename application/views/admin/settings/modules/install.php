@@ -19,7 +19,7 @@
 			<p><?=str_replace('{product_name}', $this->config->item('starter_product_name'), $module['description'])?></p>
 		<?php endif; ?>
 		<?php if ((isset($module['screens']) && count($module['screens'])) || (isset($module['widgets']) && count($module['widgets']))): ?>
-		<h3>Google Analytics will install:</h3>
+		<h3><?=$module['name']?> will install:</h3>
 		<ul class="installables">
 			<?php if(isset($module['screens']) && count($module['screens'])): ?><li><?=count($module['screens'])?> screen <span class="note">(Screens are added to the navigation of <?=$this->config->item('starter_product_name')?>)</span></li><?php endif; ?>
 			<?php if(isset($module['widgets']) && count($module['widgets'])): ?><li><?=count($module['widgets'])?> widget <span class="note">(Widgets show up on the dashboard or in the page editor)</span></li><?php endif; ?>
