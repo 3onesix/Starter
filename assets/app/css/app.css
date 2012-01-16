@@ -115,23 +115,27 @@ header {
         background-color: #3b4852;
         -webkit-box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.35); }
 
-.notice, .error {
-  margin: 0 0 20px;
+.message, .notice, #message.error li {
+  margin: 0 0 10px;
   padding: 10px;
   -webkit-border-radius: 2px;
   color: #200;
   text-align: center;
   font-weight: bold; }
 
-.error {
-  border: 1px solid #977;
-  background: #fdd;
-  color: #200; }
-
 .notice {
   border: 1px solid #997;
   background: #ffd;
   color: #220; }
+
+#message {
+  margin-bottom: 10px; }
+  #message h3 {
+    margin-bottom: 10px; }
+  #message.error li {
+    border: 1px solid #977;
+    background: #fdd;
+    color: #200; }
 
 form #title {
   margin-bottom: 10px;

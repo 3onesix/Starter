@@ -75,6 +75,7 @@ if ( ! function_exists('flash'))
 	function flash() {
 		$args = func_get_args();
 		$CI =& get_instance();
+
 		$CI->load->library('session');
 				
 		if ( count($args) == 2 )
@@ -109,6 +110,31 @@ if ( ! function_exists('message'))
 		return NULL;
 	}
 }
+
+if ( ! function_exists('current_user') )
+{
+	function current_user()
+	{
+		$CI =& get_instance();
+
+		return isset($CI->current_user) ? $CI->current_user : NULL;
+	}	
+}
+
+if ( ! function_exists('set_current_user') )
+{
+	function set_current_user($user)
+	{
+		$CI =& get_instance();
+		$CI->load->library('session');
+		$CI->session->set_userdata('user', array(
+			'username' => $user->username,
+			'password' => $user->password
+		));
+	}	
+}
+
+
 
 if ( ! function_exists('pagination'))
 {
@@ -244,8 +270,6 @@ if ( ! function_exists('sidebar_filters') )
 		}
 		return false;
 	}
-	
-	save_filters();	
 }
 
 if ( ! function_exists('getVariableObject'))

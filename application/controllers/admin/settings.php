@@ -4,9 +4,16 @@ class Settings extends MY_Controller
 {
     protected $require_login = TRUE;
      
+    public function __construct()
+    {
+    	parent::__construct();
+    	$this->load->vars('section', 'modules');
+    } 
+    
     public function action_index($page = 0)
     {
         $data = $this->input->post('settings');
+    	$this->load->vars('section', 'meta');
          
         if ($data) {
             foreach ($data as $key => $value) {
@@ -26,6 +33,8 @@ class Settings extends MY_Controller
             'title'  => 'Manage Modules',
             'modules' => $this->module_model->find()
         ));
+    	$this->load->vars('section', 'modules');
+        
         $this->load->view('admin/settings/modules/manage');
     }
      
@@ -306,73 +315,6 @@ class Settings extends MY_Controller
                 'title'  => 'Module Settings : '.$module->name
             ));
             $this->load->view('admin/settings/module');
-        }
-    }
-     
-    public function action_users($id = null) {
-        if ($id == null)
-        {
-            $users = $this->user_model->all(array('order' => 'last_name'));
-            $this->load->view('admin/settings/users', array(
-                'users' => $users
-            ));
-        }
-        elseif ($id == 'new')
-        {
-        	if ($userinfo = $this->input->post('user'))
-        	{
-				$data = array(
-				    'first_name' => $userinfo['first_name'],
-				    'last_name'  => $userinfo['last_name'],
-				    'username'   => $userinfo['username'],
-				    'email'      => $userinfo['email'],
-				    'password'   => md5($userinfo['password'])
-				);
-				$this->db->insert('users', $data);
-				
-				flash('notice', 'User successfully created.');
-				redirect('admin/settings/users');
-        	}
-	        $this->load->view('admin/settings/new_user');
-        }
-        else
-        {
-            $user = $this->user_model->first_by_id($id);
-            if (!$user) {
-                redirect('admin/settings/users');
-            }
-             
-            if ($userinfo = $this->input->post('user'))
-            {
-                $password_reset = false;
-                 
-                $data = array(
-                    'first_name' => $userinfo['first_name'],
-                    'last_name'  => $userinfo['last_name'],
-                    'username'   => $userinfo['username'],
-                    'email'      => $userinfo['email']
-                );
-                 
-                if (isset($userinfo['password']) && isset($userinfo['confirm_password']) && $userinfo['password'] == $userinfo['confirm_password'] && $userinfo['password'])
-                {
-                    $data['password'] = md5($userinfo['password']);
-                    $password_reset = true;
-                }
-                 
-                $this->db->update('users', $data, array(
-                    'id' => $user->id
-                ));
-                 
-                if ($password_reset) {
-                    $this->session->set_flashdata('notice', 'Password changed.');
-                    $this->session->unset_userdata('user');
-                }
-                redirect($password_reset ? 'admin/signin' : 'admin/settings/users');
-            }
-             
-            $this->load->view('admin/settings/edit_user', array(
-                'user' => $user
-            ));
         }
     }
 }

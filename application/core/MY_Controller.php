@@ -14,12 +14,19 @@ class MY_Controller extends CI_Controller
 	protected function config_pagination() {}
 	
 	public function __construct() 
-	{
+	{		
 		parent::__construct();
 		
+		if (is_array($this->models))
+		{
+			foreach ($this->models as $m) $this->load->model($m);
+		}
+				
 		$this->load->database();
 		$this->load->library('session');
-																	
+		
+		save_filters();	
+		
 		$user = $this->session->userdata('user');
 		$username = value_for_key('username', $user);
 		$password = value_for_key('password', $user);
@@ -38,11 +45,5 @@ class MY_Controller extends CI_Controller
 		$config['full_tag_open'] = '<div id="pagination">';
 		$config['full_tag_close'] = '</div>';
 		$this->pagination->initialize($config);
-		
-		
-		if (is_array($this->models))
-		{
-			foreach ($this->models as $m) $this->load->model($m);
-		}
 	}
 }

@@ -1,7 +1,9 @@
 <?php if (isset($errors) && is_array($errors) && count($errors)): ?>
-<ul>
-	<?php foreach($errors as $error): ?>
-		<li class="error"><?=$error?></li>
-	<?php endforeach; ?>
-</ul>
+<div id="message" class="error">
+	<ul>
+		<?php foreach($errors as $error): ?>
+			<li><?=$error?></li>
+		<?php endforeach; ?>
+	</ul>
+</div>
 <?php endif; ?>

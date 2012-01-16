@@ -109,25 +109,35 @@ header {
 	}
 }
 
-.notice, .error {
-	margin: 0 0 20px;
+.message {
+	margin: 0 0 10px;
 	padding: 10px;
 	-webkit-border-radius: 2px;
 	color: #200;
 	text-align: center;
-	font-weight: bold;	
-}
-
-.error {
-	border: 1px solid #977;
-	background: #fdd;
-	color: #200;
+	font-weight: bold;
 }
 
 .notice {
+	@extend .message;
 	border: 1px solid #997;
 	background: #ffd;
-	color: #220;	
+	color: #220;
+}
+
+#message {
+	h3 {
+		margin-bottom: 10px;
+	}
+	
+	&.error li {
+		@extend .message;
+		border: 1px solid #977;
+		background: #fdd;
+		color: #200;
+	}
+	
+	margin-bottom: 10px;
 }
 
 form {

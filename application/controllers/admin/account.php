@@ -20,14 +20,9 @@ class Account extends My_Controller
 		$username = $this->input->post('username');
 		$password = md5($this->input->post('password'));
 		
-		if ( $this->user_model->authenticate($username, $password) )
+		if ( $user = $this->user_model->authenticate($username, $password) )
 		{
-			$user = array(
-				'username' => $username,
-				'password' => $password
-			);
-			
-			$this->session->set_userdata('user', $user);
+			set_current_user($user);
 			
 			$redirect_to = $this->session->userdata('redirect_to');
 			
