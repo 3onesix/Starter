@@ -19,7 +19,7 @@ class Module_Model extends My_Model {
 		{
 			foreach ($query->result() as $row) $ids[] = $row->module_id;
 		}
-		return $this->all(array('conditions' => array('id' => $ids), 'order' => 'name ASC'));
+		return $this->all(array('conditions' => $ids, 'order' => 'name ASC'));
 	}
 	
 	function save_module_array()
