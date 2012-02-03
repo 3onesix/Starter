@@ -48,18 +48,18 @@ class Starter_Controller extends MY_Controller {
 				}
 			}
 			
-			if ($this->page_variable_model->exists(array('page_id' => 0)))
-			{
-				$vars = $this->page_model->variables(0);
-				
-				$this->load->vars($vars);
-			}
-			
 			if ($this->page)
 			{
 				$this->load->vars('page', $this->page);
 				$this->load->vars($this->page->variables);
 			}
+		}
+		
+		if ($this->page_variable_model->exists(array('page_id' => 0)))
+		{
+			$vars = $this->page_model->variables(0);
+			
+			$this->load->vars($vars);
 		}
 	}
 	
