@@ -1,9 +1,9 @@
 [submodule "application/third_party/unit"]
 	path = application/third_party/unit
-	url = https://github.com/tomkrush/unit.git
+	url = git@github.com:tomkrush/unit.git
 [submodule "application/third_party/jot"]
 	path = application/third_party/jot
-	url = https://github.com/tomkrush/Jot.git
+	url = git@github.com:tomkrush/Jot.git
 [submodule "assets/app/css/mixins"]
 	path = assets/app/css/mixins
 	url = git@github.com:3onesix/SASS-Mixins.git
