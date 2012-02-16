@@ -414,3 +414,24 @@ if ( ! class_exists('Starter_Variable'))
 		
 	}
 }
+
+if ( ! function_exists('starter_script'))
+{
+	function starter_script($page) {
+		$CI =& get_instance();
+		
+		$CI->load->database();
+		$CI->load->library('session');
+																	
+		$user = $CI->session->userdata('user');
+		$username = value_for_key('username', $user);
+		$password = value_for_key('password', $user);
+					
+		if (!$CI->user_model->authenticate($username, $password))
+		{
+			return '';
+		}
+		
+		return '<link rel="stylesheet" type="text/css" href="'.base_url().'assets/app/css/frontend.css" /><script type="text/javascript" src="'.base_url().'assets/app/js/frontend.js"></script><script type="text/javascript">var starter_page_id = '.$page->id.';</script>';
+	}
+}

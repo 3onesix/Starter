@@ -65,7 +65,7 @@ class Pages extends MY_Controller
 		}
 	}
 
-	public function action_edit($id)
+	public function action_edit($id, $variable = null)
 	{
 		if ($id != 0)
 		{
@@ -83,18 +83,39 @@ class Pages extends MY_Controller
 		foreach($this->template_model->all() as $template) $templates[$template->id] = $template->name;
 		$this->load->vars('templates', $templates);
 		
-		if ($id != 0)
+		if ($variable)
 		{
-			$this->load->vars('page', flash_jot('page', $id));
-			$this->load->vars(array('is_site_variables' => false));
-			$this->load->vars('title', 'Edit Page : '.flash_jot('page', $id)->name.'');
+			$is_site_variables = $id != 0 ? false : true;
+			
+			$var = ($is_site_variables ? $this->template_variable_model->first(array(
+				'template_variable_id' => null,
+				'template_id' => 0,
+				'name' => $variable
+			)) : $this->page_model->first($id)->template->template_variables->first(array(
+				'template_variable_id' => null,
+				'name' => $variable
+			)));
+			if ($var) {
+				$name = 'variables['.$var->name.']';
+				$variableInstance = getVariableObject($var->type, $var, $name, $is_site_variables ? 0 : $id);
+				echo '<input type="hidden" name="single" value="true" />'.($variableInstance ? $variableInstance->render() : '');
+			}
 		}
-		else {
-			$this->load->vars('page', flash_jot('page', $id));
-			$this->load->vars('is_site_variables', true);
-			$this->load->vars('title', 'Edit Site Variables');
+		else
+		{
+			if ($id != 0)
+			{
+				$this->load->vars('page', flash_jot('page', $id));
+				$this->load->vars(array('is_site_variables' => false));
+				$this->load->vars('title', 'Edit Page : '.flash_jot('page', $id)->name.'');
+			}
+			else {
+				$this->load->vars('page', flash_jot('page', $id));
+				$this->load->vars('is_site_variables', true);
+				$this->load->vars('title', 'Edit Site Variables');
+			}
+			$this->load->view('admin/pages/edit');
 		}
-		$this->load->view('admin/pages/edit');
 	}
 	
 	public function action_update($id)
@@ -102,14 +123,20 @@ class Pages extends MY_Controller
 		if ($id != 0)
 		{
 			$data = $this->input->post('page');
-			$data['user_id'] = $this->current_user->id;
-			$page = $this->page_model->update($id, $data);
+			if ($data)
+			{
+				$data['user_id'] = $this->current_user->id;
+				$page = $this->page_model->update($id, $data);
+			}
+			else {
+				$page = $this->page_model->first($id);
+			}
 			
 			//update modules
 			$modules = $this->input->post('modules');
-			$this->db->where('page_id', $page->id)->delete('page_modules');
 			if ($modules)
 			{
+				$this->db->where('page_id', $page->id)->delete('page_modules');
 				foreach ($modules as $key=>$value)
 				{
 					$this->page_module_model->create(array(
@@ -156,18 +183,23 @@ class Pages extends MY_Controller
 				}
 			}
 		}
-				
-		if ( $id != 0 && $page->errors() )
-		{
-			flash('page', $page);
-			redirect('admin/pages/edit/'.$id);
-		}
-		else
-		{
-			flash('notice', ($id != 0 ? 'Page was' : 'Site variables were').' updated successfully.');
-		}
 		
-		redirect('admin/pages');
+		if ($this->input->post('single')) {
+			redirect($_SERVER['HTTP_REFERER']);
+		}
+		else {
+			if ( $id != 0 && $page->errors() )
+			{
+				flash('page', $page);
+				redirect('admin/pages/edit/'.$id);
+			}
+			else
+			{
+				flash('notice', ($id != 0 ? 'Page was' : 'Site variables were').' updated successfully.');
+			}
+			
+			redirect('admin/pages');
+		}
 	}
 	
 	public function action_destroy($id)

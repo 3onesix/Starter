@@ -1,0 +1,134 @@
+body {
+	margin: 0;
+}
+
+#starter_frontend_editor {
+	background: #444;
+}
+
+#starter_frontend_editor form {
+	width: 680px;
+	margin: 0 auto;
+	padding: 20px 0;
+	font: 14px/20px Helvetica Neue, Helvetica, Arial, sans-serif;
+	color: #eee;
+}
+
+#starter_frontend_editor form #starter_frontend_editor_cancel {
+	color: #fff;
+}
+
+#starter_frontend_editor form #title {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  font-size: 20px; }
+  #starter_frontend_editor form #title .section {
+    font-weight: normal;
+    color: #555; }
+#starter_frontend_editor form fieldset {
+  margin: 0 0 10px;
+  padding: 10px 10px 0;
+  border: 1px solid #eee;
+  -webkit-border-radius: 2px; }
+  #starter_frontend_editor form fieldset legend {
+    padding: 0 5px;
+    text-transform: uppercase;
+    color: #777;
+    font-size: 12px;
+    font-weight: bold; }
+#starter_frontend_editor form .field {
+  margin-bottom: 10px; }
+  #starter_frontend_editor form .field label {
+    display: block; }
+    #starter_frontend_editor form .field label.disabled {
+      color: #888; }
+    #starter_frontend_editor form .field label .tooltip-help {
+      position: relative;
+      display: inline-block; }
+      #starter_frontend_editor form .field label .tooltip-help .icon {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background: url(../images/icon_help.png) no-repeat center center;
+        text-indent: -9000px; }
+      #starter_frontend_editor form .field label .tooltip-help .tooltip {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 24px;
+        z-index: 100;
+        width: 250px;
+        padding: 5px 5px 10px;
+        background: url(../images/tooltip_bg.png) repeat-x bottom left;
+        border: 1px solid #cc9;
+        border-bottom: none;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        font-size: 12px; }
+      #starter_frontend_editor form .field label .tooltip-help:hover .tooltip {
+        display: block; }
+        #starter_frontend_editor form .field label .tooltip-help:hover .tooltip:before {
+          position: absolute;
+          top: 5px;
+          left: -6px;
+          content: '';
+          width: 6px;
+          height: 10px;
+          background: url(../images/tooltip_arrow.png) no-repeat; }
+  #starter_frontend_editor form .field.checkbox label {
+    display: inline; }
+  #starter_frontend_editor form .field input[type=text], #starter_frontend_editor form .field input[type=password] {
+    width: 300px;
+    padding: 4px;
+    border: 1px solid #aaa;
+    -webkit-border-radius: 1px;
+    font: 14px/20px Helvetica Neue, Helvetica, Arial, sans-serif; }
+    #starter_frontend_editor form .field input[type=text]:focus, #starter_frontend_editor form .field input[type=password]:focus {
+      outline: none;
+      border: 1px solid #666;
+      -webkit-box-shadow: 0 0 3px 1px #677c8c; }
+    #starter_frontend_editor form .field input[type=text][disabled=true], #starter_frontend_editor form .field input[type=password][disabled=true] {
+      color: #aaa; }
+  #starter_frontend_editor form .field select {
+    width: 310px; }
+  #starter_frontend_editor form .field textarea {
+    width: 400px;
+    max-width: 400px;
+    height: 200px;
+    max-height: 400px;
+    padding: 4px;
+    border: 1px solid #aaa;
+    -webkit-border-radius: 1px;
+    font: 14px/20px Helvetica Neue, Helvetica, Arial, sans-serif; }
+    #starter_frontend_editor form .field textarea:focus {
+      outline: none;
+      border: 1px solid #666;
+      -webkit-box-shadow: 0 0 3px 1px #677c8c; }
+    #starter_frontend_editor form .field textarea.wysiwyg {
+      width: 670px;
+      max-width: 670px; }
+
+.starter_editable {
+	position: relative;
+}
+.starter_editable_launch {
+	display: none;
+	position: absolute;
+	top: 0;
+	right: 5px;
+	padding: 2px;
+	border: 1px solid #aaa;
+	border-radius: 2px;
+	background: #eee;
+	font: 10px/14px Helvetica Neue, Helvetica, Arial, sans-serif;
+	color: #000;
+	text-decoration: none;
+}
+.starter_editable:hover .starter_editable_launch {
+	display: block;
+}

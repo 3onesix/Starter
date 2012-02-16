@@ -27,4 +27,25 @@ class String_Variable extends Starter_Variable {
 		}
 	}
 	
+	/*protected function value()
+	{
+		$value = $this->variable->value;
+		if ($this->index === null)
+		{
+			$var = $this->CI->page_variable_model->first(array('name' => $this->variable->name, 'page_id' => $this->page_id));
+			if ($var) $value = $var->value;
+		}
+		elseif ($this->parent)
+		{
+			$page_var = $this->CI->page_model->variable($this->parent->name, null, $this->page_id);
+			$value = $page_var && isset($page_var[$this->index][$this->variable->name]) ? $page_var[$this->index][$this->variable->name] : $this->variable->value;
+		}
+		return $value;
+	}
+	
+	function load()
+	{
+		return $this->value();
+	}*/
+	
 }
