@@ -76,7 +76,9 @@
 			<ul id="navigation">
 				<li><a href="<?=site_url('admin')?>"<?=($this->uri->segment(2) == '' ? ' class="selected"' : '')?>>Dashboard</a></li>
 				<li><a href="<?=site_url('admin/pages')?>"<?=($this->uri->segment(2) == 'pages' ? ' class="selected"' : '')?>>Pages</a></li>
-				
+				<?php if ($this->config->item('starter_show_file_manager')): ?>
+					<li><a href="<?=site_url('admin/file_manager')?>"<?=($this->uri->segment(2) == 'file_manager' ? ' class="selected"' : '')?>>Files</a></li>
+				<?php endif; ?>
 				<?php
 					$modules = $this->module_model->all();
 					foreach ($modules as $module) {
