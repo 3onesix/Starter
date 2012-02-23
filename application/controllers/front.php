@@ -20,7 +20,7 @@ class Front extends My_Controller {
 		{
 			if ($page)
 			{
-				if ($page->exists(array('slug' => $segment))) $page = $page->first(array('slug' => $segment));
+				if ($page->pages->exists(array('slug' => $segment))) $page = $page->pages->first(array('slug' => $segment));
 			}
 			else 
 			{
