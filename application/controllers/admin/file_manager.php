@@ -56,7 +56,9 @@ class File_Manager extends MY_Controller
 		$path 		= $directory['path'];
 		$name 		= $directory['name'];
 		
-		mkdir($base_path.$path.'/'.$name);
+		$oldumask = umask(0);
+		mkdir($base_path.$path.'/'.$name, 0777);
+		umask($oldumask);
 		flash('notice', 'Successfully added folder.');
 		redirect('admin/file_manager?path='.$path.'/'.$name);
 	}
