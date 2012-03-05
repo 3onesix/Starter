@@ -22,4 +22,10 @@ class Markdown_Variable extends Starter_Variable {
 		return null;
 	}
 	
+	protected function value()
+	{
+		$page_variable = $this->page_variable();
+		return $page_variable->value;
+	}
+	
 }
