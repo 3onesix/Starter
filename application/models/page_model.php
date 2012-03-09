@@ -34,12 +34,28 @@ class Page_Model extends My_Model
 			die();
 		}
 		
-		if (($this->template_id || $page_id !== null) && ($page_id !== null ? $this->page_variable_model->exists(array('page_id' => $page_id, 'name' => $name)) : $this->page_variables->exists(array('name' => $name))))
+		$variable = null;
+		if (is_object($name))
 		{
-			$variable = ($page_id !== null ? $this->page_variable_model->first(array('page_id' => $page_id, 'name' => $name)) : $this->page_variables->first(array('name' => $name)));
+			$variable 	= $name;
+			$name 		= $variable->name;
+			$page_id 	= $variable->page_id;
+		}
+		
+		if ($variable)
+		{
 			$variableInstance = getVariableObject($variable->type, $variable, '', $page_id ? $page_id : 0);
-			
 			return $variableInstance->load();
+		}
+		else
+		{
+			if (($this->template_id || $page_id !== null) && ($page_id !== null ? $this->page_variable_model->exists(array('page_id' => $page_id, 'name' => $name)) : $this->page_variables->exists(array('name' => $name))))
+			{
+				$variable = ($page_id !== null ? $this->page_variable_model->first(array('page_id' => $page_id, 'name' => $name)) : $this->page_variables->first(array('name' => $name)));
+				$variableInstance = getVariableObject($variable->type, $variable, '', $page_id ? $page_id : 0);
+				
+				return $variableInstance->load();
+			}
 		}
 		return null;
 	}
@@ -97,7 +113,7 @@ class Page_Model extends My_Model
 		$array = array();
 		foreach ($variables as $variable)
 		{
-			$array[$variable->name] = $this->variable($variable->name, null, $variable->page_id);
+			$array[$variable->name] = $this->variable($variable);
 		}
 		return $array;
 	}
