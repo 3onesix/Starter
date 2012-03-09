@@ -15,7 +15,7 @@ class Template_Model extends My_Model
 		if ( ! $this->scan_complete )
 		{
 			// Load all new template information
-			$this->check_for_new();
+			if ($this->uri->segment(1) == 'admin') $this->check_for_new();
 		
 			$this->scan_complete = TRUE;
 		}
