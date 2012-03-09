@@ -4,8 +4,9 @@ class Front extends My_Controller {
 	
 	function index()
 	{
-		//$this->output->enable_profiler(TRUE);
+		$this->output->enable_profiler(TRUE);
 		
+		$this->benchmark->mark('front_start');
 		$this->load->helper('page');
 		
 		$uri = $this->uri->segment_array();
@@ -15,49 +16,63 @@ class Front extends My_Controller {
 			$uri[] = 'index';
 		}
 		
+		$this->benchmark->mark('process_url_start');
 		$page = null;
 		foreach ($uri as $segment)
 		{
 			if ($page)
 			{
-				if ($page->pages->exists(array('slug' => $segment))) $page = $page->pages->first(array('slug' => $segment));
+				$page_temp = $page->pages->first(array('slug' => $segment));
+				if ($page_temp) $page = $page_temp;
 			}
 			else 
 			{
-				if ($this->page_model->exists(array('page_id' => -1, 'slug' => $segment))) {
-					$page = $this->page_model->first(array('conditions' => array('page_id' => -1, 'slug' => $segment), 'include' => array('page_variables', 'page_modules')));
-				}
+				$page_temp = $this->page_model->first(array('conditions' => array('page_id' => -1, 'slug' => $segment), 'include' => array('page_variables', 'page_modules')));
+				if ($page_temp) $page = $page_temp;
 			}
 			
 		}
+		$this->benchmark->mark('process_url_end');
 		
 		if ($page && $page->template_id)
 		{
 			$includes = $page->includes();
-			if (count($includes['helper']))
+			if ($i = count($includes['helper']))
 			{
-				foreach ($includes['helper'] as $helper)
+				while ($i--)
 				{
+					$helper = $includes['helper'][$i];
 					$this->load->helper(str_replace('.php', '', $helper));
 				}
 			}
-			if (count($includes['model']))
+			if ($i = count($includes['model']))
 			{
-				foreach ($includes['model'] as $model)
+				while ($i--)
 				{
+					$model = $includes['model'][$i];
 					$this->load->model(str_replace('.php', '', $model));
 				}
 			}
 			
-			if ($this->page_variable_model->exists(array('page_id' => 0)))
+			$this->benchmark->mark('load_variables_start');
+			
+			$vars = $this->page_model->variables(0);
+			if ($vars)
 			{
-				$vars = $this->page_model->variables(0);
-				
-				extract($vars);
+				foreach ($vars as $k => $v)
+				{
+					$$k = $v;
+				}
 			}
 			
-			extract($page->variables());
+			$vars = $page->variables();
+			foreach ($vars as $k => $v)
+			{
+				$$k = $v;
+			}
+			$this->benchmark->mark('load_variables_end');
 			
+			$this->benchmark->mark('front_end');
 			include('assets/site/templates/'.$page->template->file.'.php');
 		}
 		else
