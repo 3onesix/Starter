@@ -309,17 +309,7 @@ if ( ! class_exists('Starter_Variable'))
 		
 		function page_variable()
 		{
-			if (!isset($this->page_variable))
-			{
-				$this->page_variable = $this->CI->page_variable_model->first(array(
-					'name' => $this->variable->name, 
-					'page_id' => $this->page_id, 
-					'array_index' => $this->index, 
-					'page_variable_id' => $this->parent ? $this->parent->id : null)
-				);
-			}
-			
-			return $this->page_variable;
+			return $this->variable;
 		}
 		
 		function post_variable()
