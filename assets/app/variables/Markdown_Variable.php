@@ -25,7 +25,7 @@ class Markdown_Variable extends Starter_Variable {
 	protected function value()
 	{
 		$page_variable = $this->page_variable();
-		return value_for_key('value', $page_variable);
+		return $page_variable ? $page_variable->read_attribute('value') : '';
 	}
 	
 }
