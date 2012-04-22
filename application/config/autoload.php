@@ -52,7 +52,7 @@ $autoload['packages'] = $CI->config->item('packages');
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('upload', 'pagination');
+$autoload['libraries'] = array('upload');
 
 
 /*

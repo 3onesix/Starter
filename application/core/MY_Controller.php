@@ -34,12 +34,6 @@ class MY_Controller extends CI_Controller
 			'username' => $username
 		)) : NULL;
 		
-		$config['per_page'] = '10'; 
-		$config['full_tag_open'] = '<div id="pagination">';
-		$config['full_tag_close'] = '</div>';
-		$this->pagination->initialize($config);
-		
-		
 		if (is_array($this->models))
 		{
 			foreach ($this->models as $m) $this->load->model($m);
