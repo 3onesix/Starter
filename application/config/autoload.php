@@ -64,8 +64,16 @@ $autoload['libraries'] = array('upload');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('array', 'url', 'common', 'jot_form', 'jot_array', 'form', 'file');
-
+$autoload['helper'] = array(
+	'array', 
+	'url', 
+	'common', 
+	'flash', 
+	'jot_form', 
+	'jot_array', 
+	'form', 
+	'file'
+);
 
 /*
 | -------------------------------------------------------------------
