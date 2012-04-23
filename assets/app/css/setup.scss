@@ -1,0 +1,143 @@
+@import "mixins/_mixins";
+@import "reset";
+
+$navigation: #51626F;
+
+/*-------------------------------------------------
+BASIC & RESET
+-------------------------------------------------*/
+body {
+	font: 14px/20px Helvetica Neue, Helvetica, Arial, sans-serif;
+	background: #eee url(../images/bg.png);
+	-webkit-font-smoothing: antialiased;
+}
+
+a {
+	color: $navigation;
+	text-decoration: none;
+	&:hover {
+		color: lighten($navigation, 10%);
+		text-decoration: underline;
+	}
+}
+
+section {
+	$width: 300px;
+	width: $width - 20px;
+	margin: 50px auto;
+	padding: 10px;
+	background: #fff;
+	@include border-radius(4px);
+	-webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
+	
+	&.large {
+		width: 480px;
+	}
+	
+	h1 {
+		width: 200px;
+		height: 40px;
+		margin-bottom: 10px;
+	}
+	h1.image {
+		background-position: center center;
+		background-repeat: no-repeat;
+		a {
+			display: block;
+			width: 200px;
+			height: 40px;
+			text-indent: -9000px;
+		}
+	}
+	
+	.notice, .error {
+		margin: 0 0 10px;
+		padding: 10px;
+		-webkit-border-radius: 2px;
+		color: #200;
+		text-align: center;
+		font-weight: bold;	
+		font-size: 12px;
+	}
+	
+	.error {
+		border: 1px solid #977;
+		background: #fdd;
+		color: #200;
+	}
+	
+	.notice {
+		border: 1px solid #997;
+		background: #ffd;
+		color: #220;	
+	}
+	
+	p {
+		margin-bottom: 10px;
+	}
+	
+	label {
+		display: block;
+		text-transform: lowercase;
+		font-weight: bold;
+	}
+	input[type=text], input[type=password] {
+		width: 100%;
+		@include box-sizing(border-box);
+		margin: 0 0 10px;
+		padding: 4px;
+		border: 1px solid #ccc;
+		@include border-radius(2px);
+		font: 14px/20px Helvetica Neue, Helvetica, Arial, sans-serif;
+	}
+	input[type=submit] {
+		display: block;
+		min-width: 60px;
+		margin: 0 auto 5px;
+		padding: 4px 10px;
+		border: none;
+		@include border-radius(2px);
+		background: $navigation;
+		@include linear-gradient($navigation, darken($navigation, 5%));
+		font: 14px/20px Helvetica Neue, Helvetica, Arial, sans-serif;
+		text-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+		color: #fff;
+		text-transform: lowercase;
+		
+		&:focus, &:active {
+			@include linear-gradient(darken($navigation, 5%), $navigation);
+		}
+	}
+
+	ul {
+		list-style: none;
+		margin-top:10px;
+		
+		li {
+			padding: 10px;
+			
+			&.error {
+				text-align:left;
+			}
+		}
+	}
+
+ 	.btn {
+		display: inline-block;
+		min-width: 60px;
+		margin: 0 auto 5px;
+		padding: 4px 10px;
+		border: none;
+		@include border-radius(2px);
+		background: $navigation;
+		@include linear-gradient($navigation, darken($navigation, 5%));
+		font: 14px/20px Helvetica Neue, Helvetica, Arial, sans-serif;
+		text-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+		color: #fff;
+		text-transform: lowercase;
+		
+		&:focus, &:active {
+			@include linear-gradient(darken($navigation, 5%), $navigation);
+		}
+	}
+}
