@@ -16,13 +16,16 @@ class Starter_Controller extends MY_Controller {
 				$module = $this->module_model->first_by_simple_name($module);
 				if ($module)
 				{
-					foreach ($module->module_files->all(array('type' => 'model')) as $model)
+					foreach ($module->module_files->all() as $file)
 					{
-						$this->load->model(str_replace('.php', '', $model->name));
-					}
-					foreach ($module->module_files->all(array('type' => 'helper')) as $helper)
-					{
-						$this->load->helper(str_replace('.php', '', $helper->name));
+						if ($file->read_attribute('type') == 'model')
+						{
+							$this->load->model(str_replace('.php', '', $file->read_attribute('name')));
+						}
+						elseif ($file->read_attribute('type') == 'helper')
+						{
+							$this->load->helper(str_replace('.php', '', $file->read_attribute('name')));
+						}
 					}
 				}
 			}

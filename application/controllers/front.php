@@ -4,7 +4,7 @@ class Front extends My_Controller {
 	
 	function index()
 	{
-		$this->output->enable_profiler(TRUE);
+		//$this->output->enable_profiler(TRUE);
 		
 		$this->benchmark->mark('front_start');
 		$this->load->helper('page');
