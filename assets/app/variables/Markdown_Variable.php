@@ -17,7 +17,8 @@ class Markdown_Variable extends Starter_Variable {
 		$page_variable = $this->page_variable();
 		if ($page_variable)
 		{
-			return Markdown($page_variable->value);
+			$this->CI->load->library('markdown');
+			return $this->CI->markdown->translate($page_variable->value);
 		}
 		return null;
 	}
