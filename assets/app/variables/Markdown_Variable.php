@@ -1,7 +1,5 @@
 <?php
 
-require('assets/app/variables/markdown.php');
-
 class Markdown_Variable extends Starter_Variable {
 	
 	function render()
