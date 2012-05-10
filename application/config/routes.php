@@ -9,6 +9,9 @@ $route['admin/forgot_password/(:any)']	= "admin/account/action_forgot/$1";
 $route['admin/forgot_password_process'] = "admin/account/action_forgot_process";
 $route['admin/reset_password_process/(:any)'] = "admin/account/action_reset_process/$1";
 
+$route['admin/images/upload/']				= "admin/images/action_upload";
+
+
 $route['admin/([^\/]*)/destroy/(:any)']				= "admin/$1/action_destroy/$2";
 $route['admin/([^\/]*)/update/(:num)']				= "admin/$1/action_update/$2";
 $route['admin/([^\/]*)/edit/(:num)']				= "admin/$1/action_edit/$2";
