@@ -99,12 +99,6 @@ if (!Image_Manager) {
 				type: 'POST',
 				//Ajax events
 				success: function (data) {
-					data = {
-						id: 123,
-						url: '/Finley_print-008.jpg',
-						width: 3230,
-						height: 2153
-					};
 					_that.load_image(data.id, data.url, data.width, data.height);
 				},
 				error: function () {
