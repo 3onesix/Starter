@@ -20,4 +20,10 @@ class Images extends MY_Controller
 		$this->output->set_content_type('text/json');
 		$this->output->set_output(json_encode($output));
 	}
+	
+	public function action_update($id)
+	{
+		$data = $this->input->post('photo');
+		$photo = $this->photo_model->update($id, $data);
+	}
 }
