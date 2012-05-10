@@ -64,6 +64,7 @@ if (!Image_Manager) {
 			this.id 		= id;
 			this.img_width  = width;
 			this.img_height = height;
+			this.manager.append('<input type="hidden" name="'+this.uploader.find('input[type=file]').attr('name')+'" value="'+id+'" />');
 			this.editor.find('.image-manager-editor-canvas').append('<img src="'+url+'" />');
 			
 			var _that = this;
@@ -71,16 +72,70 @@ if (!Image_Manager) {
 				_that.set_canvas_scale(1);
 				_that.change_mode('editor');
 			});
+			var pageStartX = pageStartY = imgStartX = imgStartY = null;
+			var imgID = (new Date()).getTime() * Math.floor(Math.random()*11);
+			$('.image-manager-editor-canvas img', this.editor).mousedown(function (e) {
+				pageStartX = e.pageX;
+				pageStartY = e.pageY;
+				imgStartX = $(this).position().left;
+				imgStartY = $(this).position().top;
+				
+				$(window).bind('mousemove.'+imgID, function (e) {
+					var pageX = e.pageX;
+					var pageY = e.pageY;
+					var diffX = pageX - pageStartX;
+					var diffY = pageY - pageStartY;
+					
+					var x = imgStartX + diffX;
+					var y = imgStartY + diffY;
+					
+					if (x > 0) x = 0;
+					if (y > 0) y = 0;
+					
+					var img_width     = _that.canvas_scale * _that.img_width * _that.editor_scale;
+					var img_height    = _that.canvas_scale * _that.img_height * _that.editor_scale;
+					var editor_width  = _that.editor_scale * _that.width;
+					var editor_height = _that.editor_scale * _that.height;
+					var diffWidth     = img_width - editor_width;
+					var diffHeight    = img_height - editor_height;
+					
+					if (x < 0 - diffWidth) {
+						x = 0 - diffWidth;
+					}
+					if (y < 0 - diffHeight) {
+						y = 0 - diffHeight;
+					}
+					
+					_that.x = x * _that.canvas_scale;
+					_that.y = y * _that.canvas_scale;
+					
+					_that.editor.find('.image-manager-editor-canvas img').css('left', x).css('top', y);
+				})
+			});
+			$(window).mouseup(function () {
+				$(window).unbind('mousemove.'+imgID);
+			});
 		};
 		this.save = function () {
-			window.console.log({
-				id: this.id,
-				x: this.x,
-				y: this.y,
-				width: this.width,
-				height: this.height,
-				scale: this.canvas_scale
-			});
+			if (this.id) {
+				$.ajax({
+					url: '/admin/images/update/'+this.id,
+					type: 'POST',
+					data: {
+						'image': {
+							x: this.x,
+							y: this.y,
+							width: this.width,
+							height: this.height,
+							scale: this.canvas_scale
+						}
+					},
+					'success': function (data) {
+						window.console.log(data);
+					},
+					async: false
+				});
+			}
 		};
 		
 		var _that = this;
@@ -138,51 +193,11 @@ if (!Image_Manager) {
 			_that.scale_canvas();
 			$(window).unbind('mousemove.'+handleID);
 		});
-		
-		var pageStartY = imgStartX = imgStartY = null;
-		var imgID = (new Date()).getTime() * Math.floor(Math.random()*11);
-		$('.image-manager-editor-canvas img', this.editor).mousedown(function (e) {
-			pageStartX = e.pageX;
-			pageStartY = e.pageY;
-			imgStartX = $(this).position().left;
-			imgStartY = $(this).position().top;
-			
-			$(window).bind('mousemove.'+imgID, function (e) {
-				var pageX = e.pageX;
-				var pageY = e.pageY;
-				var diffX = pageX - pageStartX;
-				var diffY = pageY - pageStartY;
-				
-				var x = imgStartX + diffX;
-				var y = imgStartY + diffY;
-				
-				if (x > 0) x = 0;
-				if (y > 0) y = 0;
-				
-				var img_width     = _that.canvas_scale * _that.img_width * _that.editor_scale;
-				var img_height    = _that.canvas_scale * _that.img_height * _that.editor_scale;
-				var editor_width  = _that.editor_scale * _that.width;
-				var editor_height = _that.editor_scale * _that.height;
-				var diffWidth     = img_width - editor_width;
-				var diffHeight    = img_height - editor_height;
-				
-				if (x < 0 - diffWidth) {
-					x = 0 - diffWidth;
-				}
-				if (y < 0 - diffHeight) {
-					y = 0 - diffHeight;
-				}
-				
-				_that.x = x * _that.canvas_scale;
-				_that.y = y * _that.canvas_scale;
-				
-				_that.editor.find('.image-manager-editor-canvas img').css('left', x).css('top', y);
-			})
-		});
-		$(window).mouseup(function () {
-			$(window).unbind('mousemove.'+imgID);
-		});
 		this.editor.hide().appendTo(this.manager);
+		
+		this.editor.parents('form').submit(function () {
+			_that.save();
+		});
 		
 		this.size_editor();
 		$(window).bind('resize', function () {

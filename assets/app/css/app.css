@@ -654,6 +654,9 @@ ul#sidebar {
     #footer {
       width: 720px; } }
 
+progress {
+  # background: #000; }
+
 .image-manager .image-manager-editor {
   position: relative;
   -webkit-user-select: none; }
