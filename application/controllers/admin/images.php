@@ -12,6 +12,7 @@ class Images extends MY_Controller
 		
 		$output = array(
 			'id' => $image->id,
+			'url' => $image->image->url(),
 			'width' => $size[0],
 			'height' => $size[1]
 		);
