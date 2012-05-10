@@ -244,8 +244,6 @@ if ( ! function_exists('sidebar_filters') )
 		}
 		return false;
 	}
-	
-	save_filters();	
 }
 
 if ( ! function_exists('getVariableObject'))
