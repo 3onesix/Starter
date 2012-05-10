@@ -9,6 +9,8 @@
 */config/testing/database.php
 *db/*.db
 
+application/logs/*
+
 *.esproj
 
 .sass-cache
