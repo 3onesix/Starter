@@ -95,7 +95,7 @@ if (!Image_Manager) {
 			var formData = new FormData();
 			formData.append('image', _that.uploader.find('input[type=file]').get(0).files[0]);
 			$.ajax({
-				url: '/images/upload',  //server script to process data
+				url: '/admin/images/upload',  //server script to process data
 				type: 'POST',
 				//Ajax events
 				success: function (data) {
