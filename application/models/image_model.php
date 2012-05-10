@@ -16,7 +16,6 @@ class Image_Model extends My_Model
 		));
 		
 		$this->validates('image', array(
-			'attachment_required',
 			'attachment_content_type' => array(
 				'image/jpeg', 'image/png'
 			)

@@ -23,7 +23,8 @@ class Images extends MY_Controller
 	
 	public function action_update($id)
 	{
-		$data = $this->input->post('image');
-		$photo = $this->image_model->update($id, $data);
+		$data = $this->input->post('image');		
+		$image = $this->image_model->first($id);
+		$image->update_attributes($data);
 	}
 }
