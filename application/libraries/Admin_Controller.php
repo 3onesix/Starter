@@ -13,15 +13,14 @@ class Admin_Controller extends MY_Controller {
 	
 	public function __construct() 
 	{
+		if ($this->content_model_name) $this->autoload['models'][] = $this->content_model_name;
+	
 		parent::__construct();
 		
 		if ($this->module_name)
 		{
 			$this->module = $this->module_model->first(array('simple_name' => $this->module_name));
 		}
-		
-		//load models
-		if ($this->content_model_name) $this->load->model($this->content_model_name);
 		
 		//check properties
 		if (!$this->content_table_name)

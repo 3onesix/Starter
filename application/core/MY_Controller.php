@@ -11,11 +11,47 @@ class MY_Controller extends CI_Controller
 	
 	public $current_user = NULL;
 	
+	protected $autoload = array();
+	
 	protected function config_pagination() {}
 	
 	public function __construct() 
 	{
 		parent::__construct();
+		
+		if ( $helpers = value_for_key('helpers', $this->autoload) )
+		{
+			foreach($helpers as $helpers)
+			{
+				$this->load->helper($helpers);
+			}
+		}
+				
+		if ( $models = value_for_key('models', $this->autoload) )
+		{
+			foreach($models as $model)
+			{
+				$this->load->model($model);
+			}
+		}
+
+		if ( $configs = value_for_key('config', $this->autoload) )
+		{
+			foreach($configs as $config)
+			{
+				$this->load->config($config);
+			}
+		}
+
+		if ( $libraries = value_for_key('libraries', $this->autoload) )
+		{
+			foreach($libraries as $library)
+			{
+				$this->load->library($library);
+			}
+		}
+		
+		save_filters();	
 		
 		$this->load->database();
 		$this->load->library('session');
