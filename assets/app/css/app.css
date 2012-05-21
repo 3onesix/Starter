@@ -657,6 +657,9 @@ ul#sidebar {
 progress {
   # background: #000; }
 
+.image-manager .image-manager-uploader label {
+  font-size: 12px;
+  color: #888; }
 .image-manager .image-manager-editor {
   position: relative;
   -webkit-user-select: none; }

@@ -23,4 +23,9 @@ class Image_Model extends My_Model
 		
 		$this->validates('user_id', 'required');
 	}
+	
+	function get_url()
+	{
+		return site_url('images/'.$this->image_file_name);
+	}
 }
