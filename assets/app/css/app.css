@@ -211,6 +211,8 @@ form .field {
       color: #aaa; }
   form .field select {
     width: 310px; }
+  form .field img {
+    max-width: 100%; }
   form .field textarea {
     width: 400px;
     max-width: 400px;
