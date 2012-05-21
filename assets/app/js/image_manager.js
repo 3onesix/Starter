@@ -61,6 +61,7 @@ if (!Image_Manager) {
 			if (!end_early) this.scale_canvas();
 		};
 		this.load_image = function (id, url, width, height) {
+			this.manager.parent().find('img').remove();
 			this.id 		= id;
 			this.img_width  = width;
 			this.img_height = height;
@@ -89,9 +90,6 @@ if (!Image_Manager) {
 					var x = imgStartX + diffX;
 					var y = imgStartY + diffY;
 					
-					if (x > 0) x = 0;
-					if (y > 0) y = 0;
-					
 					var img_width     = _that.canvas_scale * _that.img_width * _that.editor_scale;
 					var img_height    = _that.canvas_scale * _that.img_height * _that.editor_scale;
 					var editor_width  = _that.editor_scale * _that.width;
@@ -105,6 +103,9 @@ if (!Image_Manager) {
 					if (y < 0 - diffHeight) {
 						y = 0 - diffHeight;
 					}
+					
+					if (x > 0) x = 0;
+					if (y > 0) y = 0;
 					
 					_that.x = x * _that.canvas_scale;
 					_that.y = y * _that.canvas_scale;
