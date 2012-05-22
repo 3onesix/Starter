@@ -55,7 +55,8 @@ class MY_Controller extends CI_Controller
 		
 		$this->load->database();
 		$this->load->library('session');
-																	
+		save_filters();
+									
 		$user = $this->session->userdata('user');
 		$username = value_for_key('username', $user);
 		$password = value_for_key('password', $user);
