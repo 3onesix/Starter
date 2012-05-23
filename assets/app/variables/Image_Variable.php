@@ -8,13 +8,15 @@ class Image_Variable extends Starter_Variable {
 		$id = url_title($this->fieldname, 'underscore', true).'_field';
 		
 		$this->variable->options = is_array($this->variable->options) ? $this->variable->options : unserialize($this->variable->options);
+		$image = $this->image();
+
+		$destroy_url = $image ? site_url('admin/images/destroy/'.$image->id) : NULL;
 		
 		$html  = '<div class="field">'."\n";
 		$html .= '<label for="'.$id.'">'.$this->variable->label.':</label>'."\n";
-		$html .= '<input type="file" name="'.$this->fieldname.'" id="'.$id.'" class="image-manager" data-width="'.$this->variable->options['width'].'" data-height="'.$this->variable->options['height'].'" />'."\n";
+		$html .= '<input type="file" name="'.$this->fieldname.'" id="'.$id.'" class="image-manager" data-width="'.$this->variable->options['width'].'" data-height="'.$this->variable->options['height'].'" data-destroy-url="'.$destroy_url.'" />'."\n";
 		
-		$image = $this->load();
-		if ($image) $html .= '<img src="'.$image.'" />'."\n";
+		if ($image) $html .= '<img src="'.$image->url.'" />'."\n";
 		
 		$html .= '</div>'."\n";
 		$html .= '<script type="text/javascript">'."\n";
@@ -25,13 +27,10 @@ class Image_Variable extends Starter_Variable {
 		return $html;
 	}
 	
-	function load()
+	function image()
 	{
 		$CI =& get_instance();
 		$CI->load->model('image_model');
-		$image = $CI->image_model->first($this->value());
-		
-		return $image ? $image->url : null;
-	}
-	
+		return $CI->image_model->first($this->value());
+	}	
 }
