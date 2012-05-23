@@ -115,7 +115,7 @@ class Front extends My_Controller {
 			
 			//position
 			$crop = imagecreatetruecolor($file->width, $file->height);
-			imagecopyresampled($crop, $resized, $file->x, $file->y, 0, 0, $orig_width * $file->scale, $orig_height * $file->scale, $orig_width * $file->scale, $orig_height * $file->scale);
+			imagecopyresampled($crop, $resized, $file->x / $file->scale, $file->y / $file->scale, 0, 0, $orig_width * $file->scale, $orig_height * $file->scale, $orig_width * $file->scale, $orig_height * $file->scale);
 			imagedestroy($resized);
 			
 			//resize

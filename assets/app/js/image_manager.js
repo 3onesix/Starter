@@ -46,7 +46,7 @@ if (!Image_Manager) {
 				scale = this.width / this.img_width;
 				this.canvas_scale = scale;
 			}
-			if (new_height < this.height) {
+			else if (new_height < this.height) {
 				new_height = this.height;
 				scale = this.height / this.img_height;
 				this.canvas_scale = scale;
@@ -152,7 +152,7 @@ if (!Image_Manager) {
 		this.uploader.append('<a href="#" class="remove">delete image</a>');
 
 		this.uploader.find('.remove').click(function() {
-			$.get(manager.destroy_url, function() {
+			$.get(_that.destroy_url, function() {
 				_that.manager.parent().find('img').remove();
 				$(this).remove();
 			});
