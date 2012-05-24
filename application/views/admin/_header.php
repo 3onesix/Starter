@@ -15,6 +15,9 @@
 		<script type="text/javascript" src="<?=base_url()?>assets/shared/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
 		<script type="text/javascript" src="<?=base_url()?>assets/shared/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
 		<link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/shared/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+
+		<script type="text/javascript" src="<?=base_url()?>assets/app/js/image_manager.js" />
+
 		<script type="text/javascript">
 			$(function () {
 				$('#page_variables .field a').each(function () {

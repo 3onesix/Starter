@@ -19,11 +19,7 @@ class Image_Variable extends Starter_Variable {
 		if ($image) $html .= '<img src="'.$image->url.'" />'."\n";
 		
 		$html .= '</div>'."\n";
-		$html .= '<script type="text/javascript">'."\n";
-		$html .= 'if ($("head script[src*=\'image_manager.js\']").size() == 0) {'."\n";
-		$html .= '$.getScript("/assets/app/js/image_manager.js")'."\n";
-		$html .= '}'."\n";
-		$html .= '</script>'."\n";
+		
 		return $html;
 	}
 	
