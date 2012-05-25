@@ -107,10 +107,13 @@ if (!Image_Manager) {
 					if (x > 0) x = 0;
 					if (y > 0) y = 0;
 					
-					_that.x = x * _that.canvas_scale;
-					_that.y = y * _that.canvas_scale;
+					_that.x = (x * _that.canvas_scale);
+					_that.y = (y * _that.canvas_scale);
 					
 					_that.editor.find('.image-manager-editor-canvas img').css('left', x).css('top', y);
+					
+					_that.x = _that.x / _that.editor_scale;
+					_that.y = _that.y / _that.editor_scale;
 				})
 			});
 			$(window).mouseup(function () {

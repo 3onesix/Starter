@@ -671,6 +671,7 @@ progress {
     border: 1px solid #aaa; }
     .image-manager .image-manager-editor .image-manager-editor-canvas img {
       position: absolute;
+      max-width: none;
       z-index: 1;
       -webkit-user-drag: none;
       cursor: move; }

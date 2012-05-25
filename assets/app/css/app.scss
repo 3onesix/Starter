@@ -691,6 +691,7 @@ progress {
 			img {
 				position: absolute;
 				
+				max-width: none;
 				z-index: 1;
 				-webkit-user-drag: none;
 				cursor: move;
