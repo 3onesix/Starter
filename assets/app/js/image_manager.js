@@ -56,7 +56,10 @@ if (!Image_Manager) {
 			
 			this.editor.find('img').width(new_width);
 		};
-		this.set_canvas_scale = function (scale, end_early) {
+		this.set_canvas_scale = function (scale, end_early) {			
+			scale = scale >= 2 ? 2 : scale;
+			scale = scale <= 0 ? 0 : scale;
+		
 			var width = $('.image-manager-editor-scale', this.editor).width() / 2;
 			$('.image-manager-editor-scale .handle', this.editor).css('left', scale * width);
 			
