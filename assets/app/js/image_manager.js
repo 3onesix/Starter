@@ -119,10 +119,11 @@ if (!Image_Manager) {
 					
 					_that.x = _that.x / _that.editor_scale;
 					_that.y = _that.y / _that.editor_scale;
-				})
-			});
-			$(window).mouseup(function () {
-				$(window).unbind('mousemove.'+imgID);
+				});
+				$(window).bind('mouseup.'+imgID, function () {
+					$(window).unbind('mouseup.'+imgID);
+					$(window).unbind('mousemove.'+imgID);
+				});
 			});
 		};
 		this.save = function () {
@@ -207,11 +208,11 @@ if (!Image_Manager) {
 				_that.editor.find('.handle').css('left', x);
 				_that.scale_canvas();
 			})
+			$(window).bind('mouseup.'+handleID, function () {
+				_that.scale_canvas();
+				$(window).unbind('mousemove.'+handleID);
+			});
 		})
-		$(window).mouseup(function () {
-			_that.scale_canvas();
-			$(window).unbind('mousemove.'+handleID);
-		});
 		this.editor.hide().appendTo(this.manager);
 		
 		this.editor.parents('form').submit(function () {
