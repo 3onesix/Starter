@@ -24,8 +24,8 @@ class Image_Model extends My_Model
 		$this->validates('user_id', 'required');
 	}
 	
-	function get_url()
+	function get_url($width = NULL)
 	{
-		return site_url('images/'.$this->image_file_name);
+		return site_url('images/'.$this->image_file_name) . ( $width ? '?width=' . $width : NULL);
 	}
 }

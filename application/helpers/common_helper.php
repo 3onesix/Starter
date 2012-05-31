@@ -1,5 +1,44 @@
 <?php
 
+if ( ! function_exists('responsive_image') )
+{
+	function responsive_image($image, $sizes, $attributes = array())
+	{
+		if ( $image )
+		{
+			$CI =& get_instance();
+			$CI->load->helper('html');
+			
+			$data = array();
+			
+			foreach($sizes as $key => $width) 
+			{
+				if ( $key == 'mobile' )
+				{
+					$attributes['src'] = $image->get_url($width);
+				}
+				else
+				{
+					$data['data-'.$key] = $image->get_url($width);					
+				}
+
+				$data['data-'.$key.'-retina'] = $image->get_url($width * 2);
+			}
+						
+			$attributes = array_merge($attributes, $data);			
+
+			if ( ! array_key_exists('src', $attributes) )
+			{
+				$attributes['src'] = $image->url;
+			}
+
+			return img($attributes);
+		}
+		
+		return '';
+	}
+}
+
 if ( ! function_exists('time2str') )
 {
 	function time2str($ts)
