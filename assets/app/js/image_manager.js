@@ -1,6 +1,12 @@
 if (!Image_Manager) {
 	window.image_managers = [];
 	
+	if (!!!(window.File && window.FileList)) {
+		$(function () {
+			$('h2#title').before('<div class="error">Your browser does not support file upload.</div>');
+		});
+	}
+	
 	var Image_Manager = function (field) {
 		/* Properties */
 		this.field  = field;
