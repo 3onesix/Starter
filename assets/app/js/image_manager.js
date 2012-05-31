@@ -79,6 +79,11 @@ if (!Image_Manager) {
 			this.manager.append('<input type="hidden" name="'+this.uploader.find('input[type=file]').attr('name')+'" value="'+id+'" />');
 			this.editor.find('.image-manager-editor-canvas').append('<img src="'+url+'" />');
 			
+			//check width and height of image
+			if (this.width > this.img_width || this.height > this.img_height) {
+				this.editor.prepend('<div class="image-manager-editor-notice">This image is not big enough and will need to be scaled up. This results in less quality.</div>');
+			}
+			
 			var _that = this;
 			this.editor.find('img').load(function () {
 				_that.set_canvas_scale(1);
@@ -162,15 +167,15 @@ if (!Image_Manager) {
 		this.field.wrap('<div class="image-manager-uploader" />');
 		this.uploader = $('.image-manager-uploader', this.manager);
 		this.uploader.append('<label class="note">image must be at least '+this.width+'x'+this.height+'</label>');
-		this.uploader.append('<a href="#" class="remove">delete image</a>');
-
+		
+		/*this.uploader.append('<a href="#" class="remove">delete image</a>');
 		this.uploader.find('.remove').click(function() {
 			$.get(_that.destroy_url, function() {
 				_that.manager.parent().find('img').remove();
 				$(this).remove();
 			});
 			return false;
-		});
+		});*/
 	
 		this.uploader.find('input[type=file]').change(function () {
 			var formData = new FormData();

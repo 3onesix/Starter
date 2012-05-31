@@ -665,6 +665,16 @@ progress {
 .image-manager .image-manager-editor {
   position: relative;
   -webkit-user-select: none; }
+  .image-manager .image-manager-editor .image-manager-editor-notice {
+    margin-bottom: 5px;
+    padding: 5px;
+    border: 1px solid #977;
+    background: #fdd;
+    color: #200;
+    -webkit-border-radius: 2px;
+    color: #200;
+    text-align: center;
+    font-weight: bold; }
   .image-manager .image-manager-editor .image-manager-editor-canvas {
     position: relative;
     overflow: hidden;
