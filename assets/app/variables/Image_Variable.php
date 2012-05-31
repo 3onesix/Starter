@@ -23,6 +23,11 @@ class Image_Variable extends Starter_Variable {
 		return $html;
 	}
 	
+	function load()
+	{
+		return $this->image();
+	}
+	
 	function image()
 	{
 		$CI =& get_instance();
