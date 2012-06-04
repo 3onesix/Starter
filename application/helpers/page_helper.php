@@ -10,7 +10,7 @@ function include_template($template, $data = array())
 	}
 }
 
-function include_partial($template, $data)
+function include_partial($template, $data = array())
 {
 	include_template('_'.$template, $data = array());
 }
