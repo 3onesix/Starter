@@ -30,7 +30,16 @@ class Template_Model extends My_Model
 			if (!is_dir(FCPATH.'assets/site/templates/'.$file) && $file != 'error_404.php' && strrpos($file, '.config.php') == false && substr($file, 0) != '_' && file_exists(FCPATH.'assets/site/templates/'.str_replace('.php', '.config.php', $file)))
 			{	
 				$name = str_replace('.php', '', $file);
-				
+
+				$ignore = array(
+					'.DS_Store'
+				);
+
+				if ( in_array($name, $ignore) ) 
+				{
+					continue;
+				}
+
 				if (!$this->exists(array('file' => $name)))
 				{
 					$template = $this->create(array(
@@ -41,7 +50,7 @@ class Template_Model extends My_Model
 				}
 			}
 		}
-		
+
 		$this->check_for_site_updates();
 	}
 	
