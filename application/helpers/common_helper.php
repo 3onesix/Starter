@@ -235,7 +235,7 @@ if ( ! function_exists('sidebar_filters') )
 				$html .= '<input type="text" id="'.$id.'" name="'.$name.'" value="'.(isset($stored_filters[url_title($label, 'underscore', true)]) ? $stored_filters[url_title($label, 'underscore', true)] : '').'" />';
 			}
 		}
-		$html .= '<input type="submit" value="Submit" /> or <a href="?clear_filters=true">clear</a>';
+		$html .= '<input type="submit" value="Submit" /> or <a href="?clear_filters=true">clear filter</a>';
 		$html .= '</form>';
 		
 		echo $html;
