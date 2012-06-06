@@ -26,20 +26,8 @@ class Page_Variable_Model extends My_Model
 		));
 	}
 	
-	# Return files // overrides Jot
-	/*public function set_files_cache($name, $cache) {
-		$this->files_cache_local = array(
-			$name => $cache
-		);
-	}
-	
-	public function _files($attachment_name)
+	protected function _can_send_action()
 	{
-		if ( ! is_array($this->files_cache_local) ) $this->files_cache_local = array();
-			
-		# Return file attachment from file cache
-		$_cache = value_for_key($attachment_name, $this->files_cache_local);
-		unset($this->files_cache_local);
-		return $_cache;
-	}*/
+		return $this->read_attribute('page_id') == '0';
+	}
 }

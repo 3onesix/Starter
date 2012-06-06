@@ -4,6 +4,8 @@ class Template_Model extends My_Model
 {
 	public function init()
 	{
+		$this->enable_actions = false;
+		
 		$this->validates('name', 'required');
 		
 		$this->has_many('pages');
