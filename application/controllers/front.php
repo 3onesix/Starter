@@ -57,23 +57,29 @@ class Front extends My_Controller {
 			$this->benchmark->mark('load_variables_start');
 			
 			$vars = $this->page_model->variables(0);
+			$variables = array();
+			
 			if ($vars)
 			{
 				foreach ($vars as $k => $v)
 				{
-					$$k = $v;
+					$variables[$k] = $v;
 				}
 			}
 			
 			$vars = $page->variables();
 			foreach ($vars as $k => $v)
 			{
-				$$k = $v;
+				$variables[$k] = $v;
 			}
+			
+			$this->variables = $variables;
+			
 			$this->benchmark->mark('load_variables_end');
 			
 			$this->benchmark->mark('front_end');
-			include('assets/site/templates/'.$page->template->file.'.php');
+			
+			include_template($page->template->file);
 		}
 		else
 		{
