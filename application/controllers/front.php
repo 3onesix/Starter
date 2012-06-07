@@ -57,7 +57,9 @@ class Front extends My_Controller {
 			$this->benchmark->mark('load_variables_start');
 			
 			$vars = $this->page_model->variables(0);
-			$variables = array();
+			$variables = array(
+				'page' => $page
+			);			
 			
 			if ($vars)
 			{
