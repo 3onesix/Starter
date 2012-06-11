@@ -28,6 +28,12 @@
 					<?php print $f->select('template_id', $templates); ?>
 				</div>
 			<?php endif; ?>
+			<?php if (setting('page_hidden_enabled')): ?>
+				<div class="field checkbox" data-help="Hidden pages do not appear in dynamic navigations.">
+					<?php print $f->check_box('status', array(), 'hidden', 'public'); ?>
+					<?php print $f->label('status', 'Hidden'); ?>
+				</div>
+			<?php endif; ?>
 		</fieldset>
 	<?php endif; ?>
 	<?php $variables = array(); ?>
