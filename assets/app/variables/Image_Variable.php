@@ -12,11 +12,12 @@ class Image_Variable extends Starter_Variable {
 
 		$destroy_url = $image ? site_url('admin/images/destroy/'.$image->id) : NULL;
 		
-		$html  = '<div class="field">'."\n";
-		$html .= '<label for="'.$id.'">'.$this->variable->label.':</label>'."\n";
-		$html .= '<input type="file" name="'.$this->fieldname.'" id="'.$id.'" class="image-manager" data-width="'.$this->variable->options['width'].'" data-height="'.$this->variable->options['height'].'" data-destroy-url="'.$destroy_url.'" />'."\n";
+		$html  = '<div class="field"><label for="'.$id.'">'.$this->variable->label.':</label>';
 		
-		if ($image) $html .= '<img src="'.$image->url.'" />'."\n";
+		
+		$html .= '<input type="file" name="'.$this->fieldname.'" id="'.$id.'" class="image-manager" data-width="'.$this->variable->options['width'].'" data-height="'.$this->variable->options['height'].'" data-destroy-url="'.$destroy_url.'" />';
+		
+		if ($image) $html .= '<img src="'.$image->url.'" />';
 		
 		$html .= '</div>'."\n";
 		
