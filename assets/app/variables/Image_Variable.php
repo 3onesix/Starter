@@ -6,7 +6,7 @@ class Image_Variable extends Starter_Variable {
 	{
 		$value = $this->value();
 		$id = url_title($this->fieldname, 'underscore', true).'_field';
-		
+
 		$this->variable->options = is_array($this->variable->options) ? $this->variable->options : unserialize($this->variable->options);
 		$image = $this->image();
 
@@ -29,9 +29,15 @@ class Image_Variable extends Starter_Variable {
 	}
 	
 	function image()
-	{
-		$CI =& get_instance();
-		$CI->load->model('image_model');
-		return $CI->image_model->first($this->value());
+	{	
+		$page_variable = $this->page_variable();
+		if ($page_variable)
+		{
+			$CI =& get_instance();
+			$CI->load->model('image_model');
+			return $CI->image_model->first($page_variable->value);
+		} 
+		
+		return null;
 	}	
 }
