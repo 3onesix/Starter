@@ -7,7 +7,14 @@ class Page_Model extends My_Model
 		$this->validates('name', 'required');
 		$this->validates('slug', 'required');
 		
+		// Page is deprecated - use parent
 		$this->belongs_to('page');
+		
+		$this->belongs_to('parent', array(
+			'foreign_key' => 'page_id',
+			'class_name' => 'Page_Model'
+		));
+		
 		$this->has_many('pages');
 		
 		$this->belongs_to('user');
