@@ -20,10 +20,13 @@ class Page_Variable_Model extends My_Model
 	
 	public function store_revision()
 	{
-		$this->page_variable_revision_model->create(array(
-			'page_variable_id' => $this->id,
-			'value' => $this->value
-		));
+		if ( ! $this->page_variable_id )
+		{
+			$this->page_variable_revision_model->create(array(
+				'page_variable_id' => $this->id,
+				'value' => $this->value
+			));
+		}
 	}
 	
 	protected function _can_send_action()
