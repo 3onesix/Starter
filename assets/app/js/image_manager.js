@@ -166,7 +166,7 @@ if (!Image_Manager) {
 		this.manager = this.field.parent();
 		this.field.wrap('<div class="image-manager-uploader" />');
 		this.uploader = $('.image-manager-uploader', this.manager);
-		this.uploader.append('<label class="note">image must be at least '+this.width+'x'+this.height+'</label>');
+		this.uploader.append('<span class="note">image must be at least '+this.width+'x'+this.height+'</span>');
 		
 		/*this.uploader.append('<a href="#" class="remove">delete image</a>');
 		this.uploader.find('.remove').click(function() {
