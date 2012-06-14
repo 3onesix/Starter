@@ -725,3 +725,6 @@ progress {
       float: left; }
     .image-manager .image-manager-editor .image-manager-editor-information .scale {
       float: right; }
+
+.textboxlist {
+  margin-bottom: 10px; }
