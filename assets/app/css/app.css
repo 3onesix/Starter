@@ -1,3 +1,4 @@
+/* Did compatability check on May 25th, 2012, removed -moz and -webkit */
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6,
 p, blockquote, pre, a, abbr, address, cite, code, del, dfn, em,
 img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, hr,
@@ -178,11 +179,8 @@ form .field {
         background: url(../images/tooltip_bg.png) repeat-x bottom left;
         border: 1px solid #cc9;
         border-bottom: none;
-        -webkit-border-radius: 2px;
-        -moz-border-radius: 2px;
         border-radius: 2px;
-        -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
-        -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        -ms-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
         font-size: 12px; }
       form .field label .tooltip-help:hover .tooltip {
@@ -252,8 +250,6 @@ form p {
     position: relative;
     min-height: 100px;
     border: 2px solid #bbb;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
     border-radius: 2px;
     -webkit-box-shadow: 0 0 0 2px #eee;
     -moz-box-shadow: 0 0 0 2px #eee;
@@ -327,11 +323,8 @@ form p {
     background: #ffffcc url(../images/sidebar_note_bg.png) repeat-x bottom left;
     border: 1px solid #cc9;
     border-bottom: none;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
     border-radius: 2px;
-    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
-    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    -ms-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5); }
   #sidebar .sidebar_filters {
     font-size: 12px;
@@ -386,8 +379,6 @@ ul#sidebar {
 .button {
   padding: 2px 6px;
   border: 1px solid #b3b3b3;
-  -webkit-border-radius: 12px;
-  -moz-border-radius: 12px;
   border-radius: 12px;
   background: #ddd;
   background: #f2f2f2;
@@ -562,11 +553,29 @@ ul#sidebar {
       clear: left;
       overflow: auto;
       padding: 4px 3px;
-      -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
       border-radius: 3px; }
+      #records ul li[data-status=published] {
+        background-image: url("../images/status_published.png");
+        background-position: left center;
+        background-repeat: no-repeat;
+        padding-left: 20px; }
+        @media (-webkit-min-device-pixel-ratio: 2) {
+          #records ul li[data-status=published] {
+            background-image: url("../images/status_published_2x.png") !important;
+            -webkit-background-size: 20px 20px;
+            background-size: 20px 20px; } }
+      #records ul li[data-status=draft] {
+        background-image: url("../images/status_draft.png");
+        background-position: left center;
+        background-repeat: no-repeat;
+        padding-left: 20px; }
+        @media (-webkit-min-device-pixel-ratio: 2) {
+          #records ul li[data-status=draft] {
+            background-image: url("../images/status_draft_2x.png") !important;
+            -webkit-background-size: 20px 20px;
+            background-size: 20px 20px; } }
       #records ul li.odd {
-        background: #f2f2f2; }
+        background-color: #f2f2f2; }
       #records ul li .what .sub {
         display: inline-block;
         max-width: 300px;
@@ -693,11 +702,8 @@ progress {
       width: 50%;
       height: 8px;
       margin: 0 25%;
-      -webkit-border-radius: 4px;
-      -moz-border-radius: 4px;
       border-radius: 4px;
-      -webkit-box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.3);
-      -box-box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.3);
+      -ms-box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.3);
       box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.3);
       background: rgba(0, 0, 0, 0.5); }
       .image-manager .image-manager-editor .image-manager-editor-canvas .image-manager-editor-scale .handle {
@@ -705,12 +711,9 @@ progress {
         width: 14px;
         height: 14px;
         margin: -4px 0 0 -4px;
-        -webkit-border-radius: 8px;
-        -moz-border-radius: 8px;
         border-radius: 8px;
         border: 1px solid #888;
-        -webkit-box-shadow: inset 0 -3px 8px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.25);
-        -box-box-shadow: inset 0 -3px 8px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.25);
+        -ms-box-shadow: inset 0 -3px 8px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.25);
         box-shadow: inset 0 -3px 8px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.25);
         background: #ccc;
         cursor: pointer; }
@@ -723,3 +726,6 @@ progress {
       float: left; }
     .image-manager .image-manager-editor .image-manager-editor-information .scale {
       float: right; }
+
+.textboxlist {
+  margin-bottom: 10px; }

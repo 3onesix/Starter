@@ -1,3 +1,4 @@
+/* Did compatability check on May 25th, 2012, removed -moz and -webkit */
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6,
 p, blockquote, pre, a, abbr, address, cite, code, del, dfn, em,
 img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, hr,
@@ -36,8 +37,6 @@ a {
   margin: 50px auto;
   padding: 10px;
   background: #fff;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
   border-radius: 4px;
   -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25); }
   #signin h1 {
@@ -77,8 +76,6 @@ a {
     margin: 0 0 10px;
     padding: 4px;
     border: 1px solid #ccc;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
     border-radius: 2px;
     font: 14px/20px Helvetica Neue, Helvetica, Arial, sans-serif; }
   #signin input[type=submit] {
@@ -87,8 +84,6 @@ a {
     margin: 0 auto 5px;
     padding: 4px 10px;
     border: none;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
     border-radius: 2px;
     background: #51626f;
     background: #51626f;

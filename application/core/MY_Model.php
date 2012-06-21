@@ -48,7 +48,7 @@ class MY_Model extends JotRecord
 						
 			$action = new Action_Model;
 			$action->type = $type;
-			$action->user_id = $CI->current_user->user_id;
+			$action->user_id = $CI->current_user ? $CI->current_user->user_id : null;
 			$action->ip_address = $this->input->ip_address();
 			$action->user_agent = $this->input->user_agent();
 			$action->actionable = $this;

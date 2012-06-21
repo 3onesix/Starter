@@ -554,8 +554,21 @@ ul#sidebar {
 			padding: 4px 3px;
 			@include border-radius(3px);
 			
+			&[data-status=published] {
+				@include hires-graphic(status_published, png, 20px, 20px);
+				background-position: left center;
+				background-repeat: no-repeat;
+				padding-left: 20px;
+			}
+			&[data-status=draft] {
+				@include hires-graphic(status_draft, png, 20px, 20px);
+				background-position: left center;
+				background-repeat: no-repeat;
+				padding-left: 20px;
+			}
+			
 			&.odd {
-				background: darken(#fff, 5%);
+				background-color: darken(#fff, 5%);
 			}
 			
 			.what {
@@ -748,4 +761,8 @@ progress {
 			}
 		}
 	}
+}
+
+.textboxlist {
+	margin-bottom: 10px
 }
