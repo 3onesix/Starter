@@ -8,7 +8,7 @@ function include_template($name, $data = array())
 
 function include_partial($name, $data = array())
 {
-	include_template('_'.$name, $data = array());
+	include_template('_'.$name, $data);
 }
 
 class Template
