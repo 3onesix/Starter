@@ -114,7 +114,6 @@ var repeatables = {
 				var fields 	= $(this).find('select, input[type=text], input[type=file], input[type=hidden], textarea, span.cke_skin_kama, label');
 				fields.each(function () {
 					if ($(this).get(0).nodeName.toLowerCase() == 'label') {
-						console.log(this);
 						var field_for = $(this).attr('for');
 						$(this).attr('for', field_for.replace('variables_'+name+'_'+i+'_', 'variables_'+name+'_'+index+'_'));
 					}
