@@ -9,7 +9,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
 		
-		<link rel="stylesheet" href="<?=base_url()?>assets/app/css/signin.css" type="" />
+		<link rel="stylesheet" href="<?=base_url()?>assets/app/css/signin.css" />
 	</head>
 	<body>
 		<form id="signin" method="post" action="<?=site_url('admin/authenticate')?>">
