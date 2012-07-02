@@ -74,8 +74,13 @@ class Admin_Controller extends MY_Controller {
 	{
 		$this->load->view($this->controller_path.'/new', array(
 			'title'	=> $title ? $title : 'New '.ucfirst($this->content_singular).' | '.ucfirst($this->content_plural),
-			$this->content_singular => flash_jot($this->content_singular)
+			$this->content_singular => flash_jot($this->flash_name())
 		));
+	}
+	
+	protected function flash_name()
+	{
+		return str_replace('_model', '', $this->content_model_name);
 	}
 	
 	public function action_create()
@@ -86,7 +91,7 @@ class Admin_Controller extends MY_Controller {
 		
 		if ( $item->errors() ) //if any error happened (validation, etc.), toss back to /new
 		{
-			flash($this->content_singular, $item);
+			flash($this->flash_name(), $item);
 			redirect($this->controller_path.'/new');
 		}
 		else //no errors? okay, head back to /index
@@ -100,7 +105,7 @@ class Admin_Controller extends MY_Controller {
 	{
 		$this->load->vars(array(
 			'title'	=> $title ? $title : 'Edit '.ucfirst($this->content_singular).' | '.ucfirst($this->content_plural),
-			$this->content_singular => flash_jot($this->content_singular, $id)
+			$this->content_singular => flash_jot($this->flash_name(), $id)
 		));
 		$this->load->view($this->controller_path.'/edit');
 	}
@@ -112,7 +117,7 @@ class Admin_Controller extends MY_Controller {
 				
 		if ( $item->errors() ) //if any error happened (validation, etc.), toss back to /edit/:id
 		{
-			flash($this->content_singular, $item);
+			flash($this->flash_name(), $item);
 			redirect($this->controller_path.'/edit/'.$id);
 		}
 		else //no errors? okay, head back to /index
