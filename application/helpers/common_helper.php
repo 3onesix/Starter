@@ -151,17 +151,28 @@ if ( ! function_exists('message'))
 
 if ( ! function_exists('pagination'))
 {
-	function pagination($pages)
+	function pagination($pages, $allowed_keys = array())
 	{
 		$CI =& get_instance();
 		$page = $CI->input->get('page') ? $CI->input->get('page') : 1;
+		
+		$allowed_vars = array();
+		
+		foreach($allowed_keys as $key)
+		{
+			$allowed_vars[$key] = value_for_key($key, $_GET);
+		}
 	
 		if ($pages == 1) return false;
 		
 		echo '<ul id="pagination">';
 		if ($page > 1)
 		{
-			echo '<li class="previous"><a href="?page='.($page - 1).'">&laquo; previous page</a></li>';
+			$query = http_build_query($allowed_vars + array(
+				'page' => ($page - 1)
+			));
+		
+			echo '<li class="previous"><a href="?'.$query.'">&laquo; previous page</a></li>';
 		}
 		
 		if ($page > 3)
@@ -178,17 +189,24 @@ if ( ! function_exists('pagination'))
 		{
 			if ($i <= $pages)
 			{
-				echo '<li class="page'.($i == $page ? ' current' : '').'"><a href="?page='.$i.'">'.$i.'</a></li>';
+				$query = http_build_query($allowed_vars + array(
+					'page' => ($i)
+				));
+				
+				echo '<li class="page'.($i == $page ? ' current' : '').'"><a href="?'.$query.'">'.$i.'</a></li>';
 			}
 		}
 		
 		if ($page < $pages)
 		{
-			echo '<li class="next"><a href="?page='.($page + 1).'">next page &raquo;</a></li>';
+			$query = http_build_query($allowed_vars + array(
+				'page' => ($page + 1)
+			));
+						
+			echo '<li class="next"><a href="?'.$query.'">next page &raquo;</a></li>';
 		}
 		echo '</ul>';
 	}
-	
 }
 
 if ( ! function_exists('sidebar_filters') )
