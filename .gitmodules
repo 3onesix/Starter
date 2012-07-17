@@ -4,3 +4,9 @@
 [submodule "assets/app/css/mixins"]
 	path = assets/app/css/mixins
 	url = git@github.com:3onesix/SASS-Mixins.git
+[submodule "assets/site/modules/starter_blog"]
+	path = assets/site/modules/starter_blog
+	url = git@github.com:3onesix/Blog-Module.git
+[submodule "assets/site/modules/echo_events"]
+	path = assets/site/modules/echo_events
+	url = git@github.com:echodesigngrp/event-module.git

@@ -560,6 +560,12 @@ ul#sidebar {
 				background-repeat: no-repeat;
 				padding-left: 20px;
 			}
+			&[data-status=test] {
+				@include hires-graphic(status_test, png, 20px, 20px);
+				background-position: left center;
+				background-repeat: no-repeat;
+				padding-left: 20px;
+			}
 			&[data-status=draft] {
 				@include hires-graphic(status_draft, png, 20px, 20px);
 				background-position: left center;

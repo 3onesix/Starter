@@ -564,6 +564,16 @@ ul#sidebar {
             background-image: url("../images/status_published_2x.png") !important;
             -webkit-background-size: 20px 20px;
             background-size: 20px 20px; } }
+      #records ul li[data-status=test] {
+        background-image: url("../images/status_test.png");
+        background-position: left center;
+        background-repeat: no-repeat;
+        padding-left: 20px; }
+        @media (-webkit-min-device-pixel-ratio: 2) {
+          #records ul li[data-status=test] {
+            background-image: url("../images/status_test_2x.png") !important;
+            -webkit-background-size: 20px 20px;
+            background-size: 20px 20px; } }
       #records ul li[data-status=draft] {
         background-image: url("../images/status_draft.png");
         background-position: left center;
