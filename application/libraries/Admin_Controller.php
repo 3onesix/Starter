@@ -46,11 +46,19 @@ class Admin_Controller extends MY_Controller {
 		return $model;
 	}
 	
+	protected function apply_filter()
+	{
+		log_message('debug', 'Filter not defined for controller'.get_class($this));
+	}
+	
 	public function action_index($title = null, $notice = null)
 	{
 		//load page of items
 		$per_page		= 20;
+		if ( method_exists($this, 'apply_filter') ) $this->apply_filter();
 		$item_count 	= $this->model()->count();
+
+		if ( method_exists($this, 'apply_filter') ) $this->apply_filter();
 		$pages			= $item_count / $per_page;
 		$current_page	= $this->input->get('page') ? $this->input->get('page') : 1;
 		$items			= $this->model()->find(array('page' => $current_page, 'limit' => $per_page));
