@@ -158,9 +158,12 @@ if ( ! function_exists('pagination'))
 		
 		$allowed_vars = array();
 		
-		foreach($allowed_keys as $key)
+		if ( is_array($allowed_keys) )
 		{
-			$allowed_vars[$key] = value_for_key($key, $_GET);
+			foreach($allowed_keys as $key)
+			{
+				$allowed_vars[$key] = value_for_key($key, $_GET);
+			}
 		}
 	
 		if ($pages == 1) return false;
