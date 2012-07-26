@@ -17,11 +17,11 @@
 			<?php if ($notice): ?><div class="notice"><?=$notice?></div><?php endif; ?>
 			<?php if ($error): ?><div class="error"><?=$error?></div><?php endif; ?>
 			<div class="field">
-				<label for="username_field">Username<label>
+				<label for="username_field">Username</label>
 				<input type="text" name="username" id="username_field" />
 			</div>
 			<div class="field">
-				<label for="password_field">Password<label>
+				<label for="password_field">Password</label>
 				<input type="password" name="password" id="password_field" />
 			</div>
 			<div class="actions">
