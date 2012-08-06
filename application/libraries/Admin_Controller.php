@@ -23,12 +23,13 @@ class Admin_Controller extends MY_Controller {
 		{
 			$this->module = $this->module_model->first(array('simple_name' => $this->module_name));
 		}
-		
+
 		//check properties
 		if ( ! $this->content_table_name )
 		{
 			$this->content_table_name = $this->model()->singular_table_name();
 		}
+
 		if ( ! $this->content_plural )
 		{
 			$this->inflector->pluralize($this->content_singular);
@@ -50,7 +51,8 @@ class Admin_Controller extends MY_Controller {
 			'content_singular'	=> $this->content_singular,
 			'content_plural'	=> $this->content_plural,
 			'content_singular_readable'	=> $this->content_singular_readable,
-			'content_plural_readable'	=> $this->content_plural_readable,		
+			'content_plural_readable'	=> $this->content_plural_readable,	
+			'content_model_name' => $this->content_model_name				
 		));
 	}
 	
@@ -95,11 +97,10 @@ class Admin_Controller extends MY_Controller {
 	public function action_new($title = null)
 	{
 		$item = flash_jot($this->flash_name());
-	
 		$this->load->view($this->controller_path.'/new', array(
-			'title'	=> $title ? $title : 'New '.ucfirst($this->content_singular).' | '.ucfirst($this->content_plural),
+			'title'	=> $title ? $title : 'New '.ucfirst($this->content_singular_readable).' | '.ucfirst($this->content_plural_readable),
 			$this->content_singular => $item,
-			'item' => flash_jot($this->flash_name())
+			'item' => $item
 		));
 	}
 	
@@ -112,7 +113,15 @@ class Admin_Controller extends MY_Controller {
 	{
 		//get data and save it
 		$data 		= $this->input->post($this->content_table_name);
-		$item 		= $this->model()->create($data);
+		$item 		= $this->model()->build();
+				
+		// Iterate through each key. This makes sure that attributes functions get called.
+		foreach($data as $key => $value)
+		{
+			$item->$key = $value;
+		}
+		
+		$item->save();
 		
 		if ( $item->errors() ) //if any error happened (validation, etc.), toss back to /new
 		{
@@ -121,7 +130,7 @@ class Admin_Controller extends MY_Controller {
 		}
 		else //no errors? okay, head back to /index
 		{
-			flash('notice', ucfirst($this->content_singular).' was added successfully.');
+			flash('notice', ucfirst($this->content_singular_readable).' was added successfully.');
 			redirect($this->controller_path);
 		}
 	}
@@ -129,9 +138,9 @@ class Admin_Controller extends MY_Controller {
 	public function action_edit($id, $title = null)
 	{
 		$item = flash_jot($this->flash_name(), $id);
-	
+		
 		$this->load->vars(array(
-			'title'	=> $title ? $title : 'Edit '.ucfirst($this->content_singular).' | '.ucfirst($this->content_plural),
+			'title'	=> $title ? $title : 'Edit '.ucfirst($this->content_singular_readable).' | '.ucfirst($this->content_plural_readable),
 			$this->content_singular => $item,
 			'item' => $item
 		));
@@ -141,8 +150,17 @@ class Admin_Controller extends MY_Controller {
 	public function action_update($id)
 	{
 		$data = $this->input->post($this->content_table_name);
-		$item = $this->model()->update($id, $data);
-				
+		
+		$item = $this->model()->first($id);
+
+		// Iterate through each key. This makes sure that attributes functions get called.
+		foreach($data as $key => $value)
+		{
+			$item->$key = $value;
+		}
+		
+		$item->save();
+		
 		if ( $item->errors() ) //if any error happened (validation, etc.), toss back to /edit/:id
 		{
 			flash($this->flash_name(), $item);
@@ -150,7 +168,7 @@ class Admin_Controller extends MY_Controller {
 		}
 		else //no errors? okay, head back to /index
 		{
-			flash('notice', ucfirst($this->content_singular).' was updated successfully.');
+			flash('notice', ucfirst($this->content_singular_readable).' was updated successfully.');
 		}
 		
 		redirect($this->controller_path);
@@ -163,9 +181,8 @@ class Admin_Controller extends MY_Controller {
 		if ( $item )
 		{
 			$item->destroy();
-			flash('notice', ucfirst($this->content_singular).' was successfully deleted.');
+			flash('notice', ucfirst($this->content_singular_readable).' was successfully deleted.');
 		}
 		redirect($this->controller_path);
 	}
-	
 }
