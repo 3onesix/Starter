@@ -8,6 +8,8 @@ class Admin_Controller extends MY_Controller {
 	public $controller_path 	= '';
 	public $content_singular 	= '';
 	public $content_plural 		= '';
+	public $content_singular_readable 	= '';
+	public $content_plural_readable 		= '';
 	public $content_table_name	= '';
 	public $content_model_name	= '';
 	
@@ -23,20 +25,32 @@ class Admin_Controller extends MY_Controller {
 		}
 		
 		//check properties
-		if (!$this->content_table_name)
+		if ( ! $this->content_table_name )
 		{
 			$this->content_table_name = $this->model()->singular_table_name();
 		}
-		if (!$this->content_plural)
+		if ( ! $this->content_plural )
 		{
 			$this->inflector->pluralize($this->content_singular);
+		}
+		
+		if ( ! $this->content_singular_readable )
+		{
+			$this->content_singular_readable = $this->content_singular;
+		}
+
+		if ( ! $this->content_plural_readable )
+		{
+			$this->content_plural_readable = $this->content_plural;
 		}
 		
 		//load variables
 		$this->load->vars(array(
 			'controller_path' 	=> $this->controller_path,
 			'content_singular'	=> $this->content_singular,
-			'content_plural'	=> $this->content_plural
+			'content_plural'	=> $this->content_plural,
+			'content_singular_readable'	=> $this->content_singular_readable,
+			'content_plural_readable'	=> $this->content_plural_readable,		
 		));
 	}
 	
@@ -80,9 +94,12 @@ class Admin_Controller extends MY_Controller {
 	
 	public function action_new($title = null)
 	{
+		$item = flash_jot($this->flash_name());
+	
 		$this->load->view($this->controller_path.'/new', array(
 			'title'	=> $title ? $title : 'New '.ucfirst($this->content_singular).' | '.ucfirst($this->content_plural),
-			$this->content_singular => flash_jot($this->flash_name())
+			$this->content_singular => $item,
+			'item' => flash_jot($this->flash_name())
 		));
 	}
 	
@@ -111,9 +128,12 @@ class Admin_Controller extends MY_Controller {
 	
 	public function action_edit($id, $title = null)
 	{
+		$item = flash_jot($this->flash_name(), $id);
+	
 		$this->load->vars(array(
 			'title'	=> $title ? $title : 'Edit '.ucfirst($this->content_singular).' | '.ucfirst($this->content_plural),
-			$this->content_singular => flash_jot($this->flash_name(), $id)
+			$this->content_singular => $item,
+			'item' => $item
 		));
 		$this->load->view($this->controller_path.'/edit');
 	}
